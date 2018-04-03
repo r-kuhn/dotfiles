@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+# Because Git submodule commands cannot operate without a work tree, they must
+# be run from within $HOME (assuming this is the root of your dotfiles)
+cd "$HOME"
+
+echo "Init submodules"
+yadm submodule update --recursive --init
+
+system_type=$(uname -s)
+
+if [ "$system_type" = "Darwin" ]; then
+	# install homebrew if it's missing
+	if [ -f "$HOME/.Brewfile" ]; then
+		echo "Updating homebrew bundle"
+		brew bundle --global
+	fi
+
+	if [ -d "$HOME/.iterm2" ]; then
+		echo "Setting iTerm preference folder"
+		defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
+	fi
+
+	if [ -d "$HOME/.config/fonts" ]; then
+		for f in "$HOME/.config/fonts/*"; do
+			cp -f $f ~/Library/Fonts/
+		done
+	fi
+
+	npm install -g jshint eslint
+fi
+
+if [[ "$OSTYPE" == "Linux" ]]; then
+	sudo apt-get update
+	sudo apt-get install sqlite3 golang-1.10 neovim python-dev python-pip \
+		python3-dev python3-pip nfs nfs-common npm shellcheck zsh
+	sudo npm install -g jshint eslint
+fi
+
+# install npm things
+
+if command -v nvim >/dev/null 2>&1; then
+	echo "Bootstraping Vim"
+	vim '+PlugInstall' '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+fi
+
