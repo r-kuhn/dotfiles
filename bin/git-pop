@@ -1,0 +1,45 @@
+#! /bin/bash
+SUBDIRECTORY_OK='Yes'
+OPTIONS_KEEPDASHDASH=
+OPTIONS_SPEC="\
+git pop [-d|-D|--delete]
+
+Switch to the upstream branch, if it is local.
+--
+d,delete       Delete starting branch after switching only if the upstream is fully merged (up-to-date).
+D              Delete starting branch after switching, even if it has unmerged commits.
+"
+
+. git-sh-setup
+
+delete_flags=
+while test $# != 0
+do
+    case "$1" in
+        -d|-D|--delete)
+            test -n "$delete_flags" && usage
+            delete_flags="$1"
+            ;;
+        --)
+            shift
+            break
+            ;;
+    esac
+    shift
+done
+test $# != 0 && usage
+
+start_branch=$(git symbolic-ref HEAD) || \
+    die "Not on a branch (no HEAD)!"
+start_branch_short=$(expr "$start_branch" : 'refs/heads/\(.*\)' ) || \
+    die "$start_branch doesn't exist."
+upstream_branch=$(git for-each-ref --format='%(upstream)' $start_branch) && \
+    test -n "$upstream_branch" || \
+    die "$start_branch_short has no upstream branch."
+upstream_branch_short=$(expr "$upstream_branch" : 'refs/heads/\(.*\)' ) || \
+    die "The upstream branch '$upstream_branch' is not a local branch."
+
+git checkout "$upstream_branch_short" || exit $?
+if test -n "$delete_flags" ; then
+    git branch "$delete_flags" "$start_branch_short"
+fi

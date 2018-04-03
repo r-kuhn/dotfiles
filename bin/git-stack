@@ -1,0 +1,35 @@
+#! /bin/bash
+SUBDIRECTORY_OK='Yes'
+OPTIONS_KEEPDASHDASH=
+OPTIONS_SPEC="\
+git stack
+
+Print the stack of upstream branches.
+
+--
+"
+
+. git-sh-setup
+
+test $# == 0 && usage
+
+# Walk the chain of upstream branches, filling the branch_chain array
+# depth-first. The return value is the number of upstream changes.
+print-chain() {
+    eval $(git for-each-ref --shell --format='
+local ref=%(refname:short)
+local fullupstream=%(upstream)' "$1")
+
+    [[ -n $ref ]] || die "$1" is not a valid ref
+
+    echo "$ref"
+
+    local remote="$(git config branch."$ref".remote)"
+
+    # Tracking a local branch, recurse
+    if [[ -n $remote ]] ; then
+        print-chain "$fullupstream"
+    fi
+}
+
+print-chain "$(git symbolic-ref HEAD)"

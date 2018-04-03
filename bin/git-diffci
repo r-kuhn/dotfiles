@@ -1,0 +1,45 @@
+#! /bin/bash
+OPTIONS_SPEC="\
+git diffci [--fb|--staging|--prod]
+
+List commits not found in each environment
+
+--
+fb      What has been built in a full build that is not in staging yet
+staging What is in master that is not in staging
+prod    What is in staging that is not in production
+"
+
+. git-sh-setup
+
+deployment_env='fb'
+
+while test $# != 0
+do
+  case "$1" in
+    --fb)
+      deployment_env="fb"
+      ;;
+    --staging)
+      deployment_env="staging"
+      ;;
+    --prod)
+      deployment_env="prod"
+      ;;
+    --)
+      shift
+      break
+      ;;
+  esac
+  shift
+done
+test $# != 0 && usage
+
+if [ $deployment_env == "fb" ]; then
+  git log --oneline --no-merges gerrit/ops/staging..gerrit/ci/QNXION-Stack-Full-Build
+elif [ $deployment_env == "staging" ]; then
+  git log --oneline --no-merges gerrit/ops/staging..master
+elif [ $deployment_env == "prod" ]; then
+  git log --oneline --no-merges gerrit/ops/production-zone11..gerrit/ops/staging
+fi;
+

@@ -1,0 +1,42 @@
+#! /bin/bash
+
+# Get the current branch (full ref name)
+head=$(git rev-parse --symbolic-full-name HEAD)
+[[ -n $head ]] || exit 1
+
+# Get the upstream and shorten the HEAD rev
+eval $(git for-each-ref --format="
+upstream=%(upstream:short)
+head=%(refname:short)
+" $head)
+
+# Subdivide the command line arguments into revision specifications
+# and flags.
+eval "
+revargs=($(git rev-parse --sq --revs-only "$@"))
+flags=($(git rev-parse --sq --no-revs "$@"))
+"
+
+# If no revisions are specified, supply '^upstream HEAD' as the rev args
+if [[ 0 == ${#revargs[@]} ]] ; then
+    revargs=("^$upstream^{commit}" "$head^{commit}")
+
+# Otherwise, simply append '^upstream' (if you didn't want this, just
+# use git-log directly)
+else
+    revargs+=("^$upstream^{commit}")
+fi
+
+
+# If the flags don't include any formatting options, prepend the
+# --oneline flag.
+if ! grep -q -F -e '--oneline' -e '--pretty' -e '--format' <<< "${flags[*]}" ; then
+    flags=(--oneline "${flags[@]}")
+fi
+
+# Use the git default behaviour for control of less(1). Let git choose
+# the contents of $LESS
+unset LESS
+
+# Pass the arguments on to git-log for all the heavy lifting.
+exec git log "${revargs[@]}" "${flags[@]}"

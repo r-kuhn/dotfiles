@@ -1,0 +1,74 @@
+#! /bin/bash
+SUBDIRECTORY_OK='Yes'
+OPTIONS_KEEPDASHDASH=
+OPTIONS_SPEC="\
+git attic [[-f] BRANCH...]
+
+Move the given branches in to the attic (refs/attic/). With no branch named, list the branches in the attic.
+--
+-f,--force	Move branch even if there is already something in the attic with that name.
+"
+
+. git-sh-setup
+
+force=0
+while test $# != 0
+do
+    case "$1" in
+        --force)
+            force=1
+            ;;
+        --)
+            shift
+            break
+            ;;
+    esac
+    shift
+done
+
+# List
+if (( $# == 0 )) ; then
+    git for-each-ref \
+        --sort=-authordate \
+        --format='%(refname)%09%(color:yellow)%(objectname:short)%09%(color:green)%(authordate:relative)%09%(color:white)%(contents:subject)' \
+        refs/attic |
+    column -t -s$'\t'
+    exit 0
+fi
+
+set -e
+set -o pipefail
+FULLREFS=($(git rev-parse --symbolic-full-name "$@" | sort -u))
+
+# Check that none of the attic refs already exist unless --force was specified
+if [[ $force != 1 ]] ; then
+    git for-each-ref --format='%(refname)' refs/attic |
+    sort |
+    comm -1 -2 - <(
+        for FULLREF in "${FULLREFS[@]}" ; do
+            SHORTREF=${FULLREF#refs/heads/}
+            echo refs/attic/$SHORTREF
+        done
+    ) | {
+        IFS=$'\n' read -d '' -a DUPES || true
+        if [[ ${#DUPES[*]} != 0 ]] ; then
+            echo "Some attic refs already exist (use --force to save anyway): ${DUPES[*]}" >&2
+            exit 1
+        fi
+    }
+fi
+
+# Save the refs
+for FULLREF in "${FULLREFS[@]}" ; do
+    SHORTREF=${FULLREF#refs/heads/}
+    echo update refs/attic/$SHORTREF $FULLREF
+done | git update-ref --stdin
+
+# If we saved the current branch, detach before deleting
+if (IFS=$'\n' ; echo "${FULLREFS[*]}") | grep -q -x -F -e $(git rev-parse --symbolic-full-name HEAD) ; then
+    git checkout --detach HEAD
+fi
+
+# Delete the old branches
+git for-each-ref --format='%(refname:short)' "${FULLREFS[@]}" |
+xargs git branch -D

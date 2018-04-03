@@ -1,0 +1,92 @@
+#! /bin/bash
+SUBDIRECTORY_OK='Yes'
+OPTIONS_KEEPDASHDASH=
+OPTIONS_SPEC="\
+git retrack <upstream> [<branch>]
+
+Make <upstream> the new upstream branch of <branch>. If <branch> is
+unspecified, switch the current branches upstream branch.
+
+--
+"
+
+. git-sh-setup
+
+while test $# != 0
+do
+    case "$1" in
+        --)
+            shift
+            break
+            ;;
+    esac
+    shift
+done
+case $# in
+    1)
+        newupstream="$1"
+        branch=HEAD
+        ;;
+    2)
+        newupstream="$1"
+        branch="$2"
+        ;;
+    *)
+        usage
+        ;;
+esac
+
+full() {
+    local fullref=$(git rev-parse --symbolic-full-name $1 2>/dev/null) || die "$1 is not recognized"
+    expr "$fullref" : 'refs/heads/' >/dev/null || die "$1 is not a branch"
+    echo $fullref
+}
+short () {
+    local shortref=$(git for-each-ref --format='%(refname:short)' $1) || die "$1 is not a ref"
+    echo $shortref
+}
+
+# Get the canonical full and short versions of the refs
+full_newupstream=$(full "$newupstream") || exit $?
+full_branch=$(full "$branch") || exit $?
+newupstream=$(short "$full_newupstream") || exit $?
+branch=$(short "$full_branch") || exit $?
+
+# Error checking:
+#  - Make sure branch is a local tracking branches
+#  - Make sure upstream doesn't have branch in its chain
+#  - Make sure they have the same remote branch at the end of the chain
+check_local_tracking() {
+    local remote=$(git config branch.$1.remote)
+    [[ $remote == . ]] || die "$1 does not track a local branch"
+}
+check_local_tracking $branch
+
+scan_chain() {
+    local startref=$1
+    local excluderef=$2
+
+    # Check for the excluded ref
+    [[ $startref == $excluderef ]] && return 1
+
+    eval $(git for-each-ref --shell --format='
+local shortstartref=%(refname:short)
+local upstream=%(upstream)' $startref)
+
+    local remote=$(git config branch.$shortstartref.remote)
+    if [[ $remote == . ]] ; then
+        # If the remote is ., this is a local tracking branch, recurse
+        scan_chain $upstream $excluderef
+    else
+        # otherwise, its the end of the chain
+        echo $startref
+    fi
+}
+
+old_remote=$(scan_chain $full_branch '')
+new_remote=$(scan_chain $full_newupstream $full_branch) || die "$newupstream tracks $branch, this would cause a cycle"
+[[ $old_remote == $new_remote ]] || die "$branch tracks $old_remote, but $newupstream tracks $new_remote"
+
+
+# It all checks out. Make the appropriate change.
+git config branch.$branch.merge $full_newupstream
