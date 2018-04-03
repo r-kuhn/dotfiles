@@ -12,3 +12,10 @@ export GIT_EDITOR=nvim
 
 # Setup fuzzy finding for zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+system_type=$(uname -s)
+
+if [ "$system_type" = "Darwin" ]; then
+  export PATH=${HOME}/homebrew/bin:${PATH}
+elif [ "$system_type" = "Darwin" ]; then
+fi

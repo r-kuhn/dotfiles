@@ -4,6 +4,8 @@
 	gpush = push gerrit HEAD:refs/for/master
 [core]
 	editor = nvim
+[includeIf "gitdir:~/.yadm/"]
+	path = ~/.gitconfig-personal
 [includeIf "gitdir:~/git/"]
 	path = ~/.gitconfig-personal
 [includeIf "gitdir:~/p/"]
