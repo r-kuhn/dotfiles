@@ -46,6 +46,8 @@ if [ "$system_type" = "Darwin" ]; then
 	# Python stuff
 	pip2 install --user neovim
 	pip3 install --user neovim
+	pip3 install --user pylint
+	pip3 install --user flake8
 
 	# Symlink in the vscode settings for Mac
 	if [ ! -L "$HOME/Library/Application Support/Code/User/snippets" ]; then
@@ -77,6 +79,8 @@ if [[ "$system_type" == "Linux" ]]; then
 	# Python stuff
 	pip2 install --user neovim
 	pip3 install --user neovim
+	pip3 install --user pylint
+	pip3 install --user flake8
 fi
 
 # Setup VIM

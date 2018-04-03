@@ -16,6 +16,11 @@ export GIT_EDITOR=nvim
 system_type=$(uname -s)
 
 if [ "$system_type" = "Darwin" ]; then
+  # use the python's inside my user space
+  export PATH=${HOME}/Library/Python/3.6/bin:${HOME}/Library/Python/2.7/bin:${PATH}
+  # homebrew goes first
   export PATH=${HOME}/homebrew/bin:${PATH}
-elif [ "$system_type" = "Darwin" ]; then
+elif [ "$system_type" = "Linux" ]; then
 fi
+export PATH=${HOME}/bin:${PATH}
+
