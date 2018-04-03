@@ -629,6 +629,14 @@ au FileType fish set tabstop=2
 "----------------------------------------------
 " Language: gitconfig
 "----------------------------------------------
+au FileType sshconfig set noexpandtab
+au FileType sshconfig set shiftwidth=2
+au FileType sshconfig set softtabstop=2
+au FileType sshconfig set tabstop=2
+
+"----------------------------------------------
+" Language: gitconfig
+"----------------------------------------------
 au FileType gitconfig set noexpandtab
 au FileType gitconfig set shiftwidth=2
 au FileType gitconfig set softtabstop=2
