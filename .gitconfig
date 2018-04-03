@@ -6,8 +6,6 @@
 	editor = nvim
 [includeIf "gitdir:~/.yadm/"]
 	path = ~/.gitconfig-personal
-[includeIf "gitdir:~/git/"]
-	path = ~/.gitconfig-personal
 [includeIf "gitdir:~/p/"]
 	path = ~/.gitconfig-personal
 [includeIf "gitdir:~/w/"]
