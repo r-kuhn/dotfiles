@@ -1,0 +1,12 @@
+[color]
+	ui = auto
+[alias]
+	gpush = push gerrit HEAD:refs/for/master
+[core]
+	editor = nvim
+[includeIf "gitdir:~/git/"]
+	path = ~/.gitconfig-personal
+[includeIf "gitdir:~/p/"]
+	path = ~/.gitconfig-personal
+[includeIf "gitdir:~/w/"]
+	path = ~/.gitconfig-work
