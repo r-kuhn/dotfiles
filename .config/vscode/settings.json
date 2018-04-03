@@ -1,0 +1,39 @@
+{
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+  "c-cpp-flylint.cppcheck.enable": false,
+  "c-cpp-flylint.flexelint.enable": false,
+  "c-cpp-flylint.clang.enable": false,
+  "workbench.colorTheme": "Solarized Dark",
+  "python.disablePromptForFeatures": [
+    "pylint"
+  ],
+  "editor.renderWhitespace": "all",
+  "editor.fontFamily": "Meslo LG M for Powerline",
+   "terminal.integrated.fontFamily": "Meslo LG M for Powerline",
+   "terminal.integrated.fontSize": 14,
+   "editor.lineHeight": 24,
+   // Enables font ligatures
+  "editor.fontLigatures": true,
+  "python.pythonPath": "/usr/local/bin/python3",
+  "python.linting.enabled": true,
+  "workbench.startupEditor": "newUntitledFile",
+  "editor.minimap.enabled": false,
+  "files.trimTrailingWhitespace": true,
+  "lldb.executable": "/Users/dan/w/tos/titanOS/stage/tools/usr/bin/lldb",
+  "clang-format.executable": "/Users/dan/w/tos/titanOS/stage/tools/usr/bin/clang-format",
+  "cquery.launch.workingDirectory": "/Users/dan/w/cquery/build",
+  "cquery.launch.command": "system/bin/cquery",
+  "cquery.cacheDirectory": "/tmp/vscode-cquery",
+  "editor.codeLens": true,
+  "editor.stablePeek": true,
+  "editor.smoothScrolling": true,
+  "workbench.editor.enablePreview": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "vim.handleKeys": {
+    "<C-d>": false,
+    "<C-e>": false,
+    "<C-f>": false,
+    "<C-b>": false
+  }
+}

@@ -16,7 +16,7 @@ yadm commit
 
 * Push changes to repo:
 ```sh
-yadm remote add origin ssh://git@jarlan.hld.ca:5555/git-server/repos/dandotfiles.git
+yadm remote add origin ssh://jarlan/git-server/repos/dandotfiles.git
 yadm push -u origin master
 ```
 

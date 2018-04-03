@@ -19,7 +19,6 @@ if [ "$system_type" = "Darwin" ]; then
 		telnet python python2 yadm wget findutils htop mediainfo imagemagick \
 		gpg2 shellcheck
 
-
 	if [ -d "$HOME/.iterm2" ]; then
 		echo "Setting iTerm preference folder"
 		defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
@@ -42,20 +41,47 @@ if [ "$system_type" = "Darwin" ]; then
 	echo "Disabling press-and-hold for keys in favor of a key repeat"
 	defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-	npm install -g jshint eslint
+	npm install -g jshint eslint neovim
+
+	# Python stuff
+	pip2 install --user neovim
+	pip3 install --user neovim
+
+	# Symlink in the vscode settings for Mac
+	if [ ! -L "$HOME/Library/Application Support/Code/User/snippets" ]; then
+		echo "Symlink in VSCode snippets"
+		rm -rf "$HOME/Library/Application Support/Code/User/snippets"
+		ln -sf "$HOME/.config/vscode/snippets" "$HOME/Library/Application Support/Code/User/snippets"
+	fi
+	if [ ! -L "$HOME/Library/Application Support/Code/User/settings.json" ]; then
+		echo "Symlink in VSCode settings.json"
+		rm -rf "$HOME/Library/Application Support/Code/User/settings.json"
+		ln -sf "$HOME/.config/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
+	fi
+	if [ ! -L "$HOME/Library/Application Support/Code/User/vsicons.settings.json" ]; then
+		echo "Symlink in VSCode vsicons.settings.json"
+		rm -rf "$HOME/Library/Application Support/Code/User/vsicons.settings.json"
+		ln -sf "$HOME/.config/vscode/settings.json" "$HOME/Library/Application Support/Code/User/vsicons.settings.json"
+	fi
 fi
 
 if [[ "$system_type" == "Linux" ]]; then
+	# Apt stuff
 	sudo apt-get update
 	sudo apt-get install sqlite3 golang-1.10 neovim python-dev python-pip \
 		python3-dev python3-pip nfs nfs-common npm shellcheck zsh
-	sudo npm install -g jshint eslint
+
+	# NPM stuff
+	sudo npm install -g jshint eslint neovim
+
+	# Python stuff
+	pip2 install --user neovim
+	pip3 install --user neovim
 fi
 
-# install npm things
-
+# Setup VIM
 if command -v nvim >/dev/null 2>&1; then
-	echo "Bootstraping Vim"
-	vim '+PlugInstall' '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+	echo "Bootstraping nvim"
+	nvim '+PlugInstall' '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 fi
 
