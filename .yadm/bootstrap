@@ -78,6 +78,14 @@ if [[ "$system_type" == "Linux" ]]; then
 	sudo apt-get install sqlite3 golang-1.10 neovim python-dev python-pip \
 		python3-dev python3-pip npm shellcheck zsh
 
+	# Fonts
+	if [ -d "$HOME/.config/fonts" ]; then
+		for f in "$HOME/.config/fonts/*"; do
+			sudo cp -f $f /usr/local/share/fonts
+		done
+	fi
+	sudo fc-cache -fv
+
 	# NPM stuff
 	sudo npm install -g jshint eslint neovim
 

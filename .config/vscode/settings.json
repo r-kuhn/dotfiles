@@ -6,5 +6,27 @@
     "editor.fontFamily": "Fira Code, Retina",
     "version": "7.22.0",
     "status": 2,
-    "python.pythonPath": "python3"
+    "python.pythonPath": "python3",
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true
+    },
+    "gitlens.historyExplorer.enabled": true,
+    "gitlens.codeLens.scopes": [
+        "containers",
+        "document"
+    ],
+    "vim.handleKeys": {
+        "<C-w>": false,
+        "<C-u>": false,
+        "<C-d>": false,
+        "<C-d>": false,
+        "<C-a>": false
+    }
 }
