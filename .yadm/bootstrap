@@ -8,7 +8,6 @@ echo "Init submodules"
 yadm submodule update --recursive --init
 
 system_type=$(uname -s)
-
 if [ "$system_type" = "Darwin" ]; then
 	# Make sure we are using the homebrew in the home directory
 	export PATH=${HOME}/homebrew/bin:${PATH}
@@ -88,4 +87,7 @@ if command -v nvim >/dev/null 2>&1; then
 	echo "Bootstraping nvim"
 	nvim '+PlugInstall' '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 fi
+
+# Add zsh theme
+curl -o ~/.zprezto/modules/prompt/functions/prompt_statusline_setup https://raw.githubusercontent.com/el1t/statusline/master/prezto/prompt_statusline_setup
 
