@@ -1,0 +1,7 @@
+author: Dan Cardamore <dan@srcdex.com>
+license:
+  header:
+  text: |
+    {{ .copyright }}
+    This source code is proprietary and no permission is
+    given to share or use this code.

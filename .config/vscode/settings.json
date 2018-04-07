@@ -28,5 +28,6 @@
         "<C-d>": false,
         "<C-d>": false,
         "<C-a>": false
-    }
+    },
+    "workbench.startupEditor": "none"
 }
