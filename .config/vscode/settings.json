@@ -2,32 +2,21 @@
     "welcomeShown": true,
     "vim.enableNeovim": true,
     "editor.fontLigatures": true,
-    "editor.fontSize": 11,
+    "editor.fontSize": 12,
     "editor.fontFamily": "Fira Code, Retina",
     "version": "7.22.0",
     "status": 2,
     "python.pythonPath": "python3",
-    "gitlens.advanced.messages": {
-        "suppressCommitHasNoPreviousCommitWarning": false,
-        "suppressCommitNotFoundWarning": false,
-        "suppressFileNotUnderSourceControlWarning": false,
-        "suppressGitVersionWarning": false,
-        "suppressLineUncommittedWarning": false,
-        "suppressNoRepositoryWarning": false,
-        "suppressResultsExplorerNotice": false,
-        "suppressShowKeyBindingsNotice": true
-    },
-    "gitlens.historyExplorer.enabled": true,
-    "gitlens.codeLens.scopes": [
-        "containers",
-        "document"
-    ],
+    "editor.minimap.enabled": false,
+    "workbench.startupEditor": "none",
     "vim.handleKeys": {
-        "<C-w>": false,
-        "<C-u>": false,
         "<C-d>": false,
-        "<C-d>": false,
-        "<C-a>": false
+        "<C-f>": false,
+        "<C-b>": false,
+        "<C-a>": false,
+        "<C-e>": false,
+        "<C-n>": false
     },
-    "workbench.startupEditor": "none"
+    "files.trimTrailingWhitespace": true,
+    "gitlens.historyExplorer.enabled": true
 }

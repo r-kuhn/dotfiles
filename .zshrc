@@ -13,8 +13,10 @@ export GIT_EDITOR=nvim
 # Setup fuzzy finding for zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-system_type=$(uname -s)
+# Setup Python
+export PYTHONSTARTUP=~/.pythonrc
 
+system_type=$(uname -s)
 if [ "$system_type" = "Darwin" ]; then
   # use the python's inside my user space
   export PATH=${HOME}/Library/Python/3.6/bin:${HOME}/Library/Python/2.7/bin:${PATH}
