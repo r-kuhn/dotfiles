@@ -14,7 +14,7 @@ if [ "$system_type" = "Darwin" ]; then
 
 	git -C "$(brew --repo homebrew/core)" fetch --unshallow || true
 	brew update
-	brew install coreutils git node repo gnupg neovim golang sqlite zsh unrar \
+	brew install coreutils git nodejs repo gnupg neovim golang sqlite zsh unrar \
 		telnet python python2 yadm wget findutils htop mediainfo imagemagick \
 		gpg2 shellcheck
 
@@ -43,7 +43,12 @@ if [ "$system_type" = "Darwin" ]; then
 	npm install -g jshint eslint neovim
 
 	# Python stuff
+	pip2 install --user setuptools
+	pip2 install --user wheel
 	pip2 install --user neovim
+
+	pip3 install --user setuptools
+	pip3 install --user wheel
 	pip3 install --user neovim
 	pip3 install --user pylint
 	pip3 install --user flake8
@@ -70,13 +75,26 @@ if [[ "$system_type" == "Linux" ]]; then
 	# Apt stuff
 	sudo apt-get update
 	sudo apt-get install sqlite3 golang-1.10 neovim python-dev python-pip \
-		python3-dev python3-pip nfs nfs-common npm shellcheck zsh
+		python3-dev python3-pip npm shellcheck zsh
+
+	# Fonts
+	if [ -d "$HOME/.config/fonts" ]; then
+		for f in "$HOME/.config/fonts/*"; do
+			sudo cp -f $f /usr/local/share/fonts
+		done
+	fi
+	sudo fc-cache -fv
 
 	# NPM stuff
 	sudo npm install -g jshint eslint neovim
 
 	# Python stuff
+	pip2 install --upgrade pip
+	pip2 install --user setuptools
 	pip2 install --user neovim
+
+	pip3 install --upgrade pip
+	pip3 install --user setuptools
 	pip3 install --user neovim
 	pip3 install --user pylint
 	pip3 install --user flake8

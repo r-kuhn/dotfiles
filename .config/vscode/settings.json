@@ -16,5 +16,6 @@
         "<C-e>": false,
         "<C-n>": false
     },
-    "files.trimTrailingWhitespace": true
+    "files.trimTrailingWhitespace": true,
+    "gitlens.historyExplorer.enabled": true
 }

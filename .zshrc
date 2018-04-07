@@ -26,3 +26,8 @@ elif [ "$system_type" = "Linux" ]; then
 fi
 export PATH=${HOME}/bin:${PATH}
 
+# Configure GO
+export GOROOT="${HOME}/go"
+export PATH=${PATH}:${HOME}/go/bin
+export GOPATH="${HOME}/p/codenet/third_party:${HOME}/p/codenet/go"
+
