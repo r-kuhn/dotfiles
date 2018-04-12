@@ -20,7 +20,7 @@ Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'          " CtrlP is installed to support tag finding in vim-go
 Plug 'editorconfig/editorconfig-vim'
-Plug 'itchyny/calendar.vim'
+"Plug 'itchyny/calendar.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
@@ -336,10 +336,10 @@ nmap <leader><leader>w <Plug>(easymotion-overwin-w)
 " Plugin: 'itchyny/calendar.vim'
 "----------------------------------------------
 " Enable Google Calendar integration.
-let g:calendar_google_calendar = 1
+let g:calendar_google_calendar = 0
 
 " Enable Google Tasks integration.
-let g:calendar_google_task = 1
+let g:calendar_google_task = 0
 
 " Other options
 let g:calendar_first_day = "monday"           " Weeks starts with Monday
@@ -505,6 +505,7 @@ au FileType go set softtabstop=4
 au FileType go set tabstop=4
 
 " Mappings
+au FileType go nmap <F5> :GoBuild<cr>
 au FileType go nmap <F8> :GoMetaLinter<cr>
 au FileType go nmap <F9> :GoCoverageToggle -short<cr>
 au FileType go nmap <F10> :GoTest -short<cr>
