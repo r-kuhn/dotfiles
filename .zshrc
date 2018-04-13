@@ -28,6 +28,6 @@ export PATH=${HOME}/bin:${PATH}
 
 # Configure GO
 export GOROOT="${HOME}/go"
-export PATH=${PATH}:${HOME}/go/bin
-#export GOPATH="${HOME}/p/codenet/thirdparty:${HOME}/p/codenet/go"
+export GOPATH="${HOME}/p/go"
+export PATH=${PATH}:${GOROOT}/bin:${GOPATH}/bin
 

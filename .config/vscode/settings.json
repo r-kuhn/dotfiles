@@ -10,13 +10,26 @@
     "editor.minimap.enabled": false,
     "workbench.startupEditor": "none",
     "vim.handleKeys": {
+        "<C-w>": false,
         "<C-d>": false,
         "<C-f>": false,
         "<C-b>": false,
         "<C-a>": false,
         "<C-e>": false,
-        "<C-n>": false
+        "<C-n>": true
     },
     "files.trimTrailingWhitespace": true,
-    "gitlens.historyExplorer.enabled": true
+    "gitlens.historyExplorer.enabled": true,
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true
+    },
+    "extensions.ignoreRecommendations": false,
+    "git.autofetch": true
 }
