@@ -18,6 +18,8 @@ if [ "$system_type" = "Darwin" ]; then
 		telnet python python2 yadm wget findutils htop mediainfo imagemagick \
 		gpg2 shellcheck
 
+	brew cask install font-fira-code
+
 	if [ -d "$HOME/.iterm2" ]; then
 		echo "Setting iTerm preference folder"
 		defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
