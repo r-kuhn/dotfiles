@@ -16,6 +16,6 @@ curl -o ~/.zprezto/modules/prompt/functions/prompt_statusline_setup https://raw.
 
 if command -v nvim >/dev/null 2>&1; then
 	echo "Updating nvim"
-	nvim '+PlugInstall' '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+PlugUpgrade' '+qall'
+	nvim '+PlugInstall' '+PlugUpdate' '+UpdateRemotePlugins' '+PlugClean!' '+PlugUpdate' '+PlugUpgrade' '+qall'
 fi
 
