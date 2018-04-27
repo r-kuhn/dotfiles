@@ -125,7 +125,7 @@ zstyle ':prezto:module:gnu-utility' prefix 'g'
 # zstyle ':prezto:module:prompt' show-return-val 'yes'
 
 
-zstyle ':prezto:module:prompt' theme 'statusline' -d
+zstyle ':prezto:module:prompt' theme 'statusline' -d -s
 
 #
 # Ruby
