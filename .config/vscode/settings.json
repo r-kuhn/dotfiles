@@ -31,5 +31,7 @@
         "suppressShowKeyBindingsNotice": true
     },
     "extensions.ignoreRecommendations": false,
-    "git.autofetch": true
+    "git.autofetch": true,
+    "workbench.colorTheme": "Monokai Dimmed",
+    "workbench.iconTheme": "eq-material-theme-icons"
 }
