@@ -19,14 +19,15 @@ while true; do
             pkill -f "ethminer"
             running=0
         fi
+        sleep 300 # 5 min
     else
         echo "Monitor is off"
         if [ $running -eq 0 ]; then
             echo "Starting ethminer"
             # ethminer -G
-            ethminer --farm-recheck 200 -U -FS us1.ethermine.org:4444 -O b3451a869e2c77e236a1ed75a66b1cd78a786975
+            ethminer --farm-recheck 2000 -U -S us1.ethermine.org:4444 -FS us2.ethermine.org:4444 -O b3451a869e2c77e236a1ed75a66b1cd78a786975.neptune &
             running=1
         fi
+        sleep 30 # 30 seconds only when off otherwise system is unusable for 5 mins
     fi
-    sleep 300 # 5 min
 done
