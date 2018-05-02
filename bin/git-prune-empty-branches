@@ -1,0 +1,60 @@
+#! /bin/bash
+SUBDIRECTORY_OK=true
+OPTIONS_SPEC="\
+git prune-empty-branches [options] <UPSTREAM>
+
+Remove any branches that don't have commits not on the UPSTREAM
+branch. If UPSTREAM isn't set, then master is assumed.
+
+--
+q,quiet       Pass --quiet to all git-branch commands
+"
+. git-sh-setup
+
+set -euo pipefail
+quiet=-v
+while [[ $1 != -- ]] ; do
+    case "$1" in
+        --no-quiet)
+            [[ $quiet != -v ]] || set -x
+            quiet=-v
+            GIT_QUIET=
+            ;;
+        -q)
+            quiet=-q
+            GIT_QUIET=-q
+            ;;
+    esac
+    shift
+done
+shift
+
+set -euo pipefail
+BRANCH="${1:-master}"
+if ! PRUNE=(
+        $(
+            git for-each-ref --merged "$BRANCH" --format '%(refname:short)' refs/heads |
+                grep -v -x -e "$BRANCH" -e master
+        )
+    )
+then
+    # Nothing to do
+    exit 0
+fi
+
+if ORPHANS=(
+        $(
+            git for-each-ref --format '%(upstream:short) %(refname:short)' refs/heads |
+                grep -w "${PRUNE[@]/#/-e^}" |
+                cut -d' ' -f2-
+        )
+    )
+then
+    # For each of the orphans, make thier new upstream be the branch we are pruning from
+    for ORPHAN in "${ORPHANS[@]}" ; do
+        git branch $quiet -u "$BRANCH" "$ORPHAN"
+    done
+fi
+
+# Remove the pruned branches
+git branch $quiet -d "${PRUNE[@]}"

@@ -1,124 +1,115 @@
 #! /bin/bash
-SUBDIRECTORY_OK='Yes'
-OPTIONS_KEEPDASHDASH=
+SUBDIRECTORY_OK=true
 OPTIONS_SPEC="\
-git rpull [--prune] [-q|--quiet]
+git rpull [options]
 
-Recursively pull the upstream branches of the current branch. For
-example, if I have: master tracking origin/master, foo tracking
-master, and bar tracking foo, then when I run 'git rpull' in bar, it
-pulls master, foo, then bar.
+Follow the chain of local tracking branches until a remote tracking
+branch is reached, then 'git pull' in each branch on the way back up
+to the starting branch.
 
-This command is most useful when combined with the
-'branch.autosetupmerge' configuration variable set to 'always'.
+This lets you quickly bring an entire chain of working branches up to
+date with the remote quickly.
 
 --
-q,quiet    Supress the checkout and pull messages.
-prune      Remove empty branches from the chain after pulling.
-local      Don't fetch from the remotes, just update the local branches.
+fetch    Fetch from the upstream remote. This is the default, use --no-fetch to disable it.
+q,quiet  Pass --quiet to all fetch, pull, and checkout commands.
 "
-
 . git-sh-setup
 
-quiet_flags=
-prune=0
-loc=0
-while test $# != 0
-do
+set -euo pipefail
+
+quiet=
+fetch=true
+while [[ $1 != -- ]] ; do
     case "$1" in
-        -q|--quiet)
-            quiet_flags="$1"
+        --fetch)
+            fetch=true
             ;;
-        --prune)
-            prune=1
+        --no-fetch)
+            fetch=false
             ;;
-        --local)
-            loc=1
+        --no-quiet)
+            [[ $quiet != -v ]] || set -x
+            quiet=-v
+            GIT_QUIET=
             ;;
-        --)
-            shift
-            break
+        -q)
+            quiet=-q
+            GIT_QUIET=-q
             ;;
     esac
     shift
 done
-test $# != 0 && usage
+shift
 
-declare -a branch_chain
+[[ $# == 0 ]] || die "unexpected arguments: $*"
 
-# Walk the chain of upstream branches, filling the branch_chain array
-# depth-first. The return value is the number of upstream changes. The
-# branch is only added to the chain if there are upstream changes (or
-# we are pruning), that way there is a minimal impact on the
-# work-tree.
-fill_branch_chain() {
-    eval $(git for-each-ref --shell --format='
-local ref=%(refname:short)
-local upstream=%(upstream:short)
-local fullupstream=%(upstream)' "$1")
-    [[ -n $ref ]] || die $1 is not a valid ref
+real_name() {
+    git rev-parse --symbolic-full-name $1
+}
+short_name() {
+    git for-each-ref --format='%(refname:short)' $1
+}
+upstream() {
+    git for-each-ref --format='%(upstream:short)' $(real_name $1)
+}
+remote_of() {
+    git config branch.$1.remote
+}
 
-    # If it has no remote, it is unchanged
-    local remote=$(git config branch.$ref.remote) && [[ -n $remote ]] || {
-        return 0
-    }
+original_branch=$(short_name $(real_name HEAD))
 
-    # Tracking a local branch, recurse
-    local upstreamchanges=0
-    if [[ $remote == . ]] ; then
-        fill_branch_chain $fullupstream
-        upstreamchanges=$?
-    else
-        if [[ $loc == 0 ]] ; then
-            git fetch $quiet_flags $remote
+# Derive the chain of tracking refs and determine the remote of the
+# last branch (head) in the ref chain -- not the last tracked ref
+# though, that is the remote tracking ref (updated by 'git fetch').
+branch=$original_branch
+upstream_branches=()
+remote=$(remote_of $original_branch)
+while [[ $remote == . ]] ; do
+    branch=$(upstream $branch)
+    upstream_branches+=( $branch )
+    remote=$(remote_of $branch)
+done
+upstream_branches+=( $(upstream $branch) )
+unset branch
+
+announce() {
+    say "#" "$@"
+    "$@"
+}
+
+if [[ -n $remote && $fetch == true ]] ; then
+    announce git fetch $quiet $remote
+fi
+
+# If there is nothing to update, bail now before we run any 'git
+# checkout' commands and unneccissarily touch the work-tree.
+new_changes=$(( $( git rev-list ${upstream_branches[@]} --not $original_branch -- | wc -l ) ))
+(( new_changes > 0 )) || exit 0
+
+# Ok, here we go. We need a clean work tree to do this.
+require_clean_work_tree "Recursivly pull $new_changes changes" "Commit or stash and try again"
+
+pull_upstream() {
+    # Base case: less than two arguments left. The last named ref is
+    # the remote tracking branch which was updated by the prior 'git
+    # fetch' command, so it doesn't need to be pulled.
+    if [[ -n $1 && -n ${2:-} ]] ; then
+
+        # Inductive case: pull our upstream branch first
+        local branch=$1
+        local upstream=$2
+        shift
+        pull_upstream $@
+
+        # Postfix: checkout the branch and pull (minus the fetch).
+        announce git checkout $quiet $branch
+        if [[ $(git config --bool branch.$branch.rebase) == true ]] ; then
+            announce git rebase $quiet $upstream
+        else
+            announce git merge $quiet $upstream
         fi
     fi
-
-    # Tracking a remote branch. Fetch and count the changes.
-    local mychanges=$(( upstreamchanges + $(git rev-list $upstream'^{commit}' --not $ref'^{commit}' | wc -l) ))
-    (( mychanges == 0 && ! prune )) || branch_chain+=($ref)
-    return $mychanges
 }
 
-fill_branch_chain $(git symbolic-ref HEAD)
-changes=$?
-
-# No changes, nothing to be done.
-[[ ${#branch_chain[*]} == 0 ]] && exit 0
-
-require_clean_work_tree "recursively pull $changes commits"
-
-prune_branch() {
-    local fullref=$(git symbolic-ref HEAD)
-    eval $(git for-each-ref --shell --format='
-local upstream=%(upstream)
-local upstreamshort=%(upstream:short)
-local ref=%(refname:short)' $fullref)
-
-    # We only prune branches that track local branches
-    [[ $(git config branch.$ref.remote) == . ]] || return
-
-    # See if we have the same contents as the upstream branch
-    local sha=$(git rev-parse $fullref) upsha=$(git rev-parse $upstream)
-    if [[ $sha == $upsha ]] ; then
-        # Find all the branches that have this ref as the upstream ref and update them
-        for branch in $(
-            git for-each-ref --format='%(upstream) %(refname:short)' refs/heads/ |
-            sed -n -e "s#^$fullref ##p")
-        do
-            [[ $(git config branch.$branch.remote) == . ]] || continue
-            git config branch.$branch.merge $upstream
-        done
-        git checkout --quiet $upstreamshort -- || exit $?
-        git branch -d $ref || exit $?
-    fi
-}
-
-# Checkout each branch and pull
-for branch in "${branch_chain[@]}" ; do
-    git checkout $quiet_flags $branch -- || exit $?
-    [[ -z $(git config branch.$branch.remote) ]] || git pull $quiet_flags || exit $?
-    if (( $prune )) ; then
-        prune_branch
-    fi
-done
+pull_upstream $original_branch ${upstream_branches[@]}

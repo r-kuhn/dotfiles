@@ -1,0 +1,61 @@
+#! /bin/bash
+SUBDIRECTORY_OK=true
+OPTIONS_SPEC="\
+git child [<branch>]
+
+Checkout the branch tracking this one. When there are multiple
+branches traking the named branch, emit a warning and pick the one
+with the latest committer date.
+
+--
+O,only-one fail unless there is exactly one child branch
+q,quiet silence the multiple-branches warning, and quiet the checkout
+"
+. git-sh-setup
+set -eu
+
+quiet=
+only_one=false
+while [[ $1 != -- ]] ; do
+    case "$1" in
+        -O) only_one=true ;;
+        --no-only-one) only_one=false ;;
+        -q)
+            set +x
+            quiet=-q
+            GIT_QUIET=-q
+            ;;
+        --no-quiet)
+            [[ -z $quiet ]] || set -x
+            quiet=
+            GIT_QUIET=
+            ;;
+    esac
+    shift
+done
+shift
+
+FROM=$(git rev-parse --symbolic-full-name --verify ${1:-HEAD})
+CHILDREN=(
+    $(
+        git for-each-ref \
+            --format='%(upstream):%(refname:short)' \
+            --sort='-committerdate' \
+            refs/heads/ |
+        grep -e "^$FROM:" |
+        cut -d: -f2
+    )
+)
+: "${CHILDREN[@]:-}"
+SHORTFROM=$(git for-each-ref --format='%(refname:short)' $FROM)
+case ${#CHILDREN[*]} in
+    0) die "$SHORTFROM has no branches tracking it" ;;
+    1) : nothing to do ;;
+    *)
+        if $only_one ; then
+            die "$SHORTFROM has multiple child branches (${CHILDREN[*]}) and --only-one specified"
+        fi
+        say "$SHORTFROM has multiple child branches: ${CHILDREN[*]}"
+        ;;
+esac
+git checkout $quiet "${CHILDREN[0]}" --
