@@ -1,0 +1,12 @@
+[Unit]
+AssertPathExists=/home/dan/bin/mine-ethereum.sh
+
+[Service]
+WorkingDirectory=/home/dan
+ExecStart=/bin/sh /home/dan/bin/mine-ethereum.sh
+Restart=always
+PrivateTmp=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target
