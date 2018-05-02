@@ -2,6 +2,7 @@
 	ui = auto
 [alias]
 	gpush = push gerrit HEAD:refs/for/master
+	squash = commit --amend --no-edit
 [core]
 	editor = nvim
 [includeIf "gitdir:~/.yadm/"]
@@ -10,3 +11,9 @@
 	path = ~/.gitconfig-personal
 [includeIf "gitdir:~/w/"]
 	path = ~/.gitconfig-work
+[user]
+	name = Dan Cardamore
+	email = dcardamore@apple.com
+[branch]
+	autoSetupRebase = local
+	autoSetupMerge = always
