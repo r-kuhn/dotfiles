@@ -153,6 +153,15 @@ highlight Search guibg=DeepPink4 guifg=White ctermbg=53 ctermfg=White
 map <leader>bg :let &background = (&background == "dark"? "light" : "dark")<cr>
 
 "----------------------------------------------
+" Terminal
+"----------------------------------------------
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-v><Esc> <Esc>
+if has('nvim') && executable('nvr')
+    let $VISUAL="nvr -cc split --remote-wait +'set bufhidden=-wipe'"
+endif
+
+"----------------------------------------------
 " Searching
 "----------------------------------------------
 set incsearch                     " move to match as you type the search query
@@ -174,10 +183,10 @@ nnoremap N Nzzzv
 " Navigation
 "----------------------------------------------
 " Disable arrow keys
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+"noremap <Up> <NOP>
+"noremap <Down> <NOP>
+"noremap <Left> <NOP>
+"noremap <Right> <NOP>
 
 " Move between buffers with Shift + arrow key...
 nnoremap <S-Left> :bprevious<cr>

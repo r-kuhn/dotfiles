@@ -3,7 +3,6 @@
 [alias]
 	gpush = push gerrit HEAD:refs/for/master
 [core]
-	editor = nvim
 [includeIf "gitdir:~/.yadm/"]
 	path = ~/.gitconfig-personal
 [includeIf "gitdir:~/p/"]
