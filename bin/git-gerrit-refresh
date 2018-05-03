@@ -1,0 +1,44 @@
+#! /bin/bash
+SUBDIRECTORY_OK=true
+OPTIONS_SPEC="\
+git gerrit-refresh
+
+Find all the open reviews for the current user and project, and push
+any local branches with matching Change-Id lines.
+
+--
+"
+. git-sh-setup
+
+set -euo pipefail
+
+[[ $# == 1 ]] || die "unexpected arguments: $*"
+
+PROJECT=$(git config remote.gerrit.projectname)
+GERRITUSER=$(git config user.email | cut -d@ -f1)
+REFS=$(mktemp)
+CHANGES=$(mktemp)
+INDEP=$(mktemp)
+trap "rm -f '$REFS' '$CHANGES' '$INDEP'" EXIT
+git for-each-ref --format='%(objectname) %(refname:short)' refs/heads |
+    sort >"$REFS"
+
+ssh gerrit gerrit query --format json owner:$GERRITUSER status:open project:$PROJECT |
+    jq -r .id//empty |
+    sort >"$CHANGES"
+
+if ! [[ -s $CHANGES ]] ; then
+    exit 0
+fi
+
+while read REV _ignore ; do
+    if git cat-file commit $REV | grep -f "$CHANGES" >/dev/null; then
+        echo "$REV"
+    fi
+done <"$REFS" |
+    xargs git merge-base --independent |
+    xargs -n1 |
+    sort >"$INDEP"
+
+join -o 1.2 "$REFS" "$INDEP" |
+    xargs -t -I{} -n1 git push gerrit {}:refs/for/master
