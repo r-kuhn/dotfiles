@@ -12,7 +12,7 @@ fi
 
 while true; do
     if xset q | grep -q 'Monitor is On'; then
-        echo "Monitor is on"
+        echo "Monitor is on" >> ~/log/geth.log
         if [ $running -eq 1 ]; then
             echo "Killing ethminer"
             pkill -f "ethminer"
@@ -21,12 +21,12 @@ while true; do
         fi
         sleep 300 # 5 min
     else
-        echo "Monitor is off"
+        echo "Monitor is off" >> ~/log/geth.log
         if [ $running -eq 0 ]; then
             echo "Starting ethminer"
             geth --rpc --rpccorsdomain localhost 2>> ~/log/geth.log &  # Geth can always run
             # ethminer -G
-            ethminer --farm-recheck 2000 -U -S us1.ethermine.org:4444 -FS us2.ethermine.org:4444 -O b3451a869e2c77e236a1ed75a66b1cd78a786975.neptune &
+            ethminer --farm-recheck 2000 -U -S us1.ethermine.org:4444 -FS us2.ethermine.org:4444 -O b3451a869e2c77e236a1ed75a66b1cd78a786975.neptune 2>> ~/log/geth.log &
             running=1
         fi
         sleep 30 # 30 seconds only when off otherwise system is unusable for 5 mins

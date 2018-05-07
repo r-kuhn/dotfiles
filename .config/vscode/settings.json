@@ -43,8 +43,8 @@
     },
     "workbench.colorTheme": "Seti",
     "workbench.iconTheme": "eq-material-theme-icons",
-    "go.formatTool": "gofmt",
-    "go.useLanguageServer": true,
+    "go.formatTool": "goimports",
+    "go.useLanguageServer": false,
     "go.autocompleteUnimportedPackages": true,
     "go.buildOnSave": "workspace",
     "go.gocodeAutoBuild": true

@@ -73,7 +73,7 @@ fi
 
 if [[ "$system_type" == "Linux" ]]; then
 	if [ -e /etc/arch-release ]; then
-		sudo pacman -S sqlite3 shellcheck zsh neovim npm go yaourt
+		sudo pacman -S shellcheck zsh neovim npm yaourt
     sudo yaourt otf-nerd-fonts-fira-code visual-studio-code-bin
 	else
 		# Apt stuff
