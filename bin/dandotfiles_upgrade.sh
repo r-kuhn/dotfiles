@@ -7,7 +7,12 @@ if [ "$system_type" = "Darwin" ]; then
 fi
 
 if [ "$system_type" = "Linux" ]; then
-	sudo apt-get update && sudo apt-get upgrade -u
+	if [ -e "/etc/arch-release" ]; then
+		#sudo pacman -Syu
+		sudo yaourt -Syyua
+	else
+		sudo apt-get update && sudo apt-get upgrade -u
+	fi
 fi
 
 # Updating yadm submodules
