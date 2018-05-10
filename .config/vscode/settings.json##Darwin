@@ -1,11 +1,8 @@
 {
-    "welcomeShown": false,
     "vim.enableNeovim": false,
     "editor.fontLigatures": true,
     "editor.fontSize": 12,
     "editor.fontFamily": "Fira Code, Retina",
-    "version": "7.23.0",
-    "status": 2,
     "python.pythonPath": "python3",
     "editor.minimap.enabled": false,
     "workbench.startupEditor": "none",
@@ -19,7 +16,7 @@
         "<C-n>": true
     },
     "files.trimTrailingWhitespace": true,
-    "gitlens.historyExplorer.enabled": true,
+    "gitlens.historyExplorer.enabled": false,
     "gitlens.advanced.messages": {
         "suppressCommitHasNoPreviousCommitWarning": false,
         "suppressCommitNotFoundWarning": false,
@@ -41,11 +38,14 @@
         "**/bower_components": true,
         "**/.vscode": true
     },
-    "workbench.colorTheme": "Seti",
-    "workbench.iconTheme": "eq-material-theme-icons",
+    "workbench.iconTheme": "material-icon-theme",
     "go.formatTool": "gofmt",
     "go.useLanguageServer": true,
     "go.autocompleteUnimportedPackages": true,
     "go.buildOnSave": "workspace",
-    "go.gocodeAutoBuild": true
+    "go.gocodeAutoBuild": true,
+    "workbench.colorTheme": "Dark+ Material",
+    "version": "7.23.0",
+    "status": 2,
+    "welcomeShown": true
 }
