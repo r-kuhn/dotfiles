@@ -183,14 +183,19 @@ nnoremap N Nzzzv
 " Navigation
 "----------------------------------------------
 " Disable arrow keys
-"noremap <Up> <NOP>
-"noremap <Down> <NOP>
-"noremap <Left> <NOP>
-"noremap <Right> <NOP>
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
 " Move between buffers with Shift + arrow key...
 nnoremap <S-Left> :bprevious<cr>
 nnoremap <S-Right> :bnext<cr>
+
+" Quickfix movement
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
 
 " ... but skip the quickfix when navigating
 augroup qf
@@ -575,6 +580,7 @@ let g:go_metalinter_enabled = [
     \ 'vet',
     \ 'vetshadow'
 \]
+let g:go_metalinter_autosave = 1
 
 " Set whether the JSON tags should be snakecase or camelcase.
 let g:go_addtags_transform = "snakecase"

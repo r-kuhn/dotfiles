@@ -16,7 +16,7 @@ if [ "$system_type" = "Darwin" ]; then
 	brew update
 	brew install coreutils git nodejs repo gnupg neovim golang sqlite zsh unrar \
 		telnet python python2 yadm wget findutils htop mediainfo imagemagick \
-		gpg2 shellcheck
+		gpg2 shellcheck ripgrep
 
 	if [ -d "$HOME/.iterm2" ]; then
 		echo "Setting iTerm preference folder"
@@ -52,6 +52,7 @@ if [ "$system_type" = "Darwin" ]; then
 	pip3 install --user neovim
 	pip3 install --user pylint
 	pip3 install --user flake8
+	pip3 install --user pgcli
 
 	# Symlink in the vscode settings for Mac
 	if [ ! -L "$HOME/Library/Application Support/Code/User/snippets" ]; then
@@ -73,7 +74,7 @@ fi
 
 if [[ "$system_type" == "Linux" ]]; then
 	if [ -e /etc/arch-release ]; then
-		sudo pacman -S sqlite3 shellcheck zsh neovim npm go yaourt
+		sudo pacman -S shellcheck zsh neovim npm yaourt ripgrep
     sudo yaourt otf-nerd-fonts-fira-code visual-studio-code-bin
 	else
 		# Apt stuff
