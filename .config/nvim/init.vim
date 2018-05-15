@@ -108,8 +108,8 @@ if has('nvim')
     " example:
     " pip3.6 install -U neovim
     if has("mac")
-        let g:python_host_prog = '/Users/dan/homebrew/bin/python2'
-        let g:python3_host_prog = '/Users/dan/homebrew/bin/python3'
+        let g:python_host_prog = '/Users/dan/brew/bin/python2'
+        let g:python3_host_prog = '/Users/dan/brew/bin/python3'
     else
         let g:python_host_prog = '/usr/bin/python2'
         let g:python3_host_prog = '/usr/bin/python3'
