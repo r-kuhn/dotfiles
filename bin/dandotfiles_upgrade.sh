@@ -9,7 +9,7 @@ fi
 if [ "$system_type" = "Linux" ]; then
 	if [ -e "/etc/arch-release" ]; then
 		#sudo pacman -Syu
-		sudo yaourt -Syyua
+		yaourt -Syyua
 	else
 		sudo apt-get update && sudo apt-get upgrade -u
 	fi
