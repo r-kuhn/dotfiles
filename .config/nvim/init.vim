@@ -108,8 +108,8 @@ if has('nvim')
     " example:
     " pip3.6 install -U neovim
     if has("mac")
-        let g:python_host_prog = '/Users/dan/homebrew/bin/python2'
-        let g:python3_host_prog = '/Users/dan/homebrew/bin/python3'
+        let g:python_host_prog = '/Users/dan/brew/bin/python2'
+        let g:python3_host_prog = '/Users/dan/brew/bin/python3'
     else
         let g:python_host_prog = '/usr/bin/python2'
         let g:python3_host_prog = '/usr/bin/python3'
@@ -153,6 +153,15 @@ highlight Search guibg=DeepPink4 guifg=White ctermbg=53 ctermfg=White
 map <leader>bg :let &background = (&background == "dark"? "light" : "dark")<cr>
 
 "----------------------------------------------
+" Terminal
+"----------------------------------------------
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-v><Esc> <Esc>
+if has('nvim') && executable('nvr')
+    let $VISUAL="nvr -cc split --remote-wait +'set bufhidden=-wipe'"
+endif
+
+"----------------------------------------------
 " Searching
 "----------------------------------------------
 set incsearch                     " move to match as you type the search query
@@ -182,6 +191,11 @@ noremap <Right> <NOP>
 " Move between buffers with Shift + arrow key...
 nnoremap <S-Left> :bprevious<cr>
 nnoremap <S-Right> :bnext<cr>
+
+" Quickfix movement
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
 
 " ... but skip the quickfix when navigating
 augroup qf
@@ -566,6 +580,7 @@ let g:go_metalinter_enabled = [
     \ 'vet',
     \ 'vetshadow'
 \]
+let g:go_metalinter_autosave = 1
 
 " Set whether the JSON tags should be snakecase or camelcase.
 let g:go_addtags_transform = "snakecase"

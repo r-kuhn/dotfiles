@@ -2,11 +2,17 @@
 	ui = auto
 [alias]
 	gpush = push gerrit HEAD:refs/for/master
+	squash = commit --amend --no-edit
+	dpush = push gerrit HEAD:refs/drafts/master
 [core]
-	editor = nvim
 [includeIf "gitdir:~/.yadm/"]
 	path = ~/.gitconfig-personal
 [includeIf "gitdir:~/p/"]
 	path = ~/.gitconfig-personal
-[includeIf "gitdir:~/w/"]
-	path = ~/.gitconfig-work
+[branch]
+	autoSetupRebase = local
+	autoSetupMerge = always
+[commit]
+	verbose = true
+[include]
+	path = .gitconfig.local

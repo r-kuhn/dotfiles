@@ -1,35 +1,38 @@
 #! /bin/bash
-SUBDIRECTORY_OK='Yes'
-OPTIONS_KEEPDASHDASH=
+SUBDIRECTORY_OK=true
 OPTIONS_SPEC="\
-git stack
+git stack [--full] [<branch>]
 
-Print the stack of upstream branches.
+Display the branches in the chain of upstream branches. For example:
+if 'bar' tracks a local branch 'foo' which tracks the local 'master'
+branch which finally tracks the 'master' branch of the 'origin'
+remote, then the output will be:
+
+  # git stack
+  bar
+  foo
+  master
+  origin/master
 
 --
+full     Display the full ref instead of the short branch names.
 "
-
 . git-sh-setup
 
-test $# == 0 && usage
+set -euo pipefail
 
-# Walk the chain of upstream branches, filling the branch_chain array
-# depth-first. The return value is the number of upstream changes.
-print-chain() {
-    eval $(git for-each-ref --shell --format='
-local ref=%(refname:short)
-local fullupstream=%(upstream)' "$1")
+fmt='%(refname:short)'
+while [[ $1 != -- ]] ; do
+    case "$1" in
+        --full) fmt='%(refname)' ;;
+        --no-full) fmt='%(refname:short)' ;;
+    esac
+    shift
+done
+shift
 
-    [[ -n $ref ]] || die "$1" is not a valid ref
-
-    echo "$ref"
-
-    local remote="$(git config branch."$ref".remote)"
-
-    # Tracking a local branch, recurse
-    if [[ -n $remote ]] ; then
-        print-chain "$fullupstream"
-    fi
-}
-
-print-chain "$(git symbolic-ref HEAD)"
+branch="$( git rev-parse --symbolic-full-name "${1:-HEAD}" )"
+while [[ -n $branch ]] ; do
+    git for-each-ref --format="$fmt" "$branch"
+    branch="$( git for-each-ref --format='%(upstream)' "$branch" )"
+done

@@ -1,0 +1,36 @@
+#! /bin/bash
+SUBDIRECTORY_OK=true
+OPTIONS_SPEC="\
+git parent [<BRANCH>]
+
+Checkout the branch tracking this one. When there are multiple
+branches traking the named branch, emit a warning and pick the one
+with the latest committer date.
+
+--
+q,quiet silence the multiple-branches warning, and quiet the checkout
+"
+. git-sh-setup
+set -euo pipefail
+
+quiet=
+while [[ $1 != -- ]] ; do
+    case "$1" in
+        -q)
+            set +x
+            quiet=-q
+            GIT_QUIET=-q
+            ;;
+        --no-quiet)
+            [[ -z $quiet ]] || set -x
+            quiet=
+            GIT_QUIET=
+            ;;
+    esac
+    shift
+done
+shift
+
+FROM=$(git rev-parse --symbolic-full-name --verify ${1:-HEAD})
+SHORTFROM=$(git for-each-ref --format='%(refname:short)' $FROM)
+git checkout $quiet "$SHORTFROM"'@{upstream}' --

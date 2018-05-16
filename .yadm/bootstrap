@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#m!/usr/bin/env bash
 
 # Because Git submodule commands cannot operate without a work tree, they must
 # be run from within $HOME (assuming this is the root of your dotfiles)
@@ -16,7 +16,7 @@ if [ "$system_type" = "Darwin" ]; then
 	brew update
 	brew install coreutils git nodejs repo gnupg neovim golang sqlite zsh unrar \
 		telnet python python2 yadm wget findutils htop mediainfo imagemagick \
-		gpg2 shellcheck
+		gpg2 shellcheck ripgrep
 
 	brew cask install font-fira-code
 
@@ -54,6 +54,7 @@ if [ "$system_type" = "Darwin" ]; then
 	pip3 install --user neovim
 	pip3 install --user pylint
 	pip3 install --user flake8
+	pip3 install --user pgcli
 
 	# Symlink in the vscode settings for Mac
 	if [ ! -L "$HOME/Library/Application Support/Code/User/snippets" ]; then
@@ -74,32 +75,37 @@ if [ "$system_type" = "Darwin" ]; then
 fi
 
 if [[ "$system_type" == "Linux" ]]; then
-	# Apt stuff
-	sudo apt-get update
-	sudo apt-get install sqlite3 golang-1.10 neovim python-dev python-pip \
-		python3-dev python3-pip npm shellcheck zsh
+	if [ -e /etc/arch-release ]; then
+		sudo pacman -S shellcheck zsh neovim npm yaourt ripgrep
+    sudo yaourt otf-nerd-fonts-fira-code visual-studio-code-bin
+	else
+		# Apt stuff
+		sudo apt-get update
+		sudo apt-get install sqlite3 golang-1.10 neovim python-dev python-pip \
+			python3-dev python3-pip npm shellcheck zsh
 
-	# Fonts
-	if [ -d "$HOME/.config/fonts" ]; then
-		for f in "$HOME/.config/fonts/*"; do
-			sudo cp -f $f /usr/local/share/fonts
-		done
+		# Fonts
+		if [ -d "$HOME/.config/fonts" ]; then
+			for f in "$HOME/.config/fonts/*"; do
+				sudo cp -f $f /usr/local/share/fonts
+			done
+		fi
+		sudo fc-cache -fv
 	fi
-	sudo fc-cache -fv
 
 	# NPM stuff
 	sudo npm install -g jshint eslint neovim
 
 	# Python stuff
-	pip2 install --upgrade pip
-	pip2 install --user setuptools
-	pip2 install --user neovim
+	sudo pip install --upgrade pip
+	sudo pip install --user setuptools
+	sudo pip install --user neovim
 
-	pip3 install --upgrade pip
-	pip3 install --user setuptools
-	pip3 install --user neovim
-	pip3 install --user pylint
-	pip3 install --user flake8
+	sudo pip3 install --upgrade pip
+	sudo pip3 install --user setuptools
+	sudo pip3 install --user neovim
+	sudo pip3 install --user pylint
+	sudo pip3 install --user flake8
 fi
 
 # Setup VIM
