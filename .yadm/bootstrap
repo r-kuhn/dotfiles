@@ -18,6 +18,8 @@ if [ "$system_type" = "Darwin" ]; then
 		telnet python python2 yadm wget findutils htop mediainfo imagemagick \
 		gpg2 shellcheck ripgrep
 
+	brew cask install font-fira-code
+
 	if [ -d "$HOME/.iterm2" ]; then
 		echo "Setting iTerm preference folder"
 		defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
@@ -109,7 +111,7 @@ fi
 # Setup VIM
 if command -v nvim >/dev/null 2>&1; then
 	echo "Bootstraping nvim"
-	nvim '+PlugInstall' '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+	nvim '+PlugInstall' '+UpdateRemotePlugins' '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 fi
 
 # Add zsh theme
