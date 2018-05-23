@@ -16,3 +16,5 @@
 	verbose = true
 [include]
 	path = .gitconfig.local
+[review "https://gerrit.sg.apple.com"]
+	username = dcardamore
