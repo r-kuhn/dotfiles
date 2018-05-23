@@ -16,7 +16,7 @@ yadm commit
 
 * Push changes to repo:
 ```sh
-yadm remote add origin ssh://jarlan/git-server/repos/dandotfiles.git
+yadm remote add origin ssh://gogs/dan/dandotfiles.git
 yadm push -u origin master
 ```
 
@@ -44,7 +44,7 @@ https://github.com/TheLocehiliosan/yadm
 
 ### Linux
 
-* Install yadm:
+* Install yadm on ubuntu:
 ```sh
 sudo apt-get install -y software-properties-common
 sudo add-apt-repository -y ppa:flexiondotorg/yadm
@@ -52,9 +52,14 @@ sudo apt-get update
 sudo apt-get -y install yadm
 ```
 
+* Install yadm on arch:
+```sh
+yay -S yadm-git
+```
+
 * Get dotfiles:
 ```sh
-yadm clone --bootstrap ssh://git@jarlan.hld.ca:5555/git-server/repos/dandotfiles.git
+yadm clone --bootstrap ssh://git@git.hld.ca:2223/dan/dandotfiles.git
 ```
 
 ### Mac
@@ -72,5 +77,5 @@ brew install yadm
 
 * Get dotfiles:
 ```sh
-yadm clone --bootstrap ssh://git@jarlan.hld.ca:5555/git-server/repos/dandotfiles.git
+yadm clone --bootstrap ssh://git@git.hld.ca:2223/dan/dandotfiles.git
 ```
