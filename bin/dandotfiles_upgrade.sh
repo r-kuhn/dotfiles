@@ -8,8 +8,7 @@ fi
 
 if [ "$system_type" = "Linux" ]; then
 	if [ -e "/etc/arch-release" ]; then
-		#sudo pacman -Syu
-		yaourt -Syyua
+		yay -Syu
 	else
 		sudo apt-get update && sudo apt-get upgrade -u
 	fi
