@@ -76,8 +76,7 @@ fi
 
 if [[ "$system_type" == "Linux" ]]; then
 	if [ -e /etc/arch-release ]; then
-		sudo pacman -S shellcheck zsh neovim npm yaourt ripgrep
-    sudo yaourt otf-nerd-fonts-fira-code visual-studio-code-bin
+		sudo pacman -S shellcheck zsh neovim npm ripgrep
 	else
 		# Apt stuff
 		sudo apt-get update
