@@ -78,7 +78,7 @@ fi
 if [[ "$system_type" == "Linux" ]]; then
 	if [ -e /etc/arch-release ]; then
 		sudo pacman -S shellcheck zsh neovim npm yaourt ripgrep
-    sudo yaourt otf-nerd-fonts-fira-code visual-studio-code-bin
+    yay otf-nerd-fonts-fira-code visual-studio-code-bin powerline python-pygit2
 	else
 		# Apt stuff
 		sudo apt-get update
@@ -114,7 +114,4 @@ if command -v nvim >/dev/null 2>&1; then
 	echo "Bootstraping nvim"
 	nvim '+PlugInstall' '+UpdateRemotePlugins' '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 fi
-
-# Add zsh theme
-curl -o ~/.zprezto/modules/prompt/functions/prompt_statusline_setup https://raw.githubusercontent.com/el1t/statusline/master/prezto/prompt_statusline_setup
 
