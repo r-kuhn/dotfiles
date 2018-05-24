@@ -49,6 +49,8 @@ if [ "$system_type" = "Darwin" ]; then
 	pip2 install --user setuptools
 	pip2 install --user wheel
 	pip2 install --user neovim
+	pip2 install --user powerline-status
+	pip2 install --user psutil
 
 	pip3 install --user setuptools
 	pip3 install --user wheel
