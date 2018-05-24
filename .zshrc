@@ -16,6 +16,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs root_indicator background_jobs ti
 alias vi=nvim
 alias vim=nvim
 export EDITOR=nvim
+export VISUAL=$EDITOR
 export GIT_EDITOR=nvim
 . ~/.secret_env
 
