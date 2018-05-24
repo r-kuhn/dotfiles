@@ -47,5 +47,6 @@
     "workbench.colorTheme": "Dark+ Material",
     "version": "7.23.0",
     "status": 2,
-    "welcomeShown": true
+    "welcomeShown": true,
+    "window.zoomLevel": 2
 }
