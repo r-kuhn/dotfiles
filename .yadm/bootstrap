@@ -16,7 +16,7 @@ if [ "$system_type" = "Darwin" ]; then
 	brew update
 	brew install coreutils git nodejs repo gnupg neovim golang sqlite zsh unrar \
 		telnet python python2 yadm wget findutils htop mediainfo imagemagick \
-		gpg2 shellcheck ripgrep
+		gpg2 shellcheck ripgrep reattach-to-user-namespace
 
   brew tap caskroom/fonts
 	brew cask install font-fira-code font-fira-code-nerd-font
