@@ -1,4 +1,4 @@
-#m!/usr/bin/env bash
+#!/usr/bin/env bash
 
 # Because Git submodule commands cannot operate without a work tree, they must
 # be run from within $HOME (assuming this is the root of your dotfiles)
@@ -16,7 +16,7 @@ if [ "$system_type" = "Darwin" ]; then
 	brew update
 	brew install coreutils git nodejs repo gnupg neovim golang sqlite zsh unrar \
 		telnet python python2 yadm wget findutils htop mediainfo imagemagick \
-		gpg2 shellcheck ripgrep
+		gpg2 shellcheck ripgrep reattach-to-user-namespace
 
   brew tap caskroom/fonts
 	brew cask install font-fira-code font-fira-code-nerd-font
@@ -49,6 +49,8 @@ if [ "$system_type" = "Darwin" ]; then
 	pip2 install --user setuptools
 	pip2 install --user wheel
 	pip2 install --user neovim
+	pip2 install --user powerline-status
+	pip2 install --user psutil
 
 	pip3 install --user setuptools
 	pip3 install --user wheel
@@ -78,6 +80,7 @@ fi
 if [[ "$system_type" == "Linux" ]]; then
 	if [ -e /etc/arch-release ]; then
 		sudo pacman -S shellcheck zsh neovim npm ripgrep
+    yay otf-nerd-fonts-fira-code visual-studio-code-bin powerline python-pygit2
 	else
 		# Apt stuff
 		sudo apt-get update
@@ -113,7 +116,4 @@ if command -v nvim >/dev/null 2>&1; then
 	echo "Bootstraping nvim"
 	nvim '+PlugInstall' '+UpdateRemotePlugins' '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 fi
-
-# Add zsh theme
-curl -o ~/.zprezto/modules/prompt/functions/prompt_statusline_setup https://raw.githubusercontent.com/el1t/statusline/master/prezto/prompt_statusline_setup
 
