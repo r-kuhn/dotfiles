@@ -1,4 +1,4 @@
-#m!/usr/bin/env bash
+#!/usr/bin/env bash
 
 # Because Git submodule commands cannot operate without a work tree, they must
 # be run from within $HOME (assuming this is the root of your dotfiles)
@@ -79,7 +79,7 @@ fi
 
 if [[ "$system_type" == "Linux" ]]; then
 	if [ -e /etc/arch-release ]; then
-		sudo pacman -S shellcheck zsh neovim npm yaourt ripgrep
+		sudo pacman -S shellcheck zsh neovim npm ripgrep
     yay otf-nerd-fonts-fira-code visual-studio-code-bin powerline python-pygit2
 	else
 		# Apt stuff
