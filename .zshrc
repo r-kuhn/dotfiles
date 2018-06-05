@@ -41,3 +41,5 @@ export GOROOT="${HOME}/go"
 export GOPATH="${HOME}/p/go"
 export PATH=${PATH}:${GOROOT}/bin:${GOPATH}/bin
 
+
+alias ls='ls --color'

@@ -45,8 +45,10 @@
     "go.buildOnSave": "workspace",
     "go.gocodeAutoBuild": true,
     "workbench.colorTheme": "Dark+ Material",
+    "window.zoomLevel": 1,
     "version": "7.23.0",
     "status": 2,
     "welcomeShown": true,
-    "window.zoomLevel": 2
+    "editor.wordWrap": "on",
+    "editor.wrappingIndent": "indent"
 }
