@@ -82,21 +82,30 @@ if [[ "$system_type" == "Linux" ]]; then
 		sudo pacman -S shellcheck zsh neovim npm ripgrep
     yay otf-nerd-fonts-fira-code visual-studio-code-bin powerline python-pygit2
 	else
+		echo "not installing packages on ubuntu"
 	fi
 
 	# NPM stuff
 	sudo npm install -g jshint eslint neovim
 
 	# Python stuff
-	sudo pip install --upgrade pip
-	sudo pip install --user setuptools
-	sudo pip install --user neovim
+	#sudo pip install --upgrade pip
+	#sudo pip install --user setuptools
+	#sudo pip install --user neovim
 
-	sudo pip3 install --upgrade pip
-	sudo pip3 install --user setuptools
-	sudo pip3 install --user neovim
-	sudo pip3 install --user pylint
-	sudo pip3 install --user flake8
+	if [ -e /etc/arch-release ]; then
+		sudo pip3 install --upgrade pip
+		sudo pip3 install --user setuptools
+		sudo pip3 install --user neovim
+		sudo pip3 install --user pylint
+		sudo pip3 install --user flake8
+	else
+		sudo pip install --upgrade pip
+		sudo pip install --user setuptools
+		sudo pip install --user neovim
+		sudo pip install --user pylint
+		sudo pip install --user flake8
+	fi
 fi
 
 # Setup VIM
