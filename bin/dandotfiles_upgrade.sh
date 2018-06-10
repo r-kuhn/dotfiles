@@ -8,8 +8,7 @@ fi
 
 if [ "$system_type" = "Linux" ]; then
 	if [ -e "/etc/arch-release" ]; then
-		#sudo pacman -Syu
-		yaourt -Syyua
+		yay -Syyu
 	else
 		sudo apt-get update && sudo apt-get upgrade -u
 	fi
@@ -17,7 +16,6 @@ fi
 
 # Updating yadm submodules
 yadm submodule update --recursive
-curl -o ~/.zprezto/modules/prompt/functions/prompt_statusline_setup https://raw.githubusercontent.com/el1t/statusline/master/prezto/prompt_statusline_setup
 
 if command -v nvim >/dev/null 2>&1; then
 	echo "Updating nvim"

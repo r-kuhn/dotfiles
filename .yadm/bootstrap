@@ -1,4 +1,4 @@
-#m!/usr/bin/env bash
+#!/usr/bin/env bash
 
 # Because Git submodule commands cannot operate without a work tree, they must
 # be run from within $HOME (assuming this is the root of your dotfiles)
@@ -16,9 +16,10 @@ if [ "$system_type" = "Darwin" ]; then
 	brew update
 	brew install coreutils git nodejs repo gnupg neovim golang sqlite zsh unrar \
 		telnet python python2 yadm wget findutils htop mediainfo imagemagick \
-		gpg2 shellcheck ripgrep
+		gpg2 shellcheck ripgrep reattach-to-user-namespace
 
-	brew cask install font-fira-code
+  brew tap caskroom/fonts
+	brew cask install font-fira-code font-fira-code-nerd-font
 
 	if [ -d "$HOME/.iterm2" ]; then
 		echo "Setting iTerm preference folder"
@@ -48,6 +49,8 @@ if [ "$system_type" = "Darwin" ]; then
 	pip2 install --user setuptools
 	pip2 install --user wheel
 	pip2 install --user neovim
+	pip2 install --user powerline-status
+	pip2 install --user psutil
 
 	pip3 install --user setuptools
 	pip3 install --user wheel
@@ -76,36 +79,33 @@ fi
 
 if [[ "$system_type" == "Linux" ]]; then
 	if [ -e /etc/arch-release ]; then
-		sudo pacman -S shellcheck zsh neovim npm yaourt ripgrep
-    sudo yaourt otf-nerd-fonts-fira-code visual-studio-code-bin
+		sudo pacman -S shellcheck zsh neovim npm ripgrep
+    yay otf-nerd-fonts-fira-code visual-studio-code-bin powerline python-pygit2
 	else
-		# Apt stuff
-		sudo apt-get update
-		sudo apt-get install sqlite3 golang-1.10 neovim python-dev python-pip \
-			python3-dev python3-pip npm shellcheck zsh
-
-		# Fonts
-		if [ -d "$HOME/.config/fonts" ]; then
-			for f in "$HOME/.config/fonts/*"; do
-				sudo cp -f $f /usr/local/share/fonts
-			done
-		fi
-		sudo fc-cache -fv
+		echo "not installing packages on ubuntu"
 	fi
 
 	# NPM stuff
 	sudo npm install -g jshint eslint neovim
 
 	# Python stuff
-	sudo pip install --upgrade pip
-	sudo pip install --user setuptools
-	sudo pip install --user neovim
+	#sudo pip install --upgrade pip
+	#sudo pip install --user setuptools
+	#sudo pip install --user neovim
 
-	sudo pip3 install --upgrade pip
-	sudo pip3 install --user setuptools
-	sudo pip3 install --user neovim
-	sudo pip3 install --user pylint
-	sudo pip3 install --user flake8
+	if [ -e /etc/arch-release ]; then
+		sudo pip3 install --upgrade pip
+		sudo pip3 install --user setuptools
+		sudo pip3 install --user neovim
+		sudo pip3 install --user pylint
+		sudo pip3 install --user flake8
+	else
+		sudo pip install --upgrade pip
+		sudo pip install --user setuptools
+		sudo pip install --user neovim
+		sudo pip install --user pylint
+		sudo pip install --user flake8
+	fi
 fi
 
 # Setup VIM
@@ -113,7 +113,4 @@ if command -v nvim >/dev/null 2>&1; then
 	echo "Bootstraping nvim"
 	nvim '+PlugInstall' '+UpdateRemotePlugins' '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 fi
-
-# Add zsh theme
-curl -o ~/.zprezto/modules/prompt/functions/prompt_statusline_setup https://raw.githubusercontent.com/el1t/statusline/master/prezto/prompt_statusline_setup
 
