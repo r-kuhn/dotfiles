@@ -83,6 +83,8 @@ if [[ "$system_type" == "Linux" ]]; then
     yay otf-nerd-fonts-fira-code visual-studio-code-bin powerline python-pygit2
 	else
 		echo "not installing packages on ubuntu"
+	  # apt install nodejs neovim python3-dev shellcheck powerline zsh git npm python-pip
+		#
 	fi
 
 	# NPM stuff
