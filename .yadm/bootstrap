@@ -88,7 +88,7 @@ if [[ "$system_type" == "Linux" ]]; then
 	fi
 
 	# NPM stuff
-	sudo npm install -g jshint eslint neovim
+	npm install -g jshint eslint neovim
 
 	# Python stuff
 	#sudo pip install --upgrade pip
