@@ -84,7 +84,7 @@ if [[ "$system_type" == "Linux" ]]; then
 	else
 		echo "not installing packages on ubuntu"
 	  # apt install nodejs neovim python3-dev shellcheck powerline zsh git npm python-pip
-		#
+		fc-cache -f
 	fi
 
 	# NPM stuff
