@@ -8,7 +8,7 @@ DEFAULT_USER="dan"
 #POWERLEVEL9K_CONTEXT_TEMPLATE="%n@`hostname -f`"
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs root_indicator background_jobs time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs virtualenv root_indicator background_jobs time)
 
 
 
@@ -41,5 +41,3 @@ export GOROOT="${HOME}/go"
 export GOPATH="${HOME}/p/go"
 export PATH=${PATH}:${GOROOT}/bin:${GOPATH}/bin
 
-
-alias ls='ls --color'
