@@ -39,5 +39,5 @@ export PATH=${HOME}/bin:${PATH}
 # Configure GO
 export GOROOT="${HOME}/go"
 export GOPATH="${HOME}/p/go"
-export PATH=${PATH}:${GOROOT}/bin:${GOPATH}/bin
+export PATH=${PATH}:${GOROOT}/bin:${GOPATH}/bin:~/.npm/bin
 
