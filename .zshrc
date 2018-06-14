@@ -10,8 +10,6 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs virtualenv root_indicator background_jobs time)
 
-
-
 # Setup nvim
 alias vi=nvim
 alias vim=nvim
@@ -36,8 +34,12 @@ elif [ "$system_type" = "Linux" ]; then
 fi
 export PATH=${HOME}/bin:${PATH}
 
+# Configure Node
+export PATH=${PATH}:~/.npm/bin
+
 # Configure GO
 export GOROOT="${HOME}/go"
-export GOPATH="${HOME}/p/go"
-export PATH=${PATH}:${GOROOT}/bin:${GOPATH}/bin:~/.npm/bin
+export PATH=${PATH}:${GOROOT}/bin
+
+eval "$(direnv hook zsh)"
 
