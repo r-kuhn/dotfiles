@@ -16,7 +16,7 @@ if [ "$system_type" = "Darwin" ]; then
 	brew update
 	brew install coreutils git nodejs repo gnupg neovim golang sqlite zsh unrar \
 		telnet python python2 yadm wget findutils htop mediainfo imagemagick \
-		gpg2 shellcheck ripgrep reattach-to-user-namespace
+		gpg2 shellcheck ripgrep reattach-to-user-namespace direnv
 
   brew tap caskroom/fonts
 	brew cask install font-fira-code font-fira-code-nerd-font
@@ -83,7 +83,7 @@ if [[ "$system_type" == "Linux" ]]; then
     yay otf-nerd-fonts-fira-code visual-studio-code-bin powerline python-pygit2
 	else
 		echo "not installing packages on ubuntu"
-	  # apt install nodejs neovim python3-dev shellcheck powerline zsh git npm python-pip
+	  # apt install nodejs neovim python3-dev shellcheck powerline zsh git npm python-pip direnv
 		fc-cache -f
 	fi
 
