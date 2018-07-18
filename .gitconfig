@@ -2,8 +2,9 @@
 	ui = auto
 [alias]
 	gpush = push gerrit HEAD:refs/for/master
-	squash = commit --amend --no-edit
+	commitsquash = commit --amend --no-edit
 	dpush = push gerrit HEAD:refs/drafts/master
+	co = checkout
 [core]
 [includeIf "gitdir:~/.yadm/"]
 	path = ~/.gitconfig-personal

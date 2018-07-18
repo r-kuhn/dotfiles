@@ -37,6 +37,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
+Plug 'jreybert/vimagit'  "git workflow:  https://github.com/jreybert/vimagit
 
 " Vim only plugins
 if !has('nvim')

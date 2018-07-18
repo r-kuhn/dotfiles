@@ -1,0 +1,5 @@
+#!/bin/sh
+
+gpg --import < ~/.pubkey.txt
+echo "type 'trust' into prompt and say ultimate"
+gpg --edit-key 0x5C7C546C857AE9D5
