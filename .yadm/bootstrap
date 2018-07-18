@@ -83,7 +83,7 @@ if [[ "$system_type" == "Linux" ]]; then
     yay otf-nerd-fonts-fira-code visual-studio-code-bin powerline python-pygit2
 	else
 		echo "not installing packages on ubuntu"
-	  # apt install nodejs neovim python3-dev shellcheck powerline zsh git npm python-pip
+	  # apt install nodejs neovim python3-dev shellcheck powerline zsh git npm python-pip direnv
 		fc-cache -f
 	fi
 
@@ -102,11 +102,11 @@ if [[ "$system_type" == "Linux" ]]; then
 		sudo pip3 install --user pylint
 		sudo pip3 install --user flake8
 	else
-		sudo pip install --upgrade pip
-		sudo pip install --user setuptools
-		sudo pip install --user neovim
-		sudo pip install --user pylint
-		sudo pip install --user flake8
+		pip install --upgrade pip
+		pip install --user setuptools
+		pip install --user neovim
+		pip install --user pylint
+		pip install --user flake8
 	fi
 fi
 

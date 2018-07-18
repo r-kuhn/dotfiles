@@ -38,8 +38,9 @@ export PATH=${HOME}/bin:${PATH}
 export PATH=${PATH}:~/.npm/bin
 
 # Configure GO
-export GOROOT="${HOME}/go"
-export PATH=${PATH}:${GOROOT}/bin
+export GOROOT="${HOME}/.go"
+export GOPATH="${HOME}/go"
+export PATH=${PATH}:${GOROOT}/bin:${GOPATH}/bin
 
 eval "$(direnv hook zsh)"
 
