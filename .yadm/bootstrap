@@ -14,11 +14,9 @@ if [ "$system_type" = "Darwin" ]; then
 
 	git -C "$(brew --repo homebrew/core)" fetch --unshallow || true
 	brew update
-	brew install coreutils git nodejs repo gnupg neovim golang sqlite zsh unrar \
-		telnet python python2 yadm wget findutils htop mediainfo imagemagick \
-		gpg2 shellcheck ripgrep reattach-to-user-namespace direnv
+	# brew install coreutils git nodejs repo gnupg neovim golang sqlite zsh unrar telnet python python2 yadm wget findutils htop mediainfo imagemagick gpg2 shellcheck ripgrep reattach-to-user-namespace direnv
 
-  brew tap caskroom/fonts
+	brew tap caskroom/fonts
 	brew cask install font-fira-code font-fira-code-nerd-font
 
 	if [ -d "$HOME/.iterm2" ]; then

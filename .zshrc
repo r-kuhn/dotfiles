@@ -42,5 +42,3 @@ export GOROOT="${HOME}/.go"
 export GOPATH="${HOME}/go"
 export PATH=${PATH}:${GOROOT}/bin:${GOPATH}/bin
 
-eval "$(direnv hook zsh)"
-

@@ -4,6 +4,8 @@
 system_type=$(uname -s)
 if [ "$system_type" = "Darwin" ]; then
 	brew update && brew upgrade
+	nix-channel --update nixpkgs
+	nix-env -u '*'
 fi
 
 if [ "$system_type" = "Linux" ]; then
