@@ -19,3 +19,6 @@
 	path = .gitconfig.local
 [review "https://gerrit.sg.apple.com"]
 	username = dcardamore
+[user]
+	email = dan@hld.ca
+	name = Dan Cardamore
