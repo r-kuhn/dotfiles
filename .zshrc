@@ -39,7 +39,13 @@ bindkey -e
 autoload -Uz compinit
 compinit
 
-source ~/.nix-profile/share/antigen/antigen.zsh
+if [ -e ${HOME}/brew/share/antigen/antigen.zsh ]; then
+        source /Users/dan/brew/share/antigen/antigen.zsh
+fi
+
+if [ -e ${HOME}/.nix-profile/share/antigen/antigen.zsh ]; then
+        source ~/.nix-profile/share/antigen/antigen.zsh
+fi
 antigen use oh-my-zsh
 
 antigen bundle git
@@ -90,23 +96,25 @@ function initop () {
   eval "$(op signin my)"
 }
 
-# setup direnv
-eval "$(direnv hook zsh)"
-
-# setup npm
-npm config set prefix ${HOME}/.npm
-
 # Setup golang
 export GOPATH=${HOME}/go
 
 case $(uname) in
   Darwin)
-    source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
-    export PATH=~/bin:${GOPATH}/bin:${PATH}:/usr/local/bin/:~/brew/bin:${HOME}/.npm/bin
-  ;;
+          if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
+                  source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+          fi
+          export PATH=~/bin:${GOPATH}/bin:${PATH}:/usr/local/bin/:~/brew/bin:${HOME}/.npm/bin
+          ;;
   Linux)
-    export PATH=~/bin:${PATH}:${GOPATH}/bin:${HOME}/.npm/bin
-  ;;
+          export PATH=~/bin:${PATH}:${GOPATH}/bin:${HOME}/.npm/bin
+          ;;
 esac
+
+# setup direnv
+eval "$(direnv hook zsh)"
+
+# setup npm
+npm config set prefix ${HOME}/.npm
 
 

@@ -19,3 +19,4 @@ shellcheck
 gpg2
 ripgrep
 direnv
+antigen
