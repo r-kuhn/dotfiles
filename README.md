@@ -59,7 +59,7 @@ yay -S yadm-git
 
 * Get dotfiles:
 ```sh
-yadm clone --bootstrap ssh://git@git.hld.ca:2223/dan/dandotfiles.git
+yadm clone --bootstrap git@gitlab.com:hubbypa/dandotfiles
 ```
 
 ### Mac
@@ -77,5 +77,5 @@ brew install yadm
 
 * Get dotfiles:
 ```sh
-yadm clone --bootstrap ssh://git@git.hld.ca:2223/dan/dandotfiles.git
+yadm clone --bootstrap git@gitlab.com:hubbypa/dandotfiles
 ```

@@ -76,36 +76,6 @@ if [ "$system_type" = "Darwin" ]; then
 fi
 
 if [[ "$system_type" == "Linux" ]]; then
-	if [ -e /etc/arch-release ]; then
-		sudo pacman -S shellcheck zsh neovim npm ripgrep
-    yay otf-nerd-fonts-fira-code visual-studio-code-bin powerline python-pygit2
-	else
-		echo "not installing packages on ubuntu"
-	  # apt install nodejs neovim python3-dev shellcheck powerline zsh git npm python-pip direnv
-		fc-cache -f
-	fi
-
-	# NPM stuff
-	npm install -g jshint eslint neovim
-
-	# Python stuff
-	#sudo pip install --upgrade pip
-	#sudo pip install --user setuptools
-	#sudo pip install --user neovim
-
-	if [ -e /etc/arch-release ]; then
-		sudo pip3 install --upgrade pip
-		sudo pip3 install --user setuptools
-		sudo pip3 install --user neovim
-		sudo pip3 install --user pylint
-		sudo pip3 install --user flake8
-	else
-		pip install --upgrade pip
-		pip install --user setuptools
-		pip install --user neovim
-		pip install --user pylint
-		pip install --user flake8
-	fi
 fi
 
 # Setup VIM
