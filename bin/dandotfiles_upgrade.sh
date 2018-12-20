@@ -3,16 +3,15 @@
 # Update system
 system_type=$(uname -s)
 if [ "$system_type" = "Darwin" ]; then
+	# Homebrew
 	brew update && brew upgrade
+	xargs brew install < ~/.brewlist.txt
+	xargs brew cask install < ~/.brewlist.txt
+
+	# Nix
 	nix-channel --update nixpkgs
-	nix-env --set-flag priority 2 darwinEnv
-	nix-env --set-flag priority 8 home-manager-path
-	nix-env -i darwinEnv
 
-	nix-env --set-flag priority 2 darwinEnv
-	nix-env --set-flag priority 8 home-manager-path
-	home-manager switch
-
+	# Neovim
 	if command -v nvim >/dev/null 2>&1; then
 		echo "Updating nvim"
 		nvim '+PlugInstall' '+PlugUpdate' '+UpdateRemotePlugins' '+PlugClean!' '+PlugUpdate' '+PlugUpgrade' '+qall'

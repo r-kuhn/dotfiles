@@ -4,20 +4,13 @@
 # be run from within $HOME (assuming this is the root of your dotfiles)
 cd "$HOME"
 
-echo "Init submodules"
-yadm submodule update --recursive --init
-
 system_type=$(uname -s)
 if [ "$system_type" = "Darwin" ]; then
-	# Make sure we are using the homebrew in the home directory
-	export PATH=${HOME}/homebrew/bin:${PATH}
-
-	git -C "$(brew --repo homebrew/core)" fetch --unshallow || true
-	brew update
-	# brew install coreutils git nodejs repo gnupg neovim golang sqlite zsh unrar telnet python python2 yadm wget findutils htop mediainfo imagemagick gpg2 shellcheck ripgrep reattach-to-user-namespace direnv
-
 	brew tap caskroom/fonts
-	brew cask install font-fira-code font-fira-code-nerd-font
+	brew update
+
+	xargs brew install < ~/.brewlist.txt
+	xargs brew cask install < ~/.brewlist.txt
 
 	if [ -d "$HOME/.iterm2" ]; then
 		echo "Setting iTerm preference folder"
