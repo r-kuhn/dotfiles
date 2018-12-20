@@ -69,6 +69,7 @@ if [ "$system_type" = "Darwin" ]; then
 fi
 
 if [[ "$system_type" == "Linux" ]]; then
+	echo "Nothing to do on NixOS"
 fi
 
 # Setup VIM
