@@ -1,44 +1,112 @@
-export TERM="xterm-256color"
+# Skip all this for non-interactive shells
+[[ -z "$PS1" ]] && return
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory autocd nomatch notify
+unsetopt extendedglob
+
+
+# don't make my say 'y' to each rm file
+setopt rmstarsilent
+# don't nice background tasks
+setopt nobgnice
+setopt nohup
+setopt nobeep
+# allow functions to have local options
+setopt localoptions
+# allow functions to have local traps
+setopt localtraps
+# share history with other sessions
+setopt sharehistory
+setopt extendedhistory
+setopt promptsubst
+setopt correct
+setopt completeinword
+setopt appendhistory
+setopt incappendhistory
+setopt histignorealldups
+setopt histreduceblanks
+setopt histignoredups
+setopt histignorespace
+setopt histverify
+setopt histexpiredupsfirst
+
+bindkey -e
+
+autoload -Uz compinit
+compinit
+
+source ~/.nix-profile/share/antigen/antigen.zsh
+antigen use oh-my-zsh
+
+antigen bundle git
+antigen bundle sudo
+antigen bundle pip
+antigen bundle docker
+antigen bundle command-not-found
+#antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zdharma/fast-syntax-highlighting
+#antigen bundle common-aliases
+#antigen bundle desyncr/auto-ls
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle unixorn/autoupdate-antigen.zshplugin
+antigen bundle ael-code/zsh-colored-man-pages
+antigen bundle MichaelAquilina/zsh-you-should-use
+antigen bundle ssh-agent
+antigen bundle colored-man-pages
+antigen bundle zsh-nix-shell
+antigen bundle nix-zsh-completions
+
+# Theme
+# antigen theme agnoster
+# antigen theme ergenekonyigit/lambda-gitster
+antigen theme bhilburn/powerlevel9k powerlevel9k
+antigen apply
+
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
+
+# Configure FZF
+if [ -n "${commands[fzf-share]}" ]; then
+  source "$(fzf-share)/key-bindings.zsh"
 fi
-DEFAULT_USER="dan"
-#POWERLEVEL9K_CONTEXT_TEMPLATE="%n@`hostname -f`"
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status vcs virtualenv root_indicator background_jobs time)
 
-# Setup nvim
-alias vi=nvim
-alias vim=nvim
-export EDITOR=nvim
-export VISUAL=$EDITOR
-export GIT_EDITOR=nvim
-. ~/.secret_env
+#zsh shortcuts
+alias vi='nvim'
+alias nano='nvim'
+alias vim='nvim'
 
-# Setup fuzzy finding for zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias l='ls -lFh'
+alias -g R='| rg'
+alias grep='grep --color'
 
-# Setup Python
-export PYTHONSTARTUP=~/.pythonrc
+# Setup 1password
+function initop () {
+  if [ ! -e "${HOME}/.op" ]; then
+    ~/bin/init1password.sh
+  fi
+  eval "$(op signin my)"
+}
 
-system_type=$(uname -s)
-if [ "$system_type" = "Darwin" ]; then
-  # use the python's inside my user space
-  export PATH=${HOME}/Library/Python/3.6/bin:${HOME}/Library/Python/2.7/bin:${PATH}
-  # homebrew goes first
-  export PATH=${HOME}/brew/bin:${PATH}
-elif [ "$system_type" = "Linux" ]; then
-fi
-export PATH=${HOME}/bin:${PATH}
+# setup direnv
+eval "$(direnv hook zsh)"
 
-# Configure Node
-export PATH=${PATH}:~/.npm/bin
+# setup npm
+npm config set prefix ${HOME}/.npm
 
-# Configure GO
-export GOROOT="${HOME}/.go"
-export GOPATH="${HOME}/go"
-export PATH=${PATH}:${GOROOT}/bin:${GOPATH}/bin
+# Setup golang
+export GOPATH=${HOME}/go
+
+case $(uname) in
+  Darwin)
+    source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+    export PATH=~/bin:${GOPATH}/bin:${PATH}:/usr/local/bin/:~/brew/bin:${HOME}/.npm/bin
+  ;;
+  Linux)
+    export PATH=~/bin:${PATH}:${GOPATH}/bin:${HOME}/.npm/bin
+  ;;
+esac
+
 

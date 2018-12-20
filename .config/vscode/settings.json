@@ -1,0 +1,49 @@
+{
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "workbench.colorTheme": "Material Theme Darker High Contrast",
+    "workbench.iconTheme": "eq-material-theme-icons-ocean",
+    "editor.minimap.enabled": false,
+    "git.autofetch": false,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontFamily": "Fira Code",
+    "window.menuBarVisibility": "toggle",
+    "welcomeShown": false,
+    "workbench.startupEditor": "none",
+    "vim.handleKeys": {
+        "<C-d>": false,
+        "<C-f>": false,
+        "<C-b>": false,
+        "<C-a>": false,
+        "<C-e>": false,
+        "<C-n>": true
+    },
+    "files.trimTrailingWhitespace": true,
+    "gitlens.historyExplorer.enabled": true,
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true
+    },
+    "extensions.ignoreRecommendations": false,
+    "git.autofetch": false,
+    "editor.formatOnSave": true,
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/.vscode": true
+    },
+    "go.formatTool": "goimports",
+    "go.useLanguageServer": false,
+    "go.autocompleteUnimportedPackages": true,
+    "go.buildOnSave": "workspace",
+    "go.gocodeAutoBuild": true,
+    "window.titleBarStyle": "custom",
+    "javascript.format.enable": false
+}

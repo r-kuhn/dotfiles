@@ -1,11 +1,4 @@
-"----------------------------------------------
-" Plugin management
-"
-" Download vim-plug from the URL below and follow the installation
-" instructions:
-" https://github.com/junegunn/vim-plug
-"----------------------------------------------
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 " Dependencies
 Plug 'Shougo/neocomplcache'        " Depenency for Shougo/neosnippet
@@ -51,7 +44,7 @@ Plug 'cespare/vim-toml'                        " toml syntax highlighting
 Plug 'chr4/nginx.vim'                          " nginx syntax highlighting
 Plug 'dag/vim-fish'                            " Fish syntax highlighting
 Plug 'digitaltoad/vim-pug'                     " Pug syntax highlighting
-Plug 'fatih/vim-go'                            " Go support
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }  " Go support
 Plug 'fishbullet/deoplete-ruby'                " Ruby auto completion
 Plug 'hashivim/vim-terraform'                  " Terraform syntax highlighting
 Plug 'kchmck/vim-coffee-script'                " CoffeeScript syntax highlighting
@@ -67,6 +60,7 @@ Plug 'tclh123/vim-thrift'                      " Thrift syntax highlighting
 Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
 Plug 'zchee/deoplete-jedi'                     " Go auto completion
 Plug 'zimbatm/haproxy.vim'                     " HAProxy syntax highlighting
+Plug 'LnL7/vim-nix'                            " Nix expression support
 
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
@@ -153,9 +147,6 @@ let g:airline_theme = 'papercolor'
 " - http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 highlight Search guibg=DeepPink4 guifg=White ctermbg=53 ctermfg=White
 
-" Toggle background with <leader>bg
-map <leader>bg :let &background = (&background == "dark"? "light" : "dark")<cr>
-
 "----------------------------------------------
 " Terminal
 "----------------------------------------------
@@ -218,6 +209,12 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
+
+"-----------------------
+" vim-lastplace settings
+" ----------------------
+let g:lastplace_ignore = "gitcommit,gitrebase,svn,hgcommit"
+let g:lastplace_ignore_buftype = "quickfix,nofile,help"
 
 "----------------------------------------------
 " Splits
@@ -521,12 +518,25 @@ au FileType go set noexpandtab
 au FileType go set shiftwidth=4
 au FileType go set softtabstop=4
 au FileType go set tabstop=4
+au FileType go set autowrite
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
 
 " Mappings
 au FileType go nmap <F5> :GoBuild<cr>
+au FileType go nmap <F6> :GoTest -short<cr>
 au FileType go nmap <F8> :GoMetaLinter<cr>
 au FileType go nmap <F9> :GoCoverageToggle -short<cr>
-au FileType go nmap <F10> :GoTest -short<cr>
 au FileType go nmap <F12> <Plug>(go-def)
 au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
 au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
@@ -717,6 +727,8 @@ au FileType markdown set shiftwidth=4
 au FileType markdown set softtabstop=4
 au FileType markdown set tabstop=4
 au FileType markdown set syntax=markdown
+au FileType markdown set textwidth=80
+au FileType markdown set formatoptions-=t
 
 "----------------------------------------------
 " Language: PlantUML

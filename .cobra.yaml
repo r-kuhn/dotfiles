@@ -2,6 +2,6 @@ author: Dan Cardamore <dan@hld.ca>
 license:
   header:
   text: |
-    {{ .copyright }}
+    {{ .copyright }} 2018
     This source code is proprietary and no permission is
     given to share or use this code.

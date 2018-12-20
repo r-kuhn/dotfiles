@@ -5,22 +5,17 @@ system_type=$(uname -s)
 if [ "$system_type" = "Darwin" ]; then
 	brew update && brew upgrade
 	nix-channel --update nixpkgs
-	nix-env -u '*'
-fi
+	nix-env --set-flag priority 2 darwinEnv
+	nix-env --set-flag priority 8 home-manager-path
+	nix-env -i darwinEnv
 
-if [ "$system_type" = "Linux" ]; then
-	if [ -e "/etc/arch-release" ]; then
-		yay -Syyu
-	else
-		sudo apt-get update && sudo apt-get upgrade -u
+	nix-env --set-flag priority 2 darwinEnv
+	nix-env --set-flag priority 8 home-manager-path
+	home-manager switch
+
+	if command -v nvim >/dev/null 2>&1; then
+		echo "Updating nvim"
+		nvim '+PlugInstall' '+PlugUpdate' '+UpdateRemotePlugins' '+PlugClean!' '+PlugUpdate' '+PlugUpgrade' '+qall'
 	fi
-fi
-
-# Updating yadm submodules
-yadm submodule update --recursive
-
-if command -v nvim >/dev/null 2>&1; then
-	echo "Updating nvim"
-	nvim '+PlugInstall' '+PlugUpdate' '+UpdateRemotePlugins' '+PlugClean!' '+PlugUpdate' '+PlugUpgrade' '+qall'
 fi
 
