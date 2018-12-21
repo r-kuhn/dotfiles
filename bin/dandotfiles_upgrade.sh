@@ -6,7 +6,7 @@ if [ "$system_type" = "Darwin" ]; then
 	# Homebrew
 	brew update && brew upgrade
 	xargs brew install < ~/.brewlist.txt
-	xargs brew cask install < ~/.brewlist.txt
+	xargs brew cask install < ~/.brewcasks.txt
 
 	# Nix
 	nix-channel --update nixpkgs
