@@ -20,3 +20,4 @@ gpg2
 ripgrep
 direnv
 antigen
+tmux
