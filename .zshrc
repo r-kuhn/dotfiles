@@ -83,6 +83,7 @@ fi
 alias vi='nvim'
 alias nano='nvim'
 alias vim='nvim'
+export EDITOR=nvim
 
 alias l='ls -lFh'
 alias -g R='| rg'
@@ -118,3 +119,5 @@ eval "$(direnv hook zsh)"
 npm config set prefix ${HOME}/.npm
 
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

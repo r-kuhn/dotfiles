@@ -14,7 +14,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'          " CtrlP is installed to support tag finding in vim-go
 Plug 'editorconfig/editorconfig-vim'
-"Plug 'itchyny/calendar.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
@@ -23,6 +22,7 @@ Plug 'mileszs/ack.vim'
 Plug 'neomake/neomake'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'sbdchd/neoformat'
+Plug 'w0rp/ale'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'sebdah/vim-delve'
@@ -136,6 +136,7 @@ nnoremap <space> zz
 "----------------------------------------------
 " Colors
 "----------------------------------------------
+set termguicolors      "enables true color support
 set background=dark
 colorscheme PaperColor
 let g:airline_theme = 'papercolor'
@@ -346,22 +347,6 @@ let g:ctrlp_map = ''
 " Enable support for bidirectional motions
 map  <leader><leader>w <Plug>(easymotion-bd-w)
 nmap <leader><leader>w <Plug>(easymotion-overwin-w)
-
-"----------------------------------------------
-" Plugin: 'itchyny/calendar.vim'
-"----------------------------------------------
-" Enable Google Calendar integration.
-let g:calendar_google_calendar = 0
-
-" Enable Google Tasks integration.
-let g:calendar_google_task = 0
-
-" Other options
-let g:calendar_first_day = "monday"           " Weeks starts with Monday
-let g:calendar_date_endian = "big"            " Format: year / month / day
-let g:calendar_date_separator = "-"           " Format: year - month - day
-let g:calendar_week_number = 1                " Show week numbers
-let g:calendar_view = "days"                  " Set days as the default view
 
 "----------------------------------------------
 " Plugin: 'junegunn/fzf.vim'
