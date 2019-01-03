@@ -1,8 +1,8 @@
 {
     "vim.enableNeovim": false,
     "editor.fontLigatures": true,
-    "editor.fontSize": 10,
-    "editor.fontFamily": "Fira Code, Retina",
+    "editor.fontSize": 14,
+    "editor.fontFamily": "FuraCode Nerd Font",
     "python.pythonPath": "python3",
     "editor.minimap.enabled": false,
     "workbench.startupEditor": "none",
@@ -44,11 +44,12 @@
     "go.autocompleteUnimportedPackages": true,
     "go.buildOnSave": "workspace",
     "go.gocodeAutoBuild": true,
-    "workbench.colorTheme": "Dark+ Material",
-    "window.zoomLevel": 1,
+    "workbench.colorTheme": "One Dark Pro Vivid",
+    "window.zoomLevel": 0,
     "version": "7.24.0",
     "status": 2,
     "welcomeShown": true,
     "editor.wordWrap": "on",
-    "editor.wrappingIndent": "indent"
+    "editor.wrappingIndent": "indent",
+    "workbench.fontAliasing": "antialiased"
 }

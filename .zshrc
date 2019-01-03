@@ -69,6 +69,7 @@ antigen bundle nix-zsh-completions
 # Theme
 # antigen theme agnoster
 # antigen theme ergenekonyigit/lambda-gitster
+export DEFAULT_USER=dan
 antigen theme bhilburn/powerlevel9k powerlevel9k
 antigen apply
 

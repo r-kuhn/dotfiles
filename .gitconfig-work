@@ -1,3 +1,10 @@
 [user]
   name = Dan Cardamore
   email = dcardamore@apple.com
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true

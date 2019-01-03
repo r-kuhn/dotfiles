@@ -1,3 +1,10 @@
 [user]
   name = Dan Cardamore
   email = dan@hld.ca
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
