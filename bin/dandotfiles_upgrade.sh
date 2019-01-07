@@ -9,7 +9,9 @@ if [ "$system_type" = "Darwin" ]; then
 	xargs brew cask install < ~/.brewcasks.txt
 
 	# Nix
-	nix-channel --update nixpkgs
+	if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
+		nix-channel --update nixpkgs
+	fi
 
 	# Neovim
 	if command -v nvim >/dev/null 2>&1; then
