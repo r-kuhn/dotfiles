@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -x
 
 # Because Git submodule commands cannot operate without a work tree, they must
 # be run from within $HOME (assuming this is the root of your dotfiles)
@@ -6,11 +7,12 @@ cd "$HOME"
 
 system_type=$(uname -s)
 if [ "$system_type" = "Darwin" ]; then
+	brew analytics off
 	brew tap caskroom/fonts
 	brew update
 
 	xargs brew install < ~/.brewlist.txt
-	xargs brew cask install < ~/.brewlist.txt
+	xargs brew cask install < ~/.brewcasks.txt
 
 	if [ -d "$HOME/.iterm2" ]; then
 		echo "Setting iTerm preference folder"
@@ -40,7 +42,7 @@ if [ "$system_type" = "Darwin" ]; then
 	pip2 install --user setuptools
 	pip2 install --user wheel
 	pip2 install --user neovim
-	pip2 install --user powerline-status
+	pip3 install --user powerline-status
 	pip2 install --user psutil
 
 	pip3 install --user setuptools

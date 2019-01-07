@@ -69,6 +69,7 @@ antigen bundle nix-zsh-completions
 # Theme
 # antigen theme agnoster
 # antigen theme ergenekonyigit/lambda-gitster
+export DEFAULT_USER=dan
 antigen theme bhilburn/powerlevel9k powerlevel9k
 antigen apply
 
@@ -83,6 +84,7 @@ fi
 alias vi='nvim'
 alias nano='nvim'
 alias vim='nvim'
+export EDITOR=nvim
 
 alias l='ls -lFh'
 alias -g R='| rg'
