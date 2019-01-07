@@ -118,3 +118,5 @@ eval "$(direnv hook zsh)"
 npm config set prefix ${HOME}/.npm
 
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
