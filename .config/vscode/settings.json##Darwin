@@ -83,5 +83,9 @@
    "eslint.autoFixOnSave": true,
    "vetur.format.defaultFormatter.ts": "prettier",
    "vetur.format.defaultFormatter.js": "prettier",
-  "vetur.format.defaultFormatter.css": "prettier"
+  "vetur.format.defaultFormatter.css": "prettier",
+  "sync.gist": "16d948f112304e9c6e206c89ce0e320e",
+  "sync.autoUpload": true,
+  "sync.autoDownload": false,
+  "terminal.integrated.fontFamily": "FuraCode Nerd Font"
 }

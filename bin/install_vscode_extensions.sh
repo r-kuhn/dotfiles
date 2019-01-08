@@ -4,7 +4,6 @@ code --install-extension dbaeumer.vscode-eslint
 code --install-extension eamodio.gitlens
 code --install-extension eg2.tslint
 code --install-extension esbenp.prettier-vscode
-code --install-extension fatihacet.gitlab-workflow
 code --install-extension kumar-harsh.graphql-for-vscode
 code --install-extension mike-co.import-sorter
 code --install-extension ms-python.python

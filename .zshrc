@@ -70,6 +70,10 @@ antigen bundle nix-zsh-completions
 # antigen theme agnoster
 # antigen theme ergenekonyigit/lambda-gitster
 export DEFAULT_USER=dan
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_STATUS_OK=false
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs)
 antigen theme bhilburn/powerlevel9k powerlevel9k
 antigen apply
 
@@ -100,6 +104,12 @@ function initop () {
 
 # Setup golang
 export GOPATH=${HOME}/go
+
+# setup flutter
+if [ -e "${HOME}/p/flutter" ]; then
+  export PATH=${PATH}:$HOME/p/flutter/bin
+fi
+
 
 case $(uname) in
   Darwin)
