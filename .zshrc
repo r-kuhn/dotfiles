@@ -39,36 +39,19 @@ bindkey -e
 autoload -Uz compinit
 compinit
 
-if [ -e ${HOME}/brew/share/antigen/antigen.zsh ]; then
-        source /Users/dan/brew/share/antigen/antigen.zsh
-fi
+case $(uname) in
+  Darwin)
+          if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
+                  source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+          fi
+          export PATH=~/bin:${GOPATH}/bin:${PATH}:/usr/local/bin/:~/brew/bin:${HOME}/.npm/bin
+          ;;
+  Linux)
+          export PATH=~/bin:${PATH}:${GOPATH}/bin:${HOME}/.npm/bin
+          ;;
+esac
 
-if [ -e ${HOME}/.nix-profile/share/antigen/antigen.zsh ]; then
-        source ~/.nix-profile/share/antigen/antigen.zsh
-fi
-antigen use oh-my-zsh
 
-antigen bundle git
-antigen bundle sudo
-antigen bundle pip
-antigen bundle docker
-antigen bundle command-not-found
-#antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zdharma/fast-syntax-highlighting
-#antigen bundle common-aliases
-#antigen bundle desyncr/auto-ls
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle unixorn/autoupdate-antigen.zshplugin
-antigen bundle ael-code/zsh-colored-man-pages
-antigen bundle MichaelAquilina/zsh-you-should-use
-antigen bundle ssh-agent
-antigen bundle colored-man-pages
-antigen bundle zsh-nix-shell
-antigen bundle nix-zsh-completions
-
-# Theme
-# antigen theme agnoster
-# antigen theme ergenekonyigit/lambda-gitster
 export DEFAULT_USER=dan
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_STATUS_OK=false
@@ -77,8 +60,8 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs)
 POWERLEVEL9K_HOME_SUB_ICON=''
 POWERLEVEL9K_FOLDER_ICON=''
 POWERLEVEL9K_ETC_ICON=''
-antigen theme bhilburn/powerlevel9k powerlevel9k
-antigen apply
+source <(antibody init)
+antibody bundle < ~/.zsh_plugins.txt
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
 
@@ -113,18 +96,6 @@ if [ -e "${HOME}/p/flutter" ]; then
   export PATH=${PATH}:$HOME/p/flutter/bin
 fi
 
-
-case $(uname) in
-  Darwin)
-          if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
-                  source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
-          fi
-          export PATH=~/bin:${GOPATH}/bin:${PATH}:/usr/local/bin/:~/brew/bin:${HOME}/.npm/bin
-          ;;
-  Linux)
-          export PATH=~/bin:${PATH}:${GOPATH}/bin:${HOME}/.npm/bin
-          ;;
-esac
 
 # setup direnv
 eval "$(direnv hook zsh)"
