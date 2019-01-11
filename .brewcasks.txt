@@ -1,2 +1,13 @@
 font-firacode-nerd-font
 docker
+android-sdk
+android-studio
+alfred
+balsamiq-mockups
+github
+gitkraken
+google-chrome
+google-drive-file-stream
+google-nik-collection
+istat-menus
+iterm2
