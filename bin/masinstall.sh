@@ -11,6 +11,7 @@ declare -a mas_apps=(
 	409201541 # Pages
 	407963104 # Pixelmator
 	1096330984 # PDFpen 8
+	585829637 # Todoist
 	1039633667 # Irvue
 	411643860 # DaisyDisk
 	409203825 # Numbers

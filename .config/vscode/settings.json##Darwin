@@ -7,11 +7,11 @@
   "editor.minimap.enabled": false,
   "workbench.startupEditor": "none",
   "vim.handleKeys": {
-    "<C-w>": false,
-    "<C-d>": false,
-    "<C-f>": false,
-    "<C-b>": false,
-    "<C-a>": false,
+    "<C-w>": true,
+    "<C-d>": true,
+    "<C-f>": true,
+    "<C-b>": true,
+    "<C-a>": true,
     "<C-e>": false,
     "<C-n>": true
   },
