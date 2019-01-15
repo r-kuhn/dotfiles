@@ -8,6 +8,9 @@ if [ "$system_type" = "Darwin" ]; then
 	xargs brew install < ~/.brewlist.txt
 	xargs brew cask install < ~/.brewcasks.txt
 
+	# App Store
+	mas upgrade
+
 	# Nix
 	if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
 		nix-channel --update nixpkgs

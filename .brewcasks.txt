@@ -1,1 +1,15 @@
+alfred
+android-sdk
+android-studio
+balsamiq-mockups
+docker
 font-firacode-nerd-font
+github
+gitkraken
+google-chrome
+google-drive-file-stream
+google-nik-collection
+hazel
+istat-menus
+iterm2
+visual-studio-code

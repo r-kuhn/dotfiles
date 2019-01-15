@@ -1,12 +1,13 @@
-getantibody/tap/antibody
 coreutils
 direnv
 findutils
+getantibody/tap/antibody
 git
 gnupg
 golang
 gpg2
 htop
+mas
 neovim
 nodejs
 python
@@ -16,6 +17,7 @@ ripgrep
 shellcheck
 sqlite
 telnet
+tldr
 tmux
 unrar
 wget
