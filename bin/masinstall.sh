@@ -7,6 +7,7 @@ declare -a mas_apps=(
 	413965349 # Soulver
 	1091189122 # Bear
 	1107421413 # 1Blocker
+	924726344 # Deliveries
 	419330170 # Moom
 	409201541 # Pages
 	407963104 # Pixelmator
