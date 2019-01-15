@@ -87,5 +87,6 @@
   "sync.gist": "16d948f112304e9c6e206c89ce0e320e",
   "sync.autoUpload": true,
   "sync.autoDownload": false,
-  "terminal.integrated.fontFamily": "FuraCode Nerd Font"
+  "terminal.integrated.fontFamily": "FuraCode Nerd Font",
+  "cmake.configureOnOpen": false
 }
