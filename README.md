@@ -16,7 +16,7 @@ yadm commit
 
 * Push changes to repo:
 ```sh
-yadm remote add origin ssh://gogs/dan/dandotfiles.git
+yadm remote add origin git@github.com:dcardamo/dandotfiles
 yadm push -u origin master
 ```
 
@@ -59,7 +59,7 @@ yay -S yadm-git
 
 * Get dotfiles:
 ```sh
-yadm clone --bootstrap git@gitlab.com:hubbypa/dandotfiles
+yadm clone --bootstrap git@github.com:dcardamo/dandotfiles
 ```
 
 ### Mac
@@ -77,5 +77,5 @@ brew install yadm
 
 * Get dotfiles:
 ```sh
-yadm clone --bootstrap git@gitlab.com:hubbypa/dandotfiles
+yadm clone --bootstrap git@github.com:dcardamo/dandotfiles
 ```
