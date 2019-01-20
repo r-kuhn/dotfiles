@@ -39,12 +39,15 @@ bindkey -e
 autoload -Uz compinit
 compinit
 
+# Setup golang
+export GOPATH=${HOME}/go
+
 case $(uname) in
   Darwin)
           if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
                   source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
           fi
-          export PATH=~/bin:${GOPATH}/bin:${PATH}:/usr/local/bin/:~/brew/bin:${HOME}/.npm/bin
+          export PATH=~/bin:~/brew/bin:${GOPATH}/bin:${PATH}:/usr/local/bin/:${HOME}/.npm/bin:~/Library/Python/3.7/bin/:${GOPATH}/bin
           ;;
   Linux)
           export PATH=~/bin:${PATH}:${GOPATH}/bin:${HOME}/.npm/bin
@@ -88,8 +91,7 @@ function initop () {
   eval "$(op signin my)"
 }
 
-# Setup golang
-export GOPATH=${HOME}/go
+alias dsrv_postgres='docker run --name postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres'
 
 # setup flutter
 if [ -e "${HOME}/p/flutter" ]; then

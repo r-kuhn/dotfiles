@@ -11,6 +11,9 @@ if [ "$system_type" = "Darwin" ]; then
 	# App Store
 	mas upgrade
 
+	# Golang
+	go get github.com/GoogleCloudPlatform/cloudsql-proxy/cmd/cloud_sql_proxy
+
 	# Nix
 	if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
 		nix-channel --update nixpkgs

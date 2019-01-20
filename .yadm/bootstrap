@@ -3,7 +3,7 @@ set -x
 
 # Because Git submodule commands cannot operate without a work tree, they must
 # be run from within $HOME (assuming this is the root of your dotfiles)
-cd "$HOME"
+cd "$HOME" || exit
 
 system_type=$(uname -s)
 if [ "$system_type" = "Darwin" ]; then
@@ -21,12 +21,6 @@ if [ "$system_type" = "Darwin" ]; then
 		defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
 	fi
 
-	if [ -d "$HOME/.config/fonts" ]; then
-		for f in "$HOME/.config/fonts/*"; do
-			cp -f $f ~/Library/Fonts/
-		done
-	fi
-
 	echo "Disabling auto-correct"
 	defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 	echo "Showing all filename extensions in Finder by default"
@@ -41,11 +35,10 @@ if [ "$system_type" = "Darwin" ]; then
 	npm install -g jshint eslint neovim
 
 	# Python stuff
-	pip2 install --user setuptools
-	pip2 install --user wheel
-	pip2 install --user neovim
-	pip3 install --user powerline-status
-	pip2 install --user psutil
+	#pip2 install --user setuptools
+	#pip2 install --user wheel
+	#pip2 install --user neovim
+	#pip2 install --user psutil
 
 	pip3 install --user setuptools
 	pip3 install --user wheel
@@ -53,6 +46,7 @@ if [ "$system_type" = "Darwin" ]; then
 	pip3 install --user pylint
 	pip3 install --user flake8
 	pip3 install --user pgcli
+	pip3 install --user powerline-status
 
 	# Symlink in the vscode settings for Mac
 	if [ ! -L "$HOME/Library/Application Support/Code/User/snippets" ]; then

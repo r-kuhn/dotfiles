@@ -1,8 +1,11 @@
+circleci
 coreutils
 direnv
+elixir
 findutils
 getantibody/tap/antibody
 git
+golang
 gnupg
 gpg2
 htop
@@ -10,7 +13,6 @@ mas
 neovim
 nodejs
 python
-python2
 ripgrep
 shellcheck
 sqlite
@@ -22,3 +24,4 @@ wget
 yadm
 yarn
 zsh
+zlib

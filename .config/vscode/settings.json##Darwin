@@ -38,7 +38,7 @@
     "**/bower_components": true,
     "**/.vscode": true
   },
-  "workbench.iconTheme": "material-icon-theme",
+  "workbench.iconTheme": "vscode-icons",
   "go.formatTool": "gofmt",
   "go.useLanguageServer": true,
   "go.autocompleteUnimportedPackages": true,
