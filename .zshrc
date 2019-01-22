@@ -47,10 +47,12 @@ case $(uname) in
           if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
                   source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
           fi
-          export PATH=~/bin:~/brew/bin:${GOPATH}/bin:${PATH}:/usr/local/bin/:${HOME}/.npm/bin:~/Library/Python/3.7/bin/:${GOPATH}/bin
+          export PATH=${HOME}/bin:${HOME}/brew/bin:${GOPATH}/bin:${PATH}
+          export PATH=${PATH}:/usr/local/bin/:${HOME}/.npm/bin:
+          export PATH=${PATH}:${HOME}/Library/Python/3.7/bin/:${GOPATH}/bin
           ;;
   Linux)
-          export PATH=~/bin:${PATH}:${GOPATH}/bin:${HOME}/.npm/bin
+          export PATH=${HOME}/bin:${PATH}:${GOPATH}/bin:${HOME}/.npm/bin
           ;;
 esac
 
@@ -104,6 +106,9 @@ eval "$(direnv hook zsh)"
 
 # setup npm
 npm config set prefix ${HOME}/.npm
+
+# Setup Ruby
+eval "$(rbenv init -)"
 
 
 

@@ -13,6 +13,8 @@ mas
 neovim
 nodejs
 python
+rbenv
+ruby-build
 ripgrep
 shellcheck
 sqlite
