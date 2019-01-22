@@ -24,5 +24,7 @@ if [ "$system_type" = "Darwin" ]; then
 		echo "Updating nvim"
 		nvim '+PlugInstall' '+PlugUpdate' '+UpdateRemotePlugins' '+PlugClean!' '+PlugUpdate' '+PlugUpgrade' '+qall'
 	fi
+
+	npm install -g npm
 fi
 

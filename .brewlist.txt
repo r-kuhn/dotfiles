@@ -9,6 +9,7 @@ golang
 gnupg
 gpg2
 htop
+hub
 mas
 neovim
 nodejs
