@@ -61,6 +61,8 @@ Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
 Plug 'zchee/deoplete-jedi'                     " Go auto completion
 Plug 'zimbatm/haproxy.vim'                     " HAProxy syntax highlighting
 Plug 'LnL7/vim-nix'                            " Nix expression support
+Plug 'elixir-editors/vim-elixir'
+Plug 'slashmili/alchemist.vim'
 
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
