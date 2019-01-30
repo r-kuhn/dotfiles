@@ -12,6 +12,7 @@ gnupg
 gpg2
 heroku/brew/heroku
 htop
+hub
 mas
 neovim
 nodejs
