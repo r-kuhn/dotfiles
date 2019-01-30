@@ -11,6 +11,7 @@ google-cloud-sdk
 google-drive-file-stream
 google-nik-collection
 hazel
+homebrew/cask-drivers/sonos
 istat-menus
 iterm2
 kitematic

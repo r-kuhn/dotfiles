@@ -41,6 +41,7 @@ compinit
 
 # Setup golang
 export GOPATH=${HOME}/go
+export GO111MODULE=on
 
 case $(uname) in
   Darwin)
