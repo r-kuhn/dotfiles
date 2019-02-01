@@ -40,7 +40,7 @@
   "go.autocompleteUnimportedPackages": true,
   "go.buildOnSave": "workspace",
   "go.gocodeAutoBuild": true,
-  "workbench.colorTheme": "One Dark Pro Vivid",
+  "workbench.colorTheme": "Night Owl",
   "window.zoomLevel": 0,
   "editor.wordWrap": "on",
   "editor.wrappingIndent": "indent",
