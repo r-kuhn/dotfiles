@@ -1,3 +1,4 @@
+gobuffalo/tap/buffalo
 circleci
 coreutils
 direnv
@@ -6,8 +7,10 @@ findutils
 getantibody/tap/antibody
 git
 golang
+alecthomas/homebrew-tap/gometalinter
 gnupg
 gpg2
+heroku/brew/heroku
 htop
 hub
 mas
