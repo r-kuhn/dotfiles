@@ -19,13 +19,14 @@ if [ "$system_type" = "Darwin" ]; then
 		nix-channel --update nixpkgs
 	fi
 
-	# Neovim
-	if command -v nvim >/dev/null 2>&1; then
-		echo "Updating nvim"
-		nvim '+PlugInstall' '+PlugUpdate' '+UpdateRemotePlugins' '+PlugClean!' '+PlugUpdate' '+PlugUpgrade' '+qall'
-	fi
 
 	npm install -g npm
 	npm config set update-notifier false
 fi
 
+
+# Neovim
+if command -v nvim >/dev/null 2>&1; then
+	echo "Updating nvim"
+	nvim '+PlugInstall' '+PlugUpdate' '+UpdateRemotePlugins' '+PlugClean!' '+PlugUpdate' '+PlugUpgrade' '+qall'
+fi
