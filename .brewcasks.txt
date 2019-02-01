@@ -1,6 +1,7 @@
 alfred
 android-sdk
 android-studio
+arq
 balsamiq-mockups
 docker
 font-firacode-nerd-font

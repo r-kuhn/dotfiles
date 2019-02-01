@@ -30,17 +30,24 @@
   "git.autofetch": true,
   "vsicons.dontShowNewVersionMessage": true,
   "editor.formatOnSave": true,
-  "workbench.iconTheme": "vscode-icons",
+  "workbench.iconTheme": "eq-material-theme-icons-darker",
   "go.formatTool": "gofmt",
-  "go.languageServerExperimentalFeatures": {
-    "format": true,
-    "autoComplete": true
-  },
   "go.useLanguageServer": true,
   "go.autocompleteUnimportedPackages": true,
-  "go.buildOnSave": "workspace",
-  "go.gocodeAutoBuild": true,
-  "workbench.colorTheme": "One Dark Pro Vivid",
+  "go.languageServerExperimentalFeatures": {
+    "format": false,
+    "autoComplete": true,
+    "rename": true,
+    "goToDefinition": true,
+    "hover": true,
+    "signatureHelp": true,
+    "goToTypeDefinition": true,
+    "goToImplementation": true,
+    "documentSymbols": true,
+    "workspaceSymbols": true,
+    "findReferences": true
+  },
+  "workbench.colorTheme": "Night Owl No Italics",
   "window.zoomLevel": 0,
   "editor.wordWrap": "on",
   "editor.wrappingIndent": "indent",
@@ -77,5 +84,5 @@
   "sync.gist": "16d948f112304e9c6e206c89ce0e320e",
   "sync.autoUpload": true,
   "sync.autoDownload": false,
-  "terminal.integrated.fontFamily": "FuraCode Nerd Font"
+  "terminal.integrated.fontFamily": "FuraCode Nerd Font",
 }

@@ -41,7 +41,8 @@ compinit
 
 # Setup golang
 export GOPATH=${HOME}/go
-export GO111MODULE=on
+# Go modules don't work well in vscode
+#export GO111MODULE=on
 
 case $(uname) in
   Darwin)
