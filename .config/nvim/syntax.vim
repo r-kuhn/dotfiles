@@ -1,10 +1,6 @@
 
-"colorscheme solarized
-"colorscheme kalisi
 "let g:monochrome_italic_comments = 1
-if (has("termguicolors"))
-  set termguicolors
-endif
+set termguicolors
 colorscheme night-owl
 
 "colorscheme monochrome-light

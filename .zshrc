@@ -61,15 +61,15 @@ esac
 export DEFAULT_USER=dan
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_STATUS_OK=false
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs)
 POWERLEVEL9K_HOME_SUB_ICON=''
 POWERLEVEL9K_FOLDER_ICON=''
 POWERLEVEL9K_ETC_ICON=''
 
 # These are needed for oh-my-zsh
-export ZSH=${HOME}/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh
-export ZSH_CACHE_DIR=~/.cache/zsh
+#export ZSH=${HOME}/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh
+#export ZSH_CACHE_DIR=~/.cache/zsh
 
 source <(antibody init)
 antibody bundle < ~/.zsh_plugins.txt

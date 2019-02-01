@@ -123,12 +123,9 @@ Plug 'szw/vim-dict'
 """ Appearance and layout
 Plug 'ap/vim-buftabline' " tabs across top
 Plug 'haishanh/night-owl.vim'
-Plug 'freeo/vim-kalisi' " theme
-Plug 'altercation/vim-colors-solarized' " theme
 Plug 'itchyny/lightline.vim' " status across bottom
 Plug 'fxn/vim-monochrome' " theme
-Plug 'kcsongor/vim-monochrome-light' " theme
-Plug 'itchyny/vim-cursorword' " underline word under cursor
+"Plug 'itchyny/vim-cursorword' " underline word under cursor
 
 """ Apps
 Plug 'diepm/vim-rest-console' " Rest console
