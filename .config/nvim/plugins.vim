@@ -125,7 +125,7 @@ Plug 'ap/vim-buftabline' " tabs across top
 Plug 'haishanh/night-owl.vim'
 Plug 'itchyny/lightline.vim' " status across bottom
 Plug 'fxn/vim-monochrome' " theme
-Plug 'itchyny/vim-cursorword' " underline word under cursor
+"Plug 'itchyny/vim-cursorword' " underline word under cursor
 
 """ Apps
 Plug 'diepm/vim-rest-console' " Rest console
