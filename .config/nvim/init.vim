@@ -6,67 +6,39 @@ Plug 'godlygeek/tabular'           " This must come before plasticboy/vim-markdo
 Plug 'tpope/vim-rhubarb'           " Depenency for tpope/fugitive
 
 " General plugins
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'  " Default snippets for many languages
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'ctrlpvim/ctrlp.vim'          " CtrlP is installed to support tag finding in vim-go
-Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'majutsushi/tagbar'
-Plug 'mhinz/vim-signify'
-Plug 'mileszs/ack.vim'
-Plug 'neomake/neomake'
-Plug 'rbgrouleff/bclose.vim'
-Plug 'sbdchd/neoformat'
 Plug 'w0rp/ale'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'sebdah/vim-delve'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'  " git wrapper
 Plug 'tpope/vim-surround'
-Plug 'vimwiki/vimwiki'
 Plug 'jreybert/vimagit'  "git workflow:  https://github.com/jreybert/vimagit
 
-" Vim only plugins
-if !has('nvim')
-    Plug 'Shougo/vimproc.vim', {'do' : 'make'}  " Needed to make sebdah/vim-delve work on Vim
-    Plug 'Shougo/vimshell.vim'                  " Needed to make sebdah/vim-delve work on Vim
-endif
-
 " Language support
-Plug 'aklt/plantuml-syntax'                    " PlantUML syntax highlighting
 Plug 'cespare/vim-toml'                        " toml syntax highlighting
 Plug 'chr4/nginx.vim'                          " nginx syntax highlighting
-Plug 'dag/vim-fish'                            " Fish syntax highlighting
 Plug 'digitaltoad/vim-pug'                     " Pug syntax highlighting
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }  " Go support
-Plug 'fishbullet/deoplete-ruby'                " Ruby auto completion
 Plug 'hashivim/vim-terraform'                  " Terraform syntax highlighting
-Plug 'kchmck/vim-coffee-script'                " CoffeeScript syntax highlighting
-Plug 'kylef/apiblueprint.vim'                  " API Blueprint syntax highlighting
 Plug 'leafgarland/typescript-vim'              " TypeScript syntax highlighting
 Plug 'lifepillar/pgsql.vim'                    " PostgreSQL syntax highlighting
 Plug 'mxw/vim-jsx'                             " JSX syntax highlighting
-Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' } " Go auto completion
 Plug 'pangloss/vim-javascript'                 " JavaScript syntax highlighting
 Plug 'plasticboy/vim-markdown'                 " Markdown syntax highlighting
-Plug 'rodjek/vim-puppet'                       " Puppet syntax highlighting
-Plug 'tclh123/vim-thrift'                      " Thrift syntax highlighting
-Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
-Plug 'zchee/deoplete-jedi'                     " Go auto completion
-Plug 'zimbatm/haproxy.vim'                     " HAProxy syntax highlighting
 Plug 'LnL7/vim-nix'                            " Nix expression support
-Plug 'elixir-editors/vim-elixir'
-Plug 'slashmili/alchemist.vim'
 
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'haishanh/night-owl.vim'
+
+" Golang
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' } " Go auto completion
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }  " Go support
+Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
+Plug 'zchee/deoplete-jedi'                     " Go auto completion
+
 
 call plug#end()
 
@@ -91,7 +63,7 @@ set noswapfile                    " disable swapfile usage
 set nowrap
 set noerrorbells                  " No bells!
 set novisualbell                  " I said, no bells!
-"set number                        " show number ruler
+set number                        " show number ruler
 "set relativenumber                " show relative numbers in the ruler
 set ruler
 set formatoptions=tcqronj         " set vims text formatting options
@@ -154,15 +126,6 @@ let g:airline_theme = 'papercolor'
 " Reference:
 " - http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 highlight Search guibg=DeepPink4 guifg=White ctermbg=53 ctermfg=White
-
-"----------------------------------------------
-" Terminal
-"----------------------------------------------
-tnoremap <Esc> <C-\><C-n>
-tnoremap <C-v><Esc> <Esc>
-if has('nvim') && executable('nvr')
-    let $VISUAL="nvr -cc split --remote-wait +'set bufhidden=-wipe'"
-endif
 
 "----------------------------------------------
 " Searching
@@ -237,45 +200,6 @@ nnoremap <leader>h :split<cr>
 
 " Closing splits
 nnoremap <leader>q :close<cr>
-
-"----------------------------------------------
-" Plugin: MattesGroeger/vim-bookmarks
-"----------------------------------------------
-" Auto save bookmarks
-let g:bookmark_auto_save = 1
-
-" Store the bookmarks in the projects
-let g:bookmark_save_per_working_dir = 1
-
-" Disable the default key mappings
-let g:bookmark_no_default_key_mappings = 1
-
-" Configure key mappings
-" This part also fixes conflicts with NERDTree
-function! BookmarkMapKeys()
-    nmap Mm :BookmarkToggle<cr>
-    nmap Mi :BookmarkAnnotate<cr>
-    nmap Mn :BookmarkNext<cr>
-    nmap Mp :BookmarkPrev<cr>
-    nmap Ma :BookmarkShowAll<cr>
-    nmap Mc :BookmarkClear<cr>
-    nmap Mx :BookmarkClearAll<cr>
-    nmap Mkk :BookmarkMoveUp
-    nmap Mjj :BookmarkMoveDown
-endfunction
-function! BookmarkUnmapKeys()
-    unmap Mm
-    unmap Mi
-    unmap Mn
-    unmap Mp
-    unmap Ma
-    unmap Mc
-    unmap Mx
-    unmap Mkk
-    unmap Mjj
-endfunction
-autocmd BufEnter * :call BookmarkMapKeys()
-autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
 
 "----------------------------------------------
 " Plugin: Shougo/deoplete.nvim
@@ -497,131 +421,6 @@ au FileType vimwiki set tabstop=2
 let g:multi_cursor_next_key='<C-n>'
 let g:multi_cursor_skip_key='<C-b>'
 
-"----------------------------------------------
-" Plugin: zchee/deoplete-go
-"----------------------------------------------
-" Enable completing of go pointers
-let g:deoplete#sources#go#pointer = 1
-
-"----------------------------------------------
-" Language: Golang
-"----------------------------------------------
-au FileType go set noexpandtab
-au FileType go set shiftwidth=4
-au FileType go set softtabstop=4
-au FileType go set tabstop=4
-au FileType go set autowrite
-
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-
-" Mappings
-au FileType go nmap <F5> :GoBuild<cr>
-au FileType go nmap <F6> :GoTest -short<cr>
-au FileType go nmap <F8> :GoMetaLinter<cr>
-au FileType go nmap <F9> :GoCoverageToggle -short<cr>
-au FileType go nmap <F12> <Plug>(go-def)
-au Filetype go nmap <leader>ga <Plug>(go-alternate-edit)
-au Filetype go nmap <leader>gah <Plug>(go-alternate-split)
-au Filetype go nmap <leader>gav <Plug>(go-alternate-vertical)
-au FileType go nmap <leader>gt :GoDeclsDir<cr>
-au FileType go nmap <leader>gc <Plug>(go-coverage-toggle)
-au FileType go nmap <leader>gd <Plug>(go-def)
-au FileType go nmap <leader>gdv <Plug>(go-def-vertical)
-au FileType go nmap <leader>gdh <Plug>(go-def-split)
-au FileType go nmap <leader>gD <Plug>(go-doc)
-au FileType go nmap <leader>gDv <Plug>(go-doc-vertical)
-
-" Run goimports when running gofmt
-let g:go_fmt_command = "goimports"
-
-" Set neosnippet as snippet engine
-let g:go_snippet_engine = "neosnippet"
-
-" Enable syntax highlighting per default
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-
-" Show the progress when running :GoCoverage
-let g:go_echo_command_info = 1
-
-" Show type information
-let g:go_auto_type_info = 1
-
-" Highlight variable uses
-let g:go_auto_sameids = 1
-
-" Fix for location list when vim-go is used together with Syntastic
-let g:go_list_type = "quickfix"
-
-" Add the failing test name to the output of :GoTest
-let g:go_test_show_name = 1
-
-" gometalinter configuration
-let g:go_metalinter_command = ""
-let g:go_metalinter_deadline = "5s"
-let g:go_metalinter_enabled = [
-    \ 'deadcode',
-    \ 'gas',
-    \ 'goconst',
-    \ 'gocyclo',
-    \ 'golint',
-    \ 'gosimple',
-    \ 'ineffassign',
-    \ 'vet',
-    \ 'vetshadow'
-\]
-let g:go_metalinter_autosave = 1
-
-" Set whether the JSON tags should be snakecase or camelcase.
-let g:go_addtags_transform = "snakecase"
-
-" neomake configuration for Go.
-let g:neomake_go_enabled_makers = [ 'go', 'gometalinter' ]
-let g:neomake_go_gometalinter_maker = {
-  \ 'args': [
-  \   '--tests',
-  \   '--enable-gc',
-  \   '--concurrency=3',
-  \   '--fast',
-  \   '-D', 'aligncheck',
-  \   '-D', 'dupl',
-  \   '-D', 'gocyclo',
-  \   '-D', 'gotype',
-  \   '-E', 'misspell',
-  \   '-E', 'unused',
-  \   '%:p:h',
-  \ ],
-  \ 'append_file': 0,
-  \ 'errorformat':
-  \   '%E%f:%l:%c:%trror: %m,' .
-  \   '%W%f:%l:%c:%tarning: %m,' .
-  \   '%E%f:%l::%trror: %m,' .
-  \   '%W%f:%l::%tarning: %m'
-  \ }
-
-"----------------------------------------------
-" Language: apiblueprint
-"----------------------------------------------
-au FileType apiblueprint set expandtab
-au FileType apiblueprint set shiftwidth=4
-au FileType apiblueprint set softtabstop=4
-au FileType apiblueprint set tabstop=4
 
 "----------------------------------------------
 " Language: Bash
@@ -645,14 +444,6 @@ au FileType css set tabstop=2
 au FileType gitcommit setlocal spell
 au FileType gitcommit setlocal textwidth=80
 au FileType gitcommit setlocal colorcolumn=81                " highlight the 80th column as an indicator
-
-"----------------------------------------------
-" Language: fish
-"----------------------------------------------
-au FileType fish set expandtab
-au FileType fish set shiftwidth=2
-au FileType fish set softtabstop=2
-au FileType fish set tabstop=2
 
 "----------------------------------------------
 " Language: gitconfig
@@ -723,22 +514,6 @@ au FileType markdown set textwidth=80
 au FileType markdown set formatoptions-=t
 
 "----------------------------------------------
-" Language: PlantUML
-"----------------------------------------------
-au FileType plantuml set expandtab
-au FileType plantuml set shiftwidth=2
-au FileType plantuml set softtabstop=2
-au FileType plantuml set tabstop=2
-
-"----------------------------------------------
-" Language: Protobuf
-"----------------------------------------------
-au FileType proto set expandtab
-au FileType proto set shiftwidth=2
-au FileType proto set softtabstop=2
-au FileType proto set tabstop=2
-
-"----------------------------------------------
 " Language: Python
 "----------------------------------------------
 au FileType python set expandtab
@@ -766,14 +541,6 @@ au FileType sql set softtabstop=2
 au FileType sql set tabstop=2
 
 "----------------------------------------------
-" Language: Thrift
-"----------------------------------------------
-au FileType thrift set expandtab
-au FileType thrift set shiftwidth=2
-au FileType thrift set softtabstop=2
-au FileType thrift set tabstop=2
-
-"----------------------------------------------
 " Language: TOML
 "----------------------------------------------
 au FileType toml set expandtab
@@ -788,14 +555,6 @@ au FileType typescript set expandtab
 au FileType typescript set shiftwidth=4
 au FileType typescript set softtabstop=4
 au FileType typescript set tabstop=4
-
-"----------------------------------------------
-" Language: Vader
-"----------------------------------------------
-au FileType vader set expandtab
-au FileType vader set shiftwidth=2
-au FileType vader set softtabstop=2
-au FileType vader set tabstop=2
 
 "----------------------------------------------
 " Language: vimscript
