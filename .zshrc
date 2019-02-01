@@ -8,7 +8,6 @@ SAVEHIST=10000
 setopt appendhistory autocd nomatch notify
 unsetopt extendedglob
 
-
 # don't make my say 'y' to each rm file
 setopt rmstarsilent
 # don't nice background tasks
@@ -67,6 +66,11 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs)
 POWERLEVEL9K_HOME_SUB_ICON=''
 POWERLEVEL9K_FOLDER_ICON=''
 POWERLEVEL9K_ETC_ICON=''
+
+# These are needed for oh-my-zsh
+export ZSH=${HOME}/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh
+export ZSH_CACHE_DIR=~/.cache/zsh
+
 source <(antibody init)
 antibody bundle < ~/.zsh_plugins.txt
 
@@ -95,23 +99,7 @@ function initop () {
   eval "$(op signin my)"
 }
 
-alias dsrv_postgres='docker run --name postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres'
-
-# setup flutter
-if [ -e "${HOME}/p/flutter" ]; then
-  export PATH=${PATH}:$HOME/p/flutter/bin
-fi
-
-
 # setup direnv
 eval "$(direnv hook zsh)"
-
-# setup npm
-npm config set prefix ${HOME}/.npm
-
-# Setup Ruby
-eval "$(rbenv init -)"
-
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
