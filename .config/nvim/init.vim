@@ -66,6 +66,7 @@ Plug 'slashmili/alchemist.vim'
 
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'haishanh/night-owl.vim'
 
 call plug#end()
 
@@ -138,9 +139,13 @@ nnoremap <space> zz
 "----------------------------------------------
 " Colors
 "----------------------------------------------
-set termguicolors      "enables true color support
+if (has("termguicolors"))
+    set termguicolors      "enables true color support
+endif
+
 set background=dark
-colorscheme PaperColor
+"colorscheme PaperColor
+colorscheme night-owl
 let g:airline_theme = 'papercolor'
 
 " Override the search highlight color with a combination that is easier to
