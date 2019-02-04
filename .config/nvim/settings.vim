@@ -22,6 +22,9 @@ set showtabline=2 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set encoding=utf-8
 
+" Change from ESC to jj
+:imap jj <Esc>
+
 syntax on
 
 set wildmenu                       
