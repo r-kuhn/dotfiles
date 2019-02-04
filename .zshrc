@@ -59,13 +59,16 @@ esac
 
 
 export DEFAULT_USER=dan
-POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_MODE='powerline'
 POWERLEVEL9K_STATUS_OK=false
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs)
 POWERLEVEL9K_HOME_SUB_ICON=''
 POWERLEVEL9K_FOLDER_ICON=''
 POWERLEVEL9K_ETC_ICON=''
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 
 # These are needed for oh-my-zsh
 #export ZSH=${HOME}/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh
@@ -90,6 +93,7 @@ export EDITOR=nvim
 alias l='ls -lFh'
 alias -g R='| rg'
 alias grep='grep --color'
+alias stmux='tmux new-session -sAD -s main'
 
 # Setup 1password
 function initop () {
@@ -103,3 +107,20 @@ function initop () {
 eval "$(direnv hook zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# this overrides exit for to keep tmux running if its the last pane
+exit() {
+  if [[ -z $TMUX ]]; then
+    builtin exit
+    return
+  fi
+
+  panes=$(tmux list-panes | wc -l)
+  wins=$(tmux list-windows | wc -l) 
+  count=$(($panes + $wins - 1))
+  if [ $count -eq 1 ]; then
+    tmux detach
+  else
+    builtin exit
+  fi
+}

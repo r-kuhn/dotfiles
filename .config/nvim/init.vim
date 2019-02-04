@@ -16,7 +16,7 @@ elseif filereadable(expand("~/.config/nvim/plugins.vim")) " Usual
 endif
 
 
-if filereadable(expand("~/.vimrc.local")) " Local overrides ...
+if filereadable(expand("~/.config/nvim/vimrc.local")) " Local overrides ...
   source ~/.vimrc.local
 endif
 
