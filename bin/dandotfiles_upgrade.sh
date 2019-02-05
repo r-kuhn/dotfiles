@@ -5,20 +5,12 @@ system_type=$(uname -s)
 if [ "$system_type" = "Darwin" ]; then
 	# Homebrew
 	brew update && brew upgrade
-	xargs brew install < ~/.brewlist.txt
-	xargs brew cask install < ~/.brewcasks.txt
-
-	# App Store
-	mas upgrade
-
-	# Golang
-	#go get github.com/GoogleCloudPlatform/cloudsql-proxy/cmd/cloud_sql_proxy
+	cd ~ && brew bundle
 
 	# Nix
 	if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
 		nix-channel --update nixpkgs
 	fi
-
 
 	npm install -g npm
 	npm config set update-notifier false
