@@ -15,6 +15,7 @@
     "<C-e>": false,
     "<C-n>": true
   },
+  "vimStyle.imapEsc": "jj",
   "files.trimTrailingWhitespace": true,
   "gitlens.advanced.messages": {
     "suppressCommitHasNoPreviousCommitWarning": false,
@@ -47,6 +48,9 @@
     "workspaceSymbols": true,
     "findReferences": true
   },
+  "go.vetOnSave": "off",
+  "go.lintOnSave": true,
+  "go.formatTool": "gofmt",
   "workbench.colorTheme": "Night Owl No Italics",
   "window.zoomLevel": 0,
   "editor.wordWrap": "on",
