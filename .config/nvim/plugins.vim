@@ -24,6 +24,10 @@ Plug 'joereynolds/place.vim' " insertions with ga (non-cursor)
 """ Completion
 Plug 'Shougo/deoplete.nvim' , { 'do': ':UpdateRemotePlugins' }
 
+""" Typescript
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'} 
+
 """ Go
 Plug 'fatih/vim-go', { 'tag': '*' } " , 'do': ':GoUpdateBinaries' }
 Plug 'godoctor/godoctor.vim'

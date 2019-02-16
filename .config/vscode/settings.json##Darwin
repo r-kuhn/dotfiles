@@ -15,6 +15,7 @@
     "<C-e>": false,
     "<C-n>": true
   },
+  "vimStyle.imapEsc": "jj",
   "files.trimTrailingWhitespace": true,
   "gitlens.advanced.messages": {
     "suppressCommitHasNoPreviousCommitWarning": false,
@@ -32,21 +33,18 @@
   "editor.formatOnSave": true,
   "workbench.iconTheme": "eq-material-theme-icons-darker",
   "go.formatTool": "gofmt",
-  "go.useLanguageServer": true,
   "go.autocompleteUnimportedPackages": true,
   "go.languageServerExperimentalFeatures": {
-    "format": false,
-    "autoComplete": true,
-    "rename": true,
-    "goToDefinition": true,
-    "hover": true,
-    "signatureHelp": true,
-    "goToTypeDefinition": true,
-    "goToImplementation": true,
-    "documentSymbols": true,
-    "workspaceSymbols": true,
-    "findReferences": true
+    "format": true,
+    "autoComplete": true
   },
+  "go.vetOnSave": "off",
+  "go.lintOnSave": true,
+  "go.formatTool": "gofmt",
+  "go.alternateTools": {
+    "go-langserver": "bingo"
+  },
+  "go.useLanguageServer": true,
   "workbench.colorTheme": "Night Owl No Italics",
   "window.zoomLevel": 0,
   "editor.wordWrap": "on",
@@ -84,5 +82,5 @@
   "sync.gist": "16d948f112304e9c6e206c89ce0e320e",
   "sync.autoUpload": true,
   "sync.autoDownload": false,
-  "terminal.integrated.fontFamily": "FuraCode Nerd Font",
+  "terminal.integrated.fontFamily": "FuraCode Nerd Font"
 }
