@@ -13,6 +13,7 @@ Plug 'codegram/vim-codereview' " Use :CodeReview https://github.com/myorganizati
 Plug 'idanarye/vim-merginal' " view/switch branches with :Merginal
 
 Plug 'will133/vim-dirdiff' " diff
+Plug 'luochen1990/rainbow'                  " Rainbow parenthesis
 
 Plug 'junegunn/vim-peekaboo' " show buffers
 
@@ -29,13 +30,13 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'} 
 
 """ Go
-Plug 'fatih/vim-go', { 'tag': '*' } " , 'do': ':GoUpdateBinaries' }
-Plug 'godoctor/godoctor.vim'
-Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'godoctor/godoctor.vim', {'for': 'go'} " gocode refactoring tool
+"Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 "Plug 'mdempsky/gocode', {'rtp': 'nvim/'}
-Plug 'buoto/gotests-vim'
-Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
-Plug 'laher/regopher.vim'
+"Plug 'buoto/gotests-vim'
+Plug 'zchee/deoplete-go', {'do': 'make'}
+"Plug 'laher/regopher.vim'
 
 """ related to go but not specific
 Plug 'FooSoft/vim-argwrap' " Wrap a paremeter list accross multiple lines

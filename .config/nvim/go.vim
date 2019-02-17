@@ -1,5 +1,11 @@
 
 " Go stuff
+let editor_name='vim'
+if has('nvim')
+    let editor_name='nvim'
+endif
+let g:go_metalinter_autosave = 0
+
 let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -14,6 +20,12 @@ let g:go_auto_type_info = 0
 let g:go_updatetime = 2000
 let g:go_info_mode = 'gocode'
 let g:go_auto_sameids = 1 
+let g:go_def_mode = 'godef' " guru doesn't support go modules yet
+"let g:go_gocode_unimported_packages = 1
+let g:go_gocode_propose_source = 1
+
+" completion work around
+autocmd BufWritePost *.go silent! :GoBuild -i
 
 " vim-go
 augroup vg

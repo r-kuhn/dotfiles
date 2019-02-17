@@ -27,11 +27,13 @@ set encoding=utf-8
 
 syntax on
 
+let g:rainbow_active = 1
+
 set wildmenu                       
 set wildmode=list:longest,full 
 
-set mouse=a
-set mousemodel=extend
+"set mouse=a
+"set mousemodel=extend
 
 if exists('g:gui_oni')
     filetype off                  " required
