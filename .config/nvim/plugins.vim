@@ -31,8 +31,8 @@ Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 """ Go
 Plug 'fatih/vim-go', { 'tag': '*' } " , 'do': ':GoUpdateBinaries' }
 Plug 'godoctor/godoctor.vim'
-"Plug 'nsf/gocode', {'rtp': 'nvim/'}
 Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+"Plug 'mdempsky/gocode', {'rtp': 'nvim/'}
 Plug 'buoto/gotests-vim'
 Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
 Plug 'laher/regopher.vim'
