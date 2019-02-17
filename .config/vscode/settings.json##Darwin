@@ -15,7 +15,12 @@
     "<C-e>": false,
     "<C-n>": true
   },
-  "vimStyle.imapEsc": "jj",
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
   "files.trimTrailingWhitespace": true,
   "gitlens.advanced.messages": {
     "suppressCommitHasNoPreviousCommitWarning": false,
