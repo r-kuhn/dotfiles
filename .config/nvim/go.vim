@@ -47,8 +47,8 @@ au FileType go Shortcut Go run tab nmap <LocalLeader>st <Plug>(go-run-tab)
 au FileType go Shortcut go run split nmap <LocalLeader>sp <Plug>(go-run-split)
 au FileType go Shortcut go run vertical nmap <LocalLeader>vs <Plug>(go-run-vertical)
 au FileType go Shortcut GoAlternate nmap <LocalLeader>. :GoAlternate<CR>
-au FileType go Shortcut GoTestFunc nmap <LocalLeader>T :GoTestFunc
-au FileType go Shortcut GoTest nmap <LocalLeader>t :GoTest
+au FileType go Shortcut GoTestFunc nmap <LocalLeader>T :GoTestFunc<CR>
+au FileType go Shortcut GoTest nmap <LocalLeader>t :GoTest<CR>
 au FileType go Shortcut GoReferrers nmap <LocalLeader>r :GoReferrers<CR>
 au FileType go Shortcut GoReferrers nmap gr :GoReferrers<CR>
 au FileType go Shortcut GoChannelPeers nmap <LocalLeader>p :GoChannelPeers<CR>

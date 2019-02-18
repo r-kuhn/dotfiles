@@ -32,7 +32,7 @@ Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 """ Go
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'godoctor/godoctor.vim', {'for': 'go'} " gocode refactoring tool
-Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+"Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 "Plug 'mdempsky/gocode', {'rtp': 'nvim/'}
 "Plug 'buoto/gotests-vim'
 Plug 'zchee/deoplete-go', {'do': 'make'}
@@ -101,7 +101,7 @@ Plug 'tpope/vim-sleuth'            " tab/space detection per-file
 Plug 'tpope/vim-unimpaired'        " pairs of mappings like [q ]q for quickfix pref/next
 
 """ navigation and fuzzy
-"Plug 'ctrlpvim/ctrlp.vim' " Find files faster by name
+Plug 'ctrlpvim/ctrlp.vim' " Find files faster by name
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " Find within files
 Plug 'ryanoasis/vim-devicons' " icons for NERDTree etc

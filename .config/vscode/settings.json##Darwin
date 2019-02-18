@@ -46,10 +46,13 @@
   "go.vetOnSave": "off",
   "go.lintOnSave": true,
   "go.formatTool": "gofmt",
+  "go.useLanguageServer": true,
   "go.alternateTools": {
     "go-langserver": "bingo"
   },
-  "go.useLanguageServer": true,
+  "go.languageServerFlags": [
+    "--cache-style none"
+  ],
   "workbench.colorTheme": "Night Owl No Italics",
   "window.zoomLevel": 0,
   "editor.wordWrap": "on",

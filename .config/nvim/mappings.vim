@@ -1,7 +1,7 @@
 
 " Leader
-let mapleader=";"
-let maplocalleader=","
+let mapleader=","
+let maplocalleader=";"
 
 " shortcut plugin needs to be included for some reason. Weird!
 source ~/.vim/plugged/vim-shortcut/plugin/shortcut.vim
