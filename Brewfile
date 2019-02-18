@@ -6,6 +6,7 @@ tap "caskroom/fonts"
 tap "aws/tap"
 
 brew "aws-sam-cli"
+brew "bat"
 brew "gobuffalo/tap/buffalo"
 brew "circleci"
 brew "coreutils"

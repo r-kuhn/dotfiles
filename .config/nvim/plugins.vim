@@ -32,7 +32,7 @@ Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 """ Go
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'godoctor/godoctor.vim', {'for': 'go'} " gocode refactoring tool
-"Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 "Plug 'mdempsky/gocode', {'rtp': 'nvim/'}
 "Plug 'buoto/gotests-vim'
 Plug 'zchee/deoplete-go', {'do': 'make'}
