@@ -1,11 +1,20 @@
 {
-  "vim.enableNeovim": false,
   "editor.fontLigatures": true,
   "editor.fontSize": 14,
   "editor.fontFamily": "FuraCode Nerd Font",
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "editor.wrappingIndent": "indent",
   "python.pythonPath": "python3",
   "editor.minimap.enabled": false,
+	"editor.cursorBlinking": "smooth",
   "workbench.startupEditor": "none",
+  "workbench.iconTheme": "eq-material-theme-icons-darker",
+  "workbench.colorTheme": "Night Owl No Italics",
+  "workbench.fontAliasing": "antialiased",
+  "workbench.editor.highlightModifiedTabs": true,
+  "terminal.integrated.fontFamily": "FuraCode Nerd Font",
+  "vsicons.dontShowNewVersionMessage": true,
   "vim.handleKeys": {
     "<C-w>": true,
     "<C-d>": true,
@@ -15,8 +24,10 @@
     "<C-e>": false,
     "<C-n>": true
   },
-  "vimStyle.imapEsc": "jj",
   "files.trimTrailingWhitespace": true,
+	"files.trimFinalNewlines": true,
+	"files.insertFinalNewline": true,
+	"files.autoSave": "afterDelay",
   "gitlens.advanced.messages": {
     "suppressCommitHasNoPreviousCommitWarning": false,
     "suppressCommitNotFoundWarning": false,
@@ -27,11 +38,10 @@
     "suppressResultsExplorerNotice": false,
     "suppressShowKeyBindingsNotice": true
   },
-  "extensions.ignoreRecommendations": false,
   "git.autofetch": true,
-  "vsicons.dontShowNewVersionMessage": true,
+  "extensions.ignoreRecommendations": true,
   "editor.formatOnSave": true,
-  "workbench.iconTheme": "eq-material-theme-icons-darker",
+  "editor.formatOnPaste": true,
   "go.formatTool": "gofmt",
   "go.autocompleteUnimportedPackages": true,
   "go.languageServerExperimentalFeatures": {
@@ -45,14 +55,8 @@
     "go-langserver": "bingo"
   },
   "go.useLanguageServer": true,
-  "workbench.colorTheme": "Night Owl No Italics",
-  "window.zoomLevel": 0,
-  "editor.wordWrap": "on",
-  "editor.wrappingIndent": "indent",
-  "workbench.fontAliasing": "antialiased",
   "bracket-pair-colorizer-2.showBracketsInGutter": true,
   "bracket-pair-colorizer-2.showBracketsInRuler": true,
-  "editor.tabSize": 2,
   "eslint.enable": true,
   "eslint.run": "onType",
   "eslint.validate": [
@@ -81,6 +85,5 @@
   "eslint.autoFixOnSave": true,
   "sync.gist": "16d948f112304e9c6e206c89ce0e320e",
   "sync.autoUpload": true,
-  "sync.autoDownload": false,
-  "terminal.integrated.fontFamily": "FuraCode Nerd Font"
+  "sync.autoDownload": false
 }
