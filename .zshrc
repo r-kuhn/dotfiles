@@ -123,3 +123,13 @@ exit() {
     builtin exit
   fi
 }
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh

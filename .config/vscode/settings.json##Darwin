@@ -7,7 +7,7 @@
   "editor.wrappingIndent": "indent",
   "python.pythonPath": "python3",
   "editor.minimap.enabled": false,
-	"editor.cursorBlinking": "smooth",
+  "editor.cursorBlinking": "smooth",
   "workbench.startupEditor": "none",
   "workbench.iconTheme": "eq-material-theme-icons-darker",
   "workbench.colorTheme": "Night Owl No Italics",
@@ -24,10 +24,16 @@
     "<C-e>": false,
     "<C-n>": true
   },
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
   "files.trimTrailingWhitespace": true,
-	"files.trimFinalNewlines": true,
-	"files.insertFinalNewline": true,
-	"files.autoSave": "afterDelay",
+  "files.trimFinalNewlines": true,
+  "files.insertFinalNewline": true,
+  "files.autoSave": "afterDelay",
   "gitlens.advanced.messages": {
     "suppressCommitHasNoPreviousCommitWarning": false,
     "suppressCommitNotFoundWarning": false,
@@ -51,10 +57,19 @@
   "go.vetOnSave": "off",
   "go.lintOnSave": true,
   "go.formatTool": "gofmt",
+  "go.useLanguageServer": true,
   "go.alternateTools": {
     "go-langserver": "bingo"
   },
   "go.useLanguageServer": true,
+  "go.languageServerFlags": [
+    "--cache-style none"
+  ],
+  "workbench.colorTheme": "Night Owl No Italics",
+  "window.zoomLevel": 0,
+  "editor.wordWrap": "on",
+  "editor.wrappingIndent": "indent",
+  "workbench.fontAliasing": "antialiased",
   "bracket-pair-colorizer-2.showBracketsInGutter": true,
   "bracket-pair-colorizer-2.showBracketsInRuler": true,
   "eslint.enable": true,

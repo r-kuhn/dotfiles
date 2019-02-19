@@ -13,6 +13,7 @@ Plug 'codegram/vim-codereview' " Use :CodeReview https://github.com/myorganizati
 Plug 'idanarye/vim-merginal' " view/switch branches with :Merginal
 
 Plug 'will133/vim-dirdiff' " diff
+Plug 'luochen1990/rainbow'                  " Rainbow parenthesis
 
 Plug 'junegunn/vim-peekaboo' " show buffers
 
@@ -29,12 +30,13 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', {'do': './install.sh'} 
 
 """ Go
-Plug 'fatih/vim-go', { 'tag': '*' } " , 'do': ':GoUpdateBinaries' }
-Plug 'godoctor/godoctor.vim'
-"Plug 'nsf/gocode', {'rtp': 'nvim/'}
-Plug 'buoto/gotests-vim'
-Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
-Plug 'laher/regopher.vim'
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'godoctor/godoctor.vim', {'for': 'go'} " gocode refactoring tool
+"Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+"Plug 'mdempsky/gocode', {'rtp': 'nvim/'}
+"Plug 'buoto/gotests-vim'
+Plug 'zchee/deoplete-go', {'do': 'make'}
+"Plug 'laher/regopher.vim'
 
 """ related to go but not specific
 Plug 'FooSoft/vim-argwrap' " Wrap a paremeter list accross multiple lines
@@ -99,7 +101,7 @@ Plug 'tpope/vim-sleuth'            " tab/space detection per-file
 Plug 'tpope/vim-unimpaired'        " pairs of mappings like [q ]q for quickfix pref/next
 
 """ navigation and fuzzy
-"Plug 'ctrlpvim/ctrlp.vim' " Find files faster by name
+Plug 'ctrlpvim/ctrlp.vim' " Find files faster by name
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " Find within files
 Plug 'ryanoasis/vim-devicons' " icons for NERDTree etc
