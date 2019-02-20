@@ -85,7 +85,6 @@ Plug 'dhruvasagar/vim-dotoo'
 """ tmux
 Plug 'christoomey/vim-tmux-navigator'
 " Plug 'benmills/vimux'
-" Plug 'benmills/vimux-golang'
 Plug 'christoomey/vim-tmux-runner'
 
 """ tpope
@@ -132,14 +131,6 @@ Plug 'haishanh/night-owl.vim'
 Plug 'itchyny/lightline.vim' " status across bottom
 Plug 'fxn/vim-monochrome' " theme
 "Plug 'itchyny/vim-cursorword' " underline word under cursor
-
-""" Apps
-Plug 'diepm/vim-rest-console' " Rest console
-Plug 'itchyny/calendar.vim' " calendar
-Plug 'thanthese/Tortoise-Typing' " typing
-Plug 'chemzqm/todoapp.vim' " todo
-Plug 'mrtazz/simplenote.vim'
-" Plug 'jacobsimpson/nvim-example-python-plugin' " ooh, lets try
 
 """ Completion
 if !has('nvim')
