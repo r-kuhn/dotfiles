@@ -47,12 +47,12 @@ case $(uname) in
           if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
                   source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
           fi
-          export PATH=${HOME}/bin:${HOME}/brew/bin:${GOPATH}/bin:${PATH}
-          export PATH=${PATH}:/usr/local/bin/:${HOME}/.npm/bin:
-          export PATH=${PATH}:${HOME}/Library/Python/3.7/bin/:${GOPATH}/bin
+          export PATH=${HOME}/bin:${HOME}/brew/bin:${GOPATH}/bin:${HOME}/.npm/bin:/usr/local/bin:${HOME}/Library/Python/3.7/bin:${PATH}
           ;;
   Linux)
-          export PATH=${HOME}/bin:${PATH}:${GOPATH}/bin:${HOME}/.npm/bin
+          # export GOROOT=${HOME}/go
+          # export PATH=${HOME}/bin:${GOPATH}/bin:${HOME}/.npm/bin:${PATH}
+          export PATH=${HOME}/bin::${HOME}/.npm/bin:${PATH}:${GOPATH}/bin
           ;;
 esac
 
