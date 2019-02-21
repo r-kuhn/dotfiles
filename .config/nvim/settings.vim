@@ -121,24 +121,52 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 
 let g:place_single_character_mode = 0
 
+" let g:lightline = {
+"       \ 'separator': { 'left': '', 'right': '' },
+"       \ 'subseparator': { 'left': '', 'right': '' }
+"       \ }
+" let g:lightline = {
+"   \   'colorscheme': 'oceanicnext',
+"   \   'active': {
+"   \     'left':[ [ 'mode', 'paste' ],
+"   \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+"   \     ]
+"   \   },
+" 	\   'component': {
+" 	\     'lineinfo': ' %3l:%-2v',
+" 	\   },
+"   \   'component_function': {
+"   \     'gitbranch': 'fugitive#head',
+"   \   }
+"   \ }
+
+" lightline bar
+set laststatus=2
 let g:lightline = {
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
-      \ }
-let g:lightline = {
-  \   'colorscheme': 'oceanicnext',
-  \   'active': {
-  \     'left':[ [ 'mode', 'paste' ],
-  \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-  \     ]
-  \   },
-	\   'component': {
-	\     'lineinfo': ' %3l:%-2v',
-	\   },
-  \   'component_function': {
-  \     'gitbranch': 'fugitive#head',
-  \   }
-  \ }
+ \ 'colorscheme': 'oceanicnext',
+ \ 'active': {
+ \ 'left':[ [ 'mode', 'paste' ],
+ \ [ 'gitbranch', 'readonly', 'filename', 'tagbar','modified' ]
+ \ ]
+ \ },
+ \ 'component': {
+ \ 'lineinfo': ' %3l:%-2v',
+ \ 'tagbar': '%{tagbar#currenttag("[%s]", "")}'
+ \ },
+ \ 'component_function': {
+ \ 'gitbranch': 'fugitive#head',
+ \ }
+ \ }
+let g:lightline.separator = {
+ \ 'left': '', 'right': ''
+ \}
+let g:lightline.subseparator = {
+ \ 'left': '', 'right': ''
+ \}
+let g:lightline.tabline = {
+ \ 'left': [ ['tabs'] ],
+ \ 'right': [ ['close'] ]
+ \ }
 
 
 " ^set autowrite
