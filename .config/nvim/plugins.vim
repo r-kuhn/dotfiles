@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'Shougo/denite.nvim' " I think this is a dependency for something. Can't remember but leaving it near the top
+Plug 'mhinz/vim-startify' "fancy start screen
 
 " Git support
 Plug 'tpope/vim-fugitive' " The git things
@@ -53,13 +54,14 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'rust-lang/rust.vim'
 
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}  """ condensed html
-
+Plug 'othree/yajs.vim' " better syntax highlighting for js
 Plug 'burnettk/vim-angular'
 Plug 'ternjs/tern_for_vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'prettier/vim-prettier'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'flowtype/vim-flow'
+Plug 'cespare/vim-toml'
 "Plug 'wokalski/autocomplete-flow'
 "Plug 'steelsojka/deoplete-flow'
 "Plug 'carlitux/deoplete-flow'
@@ -85,7 +87,6 @@ Plug 'dhruvasagar/vim-dotoo'
 """ tmux
 Plug 'christoomey/vim-tmux-navigator'
 " Plug 'benmills/vimux'
-" Plug 'benmills/vimux-golang'
 Plug 'christoomey/vim-tmux-runner'
 
 """ tpope
@@ -128,18 +129,12 @@ Plug 'szw/vim-dict'
 
 """ Appearance and layout
 Plug 'ap/vim-buftabline' " tabs across top
-Plug 'haishanh/night-owl.vim'
 Plug 'itchyny/lightline.vim' " status across bottom
-Plug 'fxn/vim-monochrome' " theme
 "Plug 'itchyny/vim-cursorword' " underline word under cursor
 
-""" Apps
-Plug 'diepm/vim-rest-console' " Rest console
-Plug 'itchyny/calendar.vim' " calendar
-Plug 'thanthese/Tortoise-Typing' " typing
-Plug 'chemzqm/todoapp.vim' " todo
-Plug 'mrtazz/simplenote.vim'
-" Plug 'jacobsimpson/nvim-example-python-plugin' " ooh, lets try
+""" Colour themes:
+"Plug 'haishanh/night-owl.vim'
+Plug 'mhartington/oceanic-next'
 
 """ Completion
 if !has('nvim')

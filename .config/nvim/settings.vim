@@ -32,8 +32,8 @@ let g:rainbow_active = 1
 set wildmenu                       
 set wildmode=list:longest,full 
 
-"set mouse=a
-"set mousemodel=extend
+set mouse=a
+set mousemodel=extend
 
 if exists('g:gui_oni')
     filetype off                  " required
@@ -190,8 +190,6 @@ let g:LanguageClient_serverCommands = {
 
 """ vim-checkbox plugin
 let g:checkbox_states = [' ', 'X']
-
-let g:SimplenoteUsername = "am@laher.net.nz"
 
 let vim_markdown_preview_github=1
 

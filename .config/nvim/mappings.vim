@@ -119,3 +119,7 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nmap <Leader>0 kd1Go<Esc>dG
 
 "nmap <Leader>3 kdggjdG
+
+" Fast buffer switching
+:nnoremap <Tab> :bnext<CR>
+:nnoremap <S-Tab> :bprevious<CR><Paste>
