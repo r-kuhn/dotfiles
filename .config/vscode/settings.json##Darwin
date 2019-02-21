@@ -10,7 +10,7 @@
   "editor.cursorBlinking": "smooth",
   "workbench.startupEditor": "none",
   "workbench.iconTheme": "eq-material-theme-icons-darker",
-  "workbench.colorTheme": "Night Owl No Italics",
+  "workbench.colorTheme": "Oceanic Next",
   "workbench.fontAliasing": "antialiased",
   "workbench.editor.highlightModifiedTabs": true,
   "terminal.integrated.fontFamily": "FuraCode Nerd Font",
