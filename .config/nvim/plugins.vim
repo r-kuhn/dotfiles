@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'Shougo/denite.nvim' " I think this is a dependency for something. Can't remember but leaving it near the top
+Plug 'mhinz/vim-startify' "fancy start screen
 
 " Git support
 Plug 'tpope/vim-fugitive' " The git things
@@ -53,7 +54,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'rust-lang/rust.vim'
 
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}  """ condensed html
-
+Plug 'othree/yajs.vim' " better syntax highlighting for js
 Plug 'burnettk/vim-angular'
 Plug 'ternjs/tern_for_vim'
 Plug 'othree/javascript-libraries-syntax.vim'
@@ -128,10 +129,12 @@ Plug 'szw/vim-dict'
 
 """ Appearance and layout
 Plug 'ap/vim-buftabline' " tabs across top
-Plug 'haishanh/night-owl.vim'
 Plug 'itchyny/lightline.vim' " status across bottom
-Plug 'fxn/vim-monochrome' " theme
 "Plug 'itchyny/vim-cursorword' " underline word under cursor
+
+""" Colour themes:
+"Plug 'haishanh/night-owl.vim'
+Plug 'mhartington/oceanic-next'
 
 """ Completion
 if !has('nvim')
