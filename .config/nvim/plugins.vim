@@ -123,6 +123,7 @@ Plug 'glts/vim-textobj-comment'
 "Plug 'jiangmiao/auto-pairs'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'AndrewRadev/splitjoin.vim'
+"Plug 'Yggdroot/indentLine' " line indentation for spaces
 
 """ writing
 Plug 'szw/vim-dict'
