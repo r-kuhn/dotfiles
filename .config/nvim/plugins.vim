@@ -60,6 +60,7 @@ Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'prettier/vim-prettier'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'flowtype/vim-flow'
+Plug 'cespare/vim-toml'
 "Plug 'wokalski/autocomplete-flow'
 "Plug 'steelsojka/deoplete-flow'
 "Plug 'carlitux/deoplete-flow'
