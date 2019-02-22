@@ -24,6 +24,12 @@ autocmd FileType dot autocmd BufWritePre <buffer> :GraphvizCompile
 "fizz
 augroup fizz_ft
   au!
-  autocmd BufNewFile,BufRead *.fizz   set syntax=javascript
+  autocmd BufNewFile,BufRead *.fizz set syntax=javascript
 augroup END
 
+
+"Brewfile
+augroup brewfile_ft
+  au!
+  autocmd BufNewFile,BufRead Brewfile set syntax=ruby
+augroup END

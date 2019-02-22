@@ -4,7 +4,7 @@
 system_type=$(uname -s)
 if [ "$system_type" = "Darwin" ]; then
 	# Homebrew
-	brew update && brew upgrade && brew cleanup --force
+	brew update && brew upgrade
 	cd ~ && brew bundle
 
 	# Nix
