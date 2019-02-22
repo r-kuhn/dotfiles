@@ -108,28 +108,18 @@ eval "$(direnv hook zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # this overrides exit for to keep tmux running if its the last pane
-exit() {
-  if [[ -z $TMUX ]]; then
-    builtin exit
-    return
-  fi
+# exit() {
+#   if [[ -z $TMUX ]]; then
+#     builtin exit
+#     return
+#   fi
 
-  panes=$(tmux list-panes | wc -l)
-  wins=$(tmux list-windows | wc -l) 
-  count=$(($panes + $wins - 1))
-  if [ $count -eq 1 ]; then
-    tmux detach
-  else
-    builtin exit
-  fi
-}
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
+#   panes=$(tmux list-panes | wc -l)
+#   wins=$(tmux list-windows | wc -l) 
+#   count=$(($panes + $wins - 1))
+#   if [ $count -eq 1 ]; then
+#     tmux detach
+#   else
+#     builtin exit
+#   fi
+# }
