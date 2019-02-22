@@ -20,8 +20,3 @@ if filereadable(expand("~/.config/nvim/vimrc.local")) " Local overrides ...
   source ~/.vimrc.local
 endif
 
-
-
-
-
-

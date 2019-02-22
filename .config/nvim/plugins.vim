@@ -56,7 +56,6 @@ Plug 'rust-lang/rust.vim'
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}  """ condensed html
 Plug 'othree/yajs.vim' " better syntax highlighting for js
 Plug 'burnettk/vim-angular'
-Plug 'ternjs/tern_for_vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'prettier/vim-prettier'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }

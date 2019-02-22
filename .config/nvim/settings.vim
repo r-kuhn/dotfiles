@@ -121,25 +121,6 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 
 let g:place_single_character_mode = 0
 
-" let g:lightline = {
-"       \ 'separator': { 'left': '', 'right': '' },
-"       \ 'subseparator': { 'left': '', 'right': '' }
-"       \ }
-" let g:lightline = {
-"   \   'colorscheme': 'oceanicnext',
-"   \   'active': {
-"   \     'left':[ [ 'mode', 'paste' ],
-"   \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-"   \     ]
-"   \   },
-" 	\   'component': {
-" 	\     'lineinfo': ' %3l:%-2v',
-" 	\   },
-"   \   'component_function': {
-"   \     'gitbranch': 'fugitive#head',
-"   \   }
-"   \ }
-
 " lightline bar
 set laststatus=2
 let g:lightline = {
@@ -167,12 +148,6 @@ let g:lightline.tabline = {
  \ 'left': [ ['tabs'] ],
  \ 'right': [ ['close'] ]
  \ }
-
-
-" ^set autowrite
-
-let g:WMGraphviz_output = "svg"
-let g:WMGraphviz_viewer = "google-chrome"
 
 
 """ incsearch
@@ -220,13 +195,17 @@ nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
-"    \ 'go': ['go-langserver'],
+
+let g:LanguageClient_rootMarkers = {
+    \ 'go': ['.git', 'go.mod'],
+    \ }
 let g:LanguageClient_serverCommands = {
     \ 'javascript': ['flow-language-server', '--stdio'],
     \ 'json': ['json-languageserver', '--stdio'],
     \ 'css': ['css-languageserver', '--stdio'],
     \ 'sh': ['bash-language-server', 'start'],
     \ 'yaml': ['yaml-language-server'],
+    \ 'go': ['bingo'],
     \ }
 
 """ vim-checkbox plugin
