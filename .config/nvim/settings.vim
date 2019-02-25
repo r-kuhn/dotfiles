@@ -122,20 +122,28 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 let g:place_single_character_mode = 0
 
 " lightline bar
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
+
 set laststatus=2
 let g:lightline = {
  \ 'colorscheme': 'oceanicnext',
  \ 'active': {
- \ 'left':[ [ 'mode', 'paste' ],
- \ [ 'gitbranch', 'readonly', 'filename', 'tagbar','modified' ]
- \ ]
+ \   'left':[ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'tagbar','modified' ] ]
  \ },
  \ 'component': {
- \ 'lineinfo': ' %3l:%-2v',
- \ 'tagbar': '%{tagbar#currenttag("[%s]", "")}'
+ \   'lineinfo': ' %3l:%-2v',
+ \   'tagbar': '%{tagbar#currenttag("[%s]", "")}'
  \ },
  \ 'component_function': {
- \ 'gitbranch': 'fugitive#head',
+ \   'gitbranch': 'fugitive#head',
+ \   'filename': 'LightlineFilename',
  \ }
  \ }
 let g:lightline.separator = {
@@ -173,11 +181,13 @@ let g:UltiSnipsEditSplit="vertical"
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
 let g:ale_fixers = {'javascript': ['prettier', 'eslint', 'flow']}
+let g:ale_linters = {'go': ['golangci-lint']}
 
 " ctrlp
 let g:CtrlSpaceDefaultMappingKey = "<C-Space> "
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 if !exists('g:gui_oni')
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
