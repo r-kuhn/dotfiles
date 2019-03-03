@@ -21,3 +21,4 @@ go get -u github.com/fatih/motion
 go get -u github.com/koron/iferr
 go get -u github.com/gobuffalo/buffalo/buffalo
 go get github.com/gobuffalo/buffalo-pop
+go get github.com/cespare/reflex

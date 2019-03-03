@@ -40,6 +40,7 @@ compinit
 
 # Setup golang
 export GOPATH=${HOME}/go
+export GOBIN=${GOPATH}/bin
 export GO111MODULE=on
 
 case $(uname) in

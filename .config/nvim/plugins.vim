@@ -14,7 +14,7 @@ Plug 'codegram/vim-codereview' " Use :CodeReview https://github.com/myorganizati
 Plug 'idanarye/vim-merginal' " view/switch branches with :Merginal
 
 Plug 'will133/vim-dirdiff' " diff
-Plug 'luochen1990/rainbow'                  " Rainbow parenthesis
+"Plug 'luochen1990/rainbow'                  " Rainbow parenthesis
 
 Plug 'junegunn/vim-peekaboo' " show buffers
 
@@ -138,8 +138,8 @@ Plug 'mhartington/oceanic-next'
 
 """ Completion
 if !has('nvim')
-	"Plug 'Shougo/neocomplete.vim'
-	Plug 'maralla/completor.vim' " Ugh not working for go. Disabling at startup for now and switching back to nvim
+	Plug 'Shougo/neocomplete.vim'
+	"Plug 'maralla/completor.vim' " Ugh not working for go. Disabling at startup for now and switching back to nvim
 endif
 if has('nvim')
 	Plug 'jodosha/vim-godebug'
