@@ -14,7 +14,7 @@ Plug 'codegram/vim-codereview' " Use :CodeReview https://github.com/myorganizati
 Plug 'idanarye/vim-merginal' " view/switch branches with :Merginal
 
 Plug 'will133/vim-dirdiff' " diff
-Plug 'luochen1990/rainbow'                  " Rainbow parenthesis
+"Plug 'luochen1990/rainbow'                  " Rainbow parenthesis
 
 Plug 'junegunn/vim-peekaboo' " show buffers
 
