@@ -7,7 +7,6 @@ tap "aws/tap"
 
 brew "aws-sam-cli"
 brew "bat"
-brew "bazel"
 brew "gobuffalo/tap/buffalo"
 brew "circleci"
 brew "coreutils"
