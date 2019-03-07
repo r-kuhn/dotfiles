@@ -91,6 +91,7 @@ alias vim='nvim'
 export EDITOR=nvim
 
 alias l='ls -lFh'
+alias ls='ls -G'
 alias -g R='| rg'
 alias grep='grep --color'
 alias stmux='tmux new-session -sAD -s main'

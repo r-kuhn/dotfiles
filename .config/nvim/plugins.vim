@@ -64,6 +64,7 @@ Plug 'cespare/vim-toml'
 "Plug 'wokalski/autocomplete-flow'
 "Plug 'steelsojka/deoplete-flow'
 "Plug 'carlitux/deoplete-flow'
+Plug 'hashivim/vim-terraform'
 
 
 Plug 'markbiek/phpLint.vim'
