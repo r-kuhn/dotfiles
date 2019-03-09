@@ -1,1 +1,4 @@
 .ssh/*.key
+.ssh/*.pub
+.ssh/id_rsa
+.ssh/dan_aws_codecommit
