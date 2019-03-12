@@ -109,19 +109,13 @@ eval "$(direnv hook zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# this overrides exit for to keep tmux running if its the last pane
-# exit() {
-#   if [[ -z $TMUX ]]; then
-#     builtin exit
-#     return
-#   fi
+# Auto completes
+#
+# GCloud
+if [ -e "${HOME}/brew/Caskroom/google-cloud-sdk/latest" ]; then
+  source "${HOME}/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+  source "${HOME}/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+  export PATH=$PATH:${HOME}/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin
+fi
 
-#   panes=$(tmux list-panes | wc -l)
-#   wins=$(tmux list-windows | wc -l) 
-#   count=$(($panes + $wins - 1))
-#   if [ $count -eq 1 ]; then
-#     tmux detach
-#   else
-#     builtin exit
-#   fi
-# }
+source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
