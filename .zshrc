@@ -51,9 +51,7 @@ case $(uname) in
           export PATH=${HOME}/bin:${HOME}/brew/bin:${GOPATH}/bin:${HOME}/.npm/bin:/usr/local/bin:${HOME}/Library/Python/3.7/bin:${PATH}
           ;;
   Linux)
-          # export GOROOT=${HOME}/go
-          # export PATH=${HOME}/bin:${GOPATH}/bin:${HOME}/.npm/bin:${PATH}
-          export PATH=${HOME}/bin::${HOME}/.npm/bin:${PATH}:${GOPATH}/bin
+          export PATH=${HOME}/bin:${HOME}/.npm/bin:${PATH}:${GOPATH}/bin
           ;;
 esac
 
@@ -91,7 +89,7 @@ alias vim='nvim'
 export EDITOR=nvim
 
 alias l='ls -lFh'
-alias ls='ls -G'
+alias ls='ls --color=auto' 
 alias -g R='| rg'
 alias grep='grep --color'
 alias stmux='tmux new-session -sAD -s main'

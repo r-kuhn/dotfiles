@@ -124,6 +124,7 @@ Plug 'glts/vim-textobj-comment'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'AndrewRadev/splitjoin.vim'
 "Plug 'Yggdroot/indentLine' " line indentation for spaces
+"Plug "Chiel92/vim-autoformat"
 
 """ writing
 Plug 'szw/vim-dict'
