@@ -20,7 +20,6 @@ Plug 'junegunn/vim-peekaboo' " show buffers
 
 Plug 'gioele/vim-autoswap' " deal with swap files
 
-
 Plug 'joereynolds/place.vim' " insertions with ga (non-cursor)
 
 """ Completion
@@ -64,7 +63,11 @@ Plug 'cespare/vim-toml'
 "Plug 'wokalski/autocomplete-flow'
 "Plug 'steelsojka/deoplete-flow'
 "Plug 'carlitux/deoplete-flow'
+
+""" Terraform
 Plug 'hashivim/vim-terraform'
+Plug 'vim-syntastic/syntastic'
+Plug 'juliosueiras/vim-terraform-completion'
 
 
 Plug 'markbiek/phpLint.vim'
@@ -124,6 +127,7 @@ Plug 'glts/vim-textobj-comment'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'AndrewRadev/splitjoin.vim'
 "Plug 'Yggdroot/indentLine' " line indentation for spaces
+"Plug "Chiel92/vim-autoformat"
 
 """ writing
 Plug 'szw/vim-dict'

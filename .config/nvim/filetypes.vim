@@ -11,3 +11,7 @@ autocmd FileType make set noexpandtab shiftwidth=2 tabstop=4 softtabstop=0
 " Custom file extensions
 autocmd BufNewFile,BufRead *.fizz set syntax=javascript noexpandtab tabstop=4 shiftwidth=4
 autocmd BufNewFile,BufRead Brewfile set syntax=ruby
+
+" Json
+" indent json files on save
+autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool

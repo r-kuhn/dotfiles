@@ -1,45 +1,86 @@
 {
-    "editor.fontLigatures": true,
-    "editor.fontSize": 14,
-    "editor.fontFamily": "FuraCode Nerd Font",
-    "editor.tabSize": 4,
-    "editor.minimap.enabled": false,
-    "editor.cursorBlinking": "smooth",
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true,
-    "extensions.ignoreRecommendations": true,
-    "files.trimTrailingWhitespace": true,
-    "files.trimFinalNewlines": true,
-    "files.insertFinalNewline": true,
-    "files.autoSave": "afterDelay",
-    "workbench.startupEditor": "none",
-    "workbench.fontAliasing": "antialiased",
-    "terminal.integrated.fontFamily": "FuraCode Nerd Font",
-    "python.pythonPath": "python3",
-    "workbench.colorTheme": "Visual Studio Light",
-    "vim.handleKeys": {
-        "<C-w>": true,
-        "<C-d>": true,
-        "<C-f>": true,
-        "<C-b>": true,
-        "<C-a>": true,
-        "<C-e>": false,
-        "<C-n>": true
+    "bracket-pair-colorizer-2.showBracketsInGutter": true,
+    "bracket-pair-colorizer-2.showBracketsInRuler": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
     },
+    "editor.cursorBlinking": "smooth",
+    "editor.fontFamily": "FuraCode Nerd Font",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 13,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.minimap.enabled": false,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "git.autofetch": true,
+    "gitlens.advanced.telemetry.enabled": false,
+    "go.alternateTools": {
+        "go-langserver": "gopls"
+    },
+    "go.buildOnSave": "off",
+    "go.formatTool": "goimports",
+    "go.languageServerExperimentalFeatures": {
+        "autoComplete": true,
+        "format": true,
+        "goToDefinition": true,
+        "goToTypeDefinition": true,
+        "hover": true,
+        "signatureHelp": true
+    },
+    "go.lintFlags": [
+        "--fast"
+    ],
+    "go.lintTool": "golangci-lint",
+    "go.useLanguageServer": true,
+    "go.vetOnSave": "off",
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "terraform.telemetry.enabled": false,
+    "vim.easymotion": true,
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false
+    },
+    "vim.hlsearch": true,
+    "vim.incsearch": true,
     "vim.insertModeKeyBindings": [
         {
+            "after": [
+                "<Esc>"
+            ],
             "before": [
                 "j",
                 "j"
-            ],
-            "after": [
-                "<Esc>"
             ]
         }
     ],
-    "vsicons.dontShowNewVersionMessage": true,
-    "bracket-pair-colorizer-2.showBracketsInGutter": true,
-    "bracket-pair-colorizer-2.showBracketsInRuler": true,
-    "workbench.iconTheme": "vscode-icons",
-    "window.zoomLevel": 1,
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "after": [
+                "d",
+                "d"
+            ],
+            "before": [
+                "<leader>",
+                "d"
+            ]
+        },
+        {
+            "before": [
+                "<C-n>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        }
+    ],
+    "vim.sneak": true,
+    "vim.useCtrlKeys": true,
+    "vim.useSystemClipboard": true,
+    "workbench.colorTheme": "Oceanic Next",
+    "workbench.fontAliasing": "antialiased",
+    "workbench.iconTheme": "vscode-icons"
 }
