@@ -14,12 +14,11 @@ Plug 'codegram/vim-codereview' " Use :CodeReview https://github.com/myorganizati
 Plug 'idanarye/vim-merginal' " view/switch branches with :Merginal
 
 Plug 'will133/vim-dirdiff' " diff
-"Plug 'luochen1990/rainbow'                  " Rainbow parenthesis
+Plug 'luochen1990/rainbow'                  " Rainbow parenthesis
 
 Plug 'junegunn/vim-peekaboo' " show buffers
 
 Plug 'gioele/vim-autoswap' " deal with swap files
-
 
 Plug 'joereynolds/place.vim' " insertions with ga (non-cursor)
 
@@ -64,7 +63,11 @@ Plug 'cespare/vim-toml'
 "Plug 'wokalski/autocomplete-flow'
 "Plug 'steelsojka/deoplete-flow'
 "Plug 'carlitux/deoplete-flow'
+
+""" Terraform
 Plug 'hashivim/vim-terraform'
+Plug 'vim-syntastic/syntastic'
+Plug 'juliosueiras/vim-terraform-completion'
 
 
 Plug 'markbiek/phpLint.vim'

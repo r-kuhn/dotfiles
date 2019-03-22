@@ -118,6 +118,10 @@ function true_colours() {
   }'
 }
 
+function random_string() {
+  cat /dev/urandom | LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1
+}
+
 # setup direnv
 eval "$(direnv hook zsh)"
 
