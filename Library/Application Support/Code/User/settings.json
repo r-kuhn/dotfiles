@@ -17,7 +17,6 @@
   "go.lintTool": "golangci-lint",
   "go.lintFlags": ["--fast"],
   "go.formatTool": "goimports",
-  "go.gotoSymbol.includeImports": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.organizeImports": true
@@ -56,5 +55,9 @@
     "<C-a>": false,
     "<C-f>": false
   },
-  "git.autofetch": true
+  "git.autofetch": true,
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+  "terraform.telemetry.enabled": false,
+  "gitlens.advanced.telemetry.enabled": false
 }
