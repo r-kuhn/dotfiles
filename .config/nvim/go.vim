@@ -6,7 +6,7 @@ if has('nvim')
 endif
 " let g:go_metalinter_autosave = 0
 
-let g:go_fmt_command = "goimports"
+" let g:go_fmt_command = "goimports"
 " let g:go_highlight_functions = 1
 " let g:go_highlight_methods = 1
 " let g:go_highlight_structs = 1
@@ -21,7 +21,7 @@ let g:go_fmt_command = "goimports"
 " let g:go_info_mode = 'gocode'
 " let g:go_auto_sameids = 1 
 "let g:go_def_mode = 'godef' " guru doesn't support go modules yet
-let g:go_def_mode = 'gopls'
+" let g:go_def_mode = 'gopls'
 "let g:go_gocode_unimported_packages = 1
 " let g:go_gocode_propose_source = 1
 
