@@ -21,14 +21,14 @@ endif
 " let g:go_info_mode = 'gocode'
 " let g:go_auto_sameids = 1 
 "let g:go_def_mode = 'godef' " guru doesn't support go modules yet
-" let g:go_def_mode = 'gopls'
+"let g:go_def_mode = 'gopls'
 "let g:go_gocode_unimported_packages = 1
 " let g:go_gocode_propose_source = 1
 
 " Launch gopls when Go files are in use
-let g:LanguageClient_serverCommands = {
-       \ 'go': ['gopls']
-       \ }
+" let g:LanguageClient_serverCommands = {
+"        \ 'go': ['gopls']
+"        \ }
 " Run gofmt and goimports on save
 autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 
