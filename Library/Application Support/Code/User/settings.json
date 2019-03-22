@@ -1,0 +1,45 @@
+{
+    "editor.fontLigatures": true,
+    "editor.fontSize": 14,
+    "editor.fontFamily": "FuraCode Nerd Font",
+    "editor.tabSize": 4,
+    "editor.minimap.enabled": false,
+    "editor.cursorBlinking": "smooth",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "extensions.ignoreRecommendations": true,
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "files.insertFinalNewline": true,
+    "files.autoSave": "afterDelay",
+    "workbench.startupEditor": "none",
+    "workbench.fontAliasing": "antialiased",
+    "terminal.integrated.fontFamily": "FuraCode Nerd Font",
+    "python.pythonPath": "python3",
+    "workbench.colorTheme": "Visual Studio Light",
+    "vim.handleKeys": {
+        "<C-w>": true,
+        "<C-d>": true,
+        "<C-f>": true,
+        "<C-b>": true,
+        "<C-a>": true,
+        "<C-e>": false,
+        "<C-n>": true
+    },
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vsicons.dontShowNewVersionMessage": true,
+    "bracket-pair-colorizer-2.showBracketsInGutter": true,
+    "bracket-pair-colorizer-2.showBracketsInRuler": true,
+    "workbench.iconTheme": "vscode-icons",
+    "window.zoomLevel": 1,
+}
