@@ -45,14 +45,16 @@ export GO111MODULE=on
 
 case $(uname) in
   Darwin)
-          if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
-                  source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
-          fi
-          export PATH=${HOME}/bin:${HOME}/brew/bin:${GOPATH}/bin:${HOME}/.npm/bin:/usr/local/bin:${HOME}/Library/Python/3.7/bin:${PATH}
-          ;;
+    alias ls='ls -G' 
+    if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
+      source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+    fi
+    export PATH=${HOME}/bin:${HOME}/brew/bin:${GOPATH}/bin:${HOME}/.npm/bin:/usr/local/bin:${HOME}/Library/Python/3.7/bin:${PATH}
+    ;;
   Linux)
-          export PATH=${HOME}/bin:${HOME}/.npm/bin:${PATH}:${GOPATH}/bin
-          ;;
+    alias ls='ls --color=auto' 
+    export PATH=${HOME}/bin:${HOME}/.npm/bin:${PATH}:${GOPATH}/bin
+    ;;
 esac
 
 
@@ -89,7 +91,6 @@ alias vim='nvim'
 export EDITOR=nvim
 
 alias l='ls -lFh'
-alias ls='ls --color=auto' 
 alias -g R='| rg'
 alias grep='grep --color'
 alias stmux='tmux new-session -sAD -s main'

@@ -55,5 +55,6 @@
   "vim.handleKeys": {
     "<C-a>": false,
     "<C-f>": false
-  }
+  },
+  "git.autofetch": true
 }
