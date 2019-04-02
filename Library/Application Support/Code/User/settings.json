@@ -82,5 +82,6 @@
     "vim.useSystemClipboard": true,
     "workbench.colorTheme": "Oceanic Next",
     "workbench.fontAliasing": "antialiased",
-    "workbench.iconTheme": "vscode-icons"
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.statusBar.feedback.visible": false
 }

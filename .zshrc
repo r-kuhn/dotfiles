@@ -38,20 +38,23 @@ bindkey -e
 autoload -Uz compinit
 compinit
 
-# Setup golang
-export GOPATH=${HOME}/go
-export GOBIN=${GOPATH}/bin
 export GO111MODULE=on
 
 case $(uname) in
   Darwin)
     alias ls='ls -G' 
+    export GOROOT=${HOME}/.go
+    export GOPATH=${HOME}/go
+    export GOBIN=${HOME}/go/bin
+
     if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
       source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
     fi
-    export PATH=${HOME}/bin:${HOME}/brew/bin:${GOPATH}/bin:${HOME}/.npm/bin:/usr/local/bin:${HOME}/Library/Python/3.7/bin:${PATH}
+    export PATH=${HOME}/bin:${GOROOT}/bin:${GOBIN}:${HOME}/brew/bin:${HOME}/.npm/bin:/usr/local/bin:${HOME}/Library/Python/3.7/bin:${PATH}
     ;;
   Linux)
+    export GOBIN=${GOPATH}/bin
+    export GOPATH=${HOME}/go
     alias ls='ls --color=auto' 
     export PATH=${HOME}/bin:${HOME}/.npm/bin:${PATH}:${GOPATH}/bin
     ;;
@@ -121,6 +124,10 @@ function true_colours() {
 
 function random_string() {
   cat /dev/urandom | LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1
+}
+
+function reflexgorun() {
+  "$@" ; reflex -R '^node_modules/' -r '\.(go$|fizz$|toml$)' -- $@
 }
 
 # setup direnv
