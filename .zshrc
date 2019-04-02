@@ -115,3 +115,4 @@ if [ -e "${HOME}/brew/Caskroom/google-cloud-sdk/latest" ]; then
 fi
 
 source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
+true
