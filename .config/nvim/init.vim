@@ -1,7 +1,6 @@
 " I use the same vimrc for both nvim and vim
 call plug#begin('~/.vim/plugged')
 
-" Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
@@ -11,7 +10,6 @@ Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'elzr/vim-json', {'for' : 'json'}
 Plug 'fatih/vim-go'
 Plug 'fatih/vim-hclfmt'
-"Plug 'fatih/vim-nginx' , {'for' : 'nginx'}
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
@@ -20,19 +18,16 @@ Plug 'mileszs/ack.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/nerdtree'
 Plug 't9md/vim-choosewin'
-" Plug 'roxma/vim-tmux-clipboard' " screws up yank paste
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-commentary'
-"Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter' " +/-/~ signs in the gutter<Paste>
-"Plug 'tpope/vim-repeat'  " not using
 Plug 'ervandew/supertab'  " tab autocompletion
 Plug 'luochen1990/rainbow' " Rainbow parenthesis
 Plug 'itchyny/lightline.vim' " status across bottom
 Plug 'mhinz/vim-startify' "fancy start screen
-" Plug 'mhartington/oceanic-next' " Color scheme
+Plug 'mhartington/oceanic-next' " Color scheme
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -107,16 +102,16 @@ if has('persistent_undo')
 endif
 
 " color
-"set termguicolors  " 24-bit color
-set t_Co=256  " 256-bit color
+set termguicolors  " 24-bit color
+"set t_Co=256  " 256-bit color
 syntax enable
 set background=dark
 " OceanicNext:
-"let g:oceanic_next_terminal_bold = 1
-"let g:oceanic_next_terminal_italic = 1
-"colorscheme OceanicNext
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+colorscheme OceanicNext
 " PaperColor
-colorscheme PaperColor
+"colorscheme PaperColor
 
 augroup filetypedetect
   command! -nargs=* -complete=help Help vertical belowright help <args>
@@ -163,7 +158,7 @@ function! LightlineFilename()
 endfunction
 
 let g:lightline = {
- \ 'colorscheme': 'PaperColor',
+ \ 'colorscheme': 'oceanicnext',
  \ 'active': {
  \   'left':[ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
  \ },
