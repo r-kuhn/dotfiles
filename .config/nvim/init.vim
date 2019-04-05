@@ -26,9 +26,11 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter' " +/-/~ signs in the gutter<Paste>
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-scriptease'
 Plug 'ervandew/supertab'
+Plug 'luochen1990/rainbow' " Rainbow parenthesis
 Plug 'itchyny/lightline.vim' " status across bottom
 Plug 'ap/vim-buftabline' " tabs across top
 Plug 'mhinz/vim-startify' "fancy start screen
@@ -37,10 +39,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-
-
-
 call plug#end()
+
 
 "=====================================================
 "===================== SETTINGS ======================
@@ -108,14 +108,13 @@ if has('persistent_undo')
 endif
 
 " color
-syntax enable
 set termguicolors
+syntax enable
 " set t_Co=256
-set background=dark
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 colorscheme OceanicNext
-
+set background=dark
 
 augroup filetypedetect
   command! -nargs=* -complete=help Help vertical belowright help <args>
@@ -139,9 +138,13 @@ augroup filetypedetect
   
   autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
   autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
-augroup END
 
+  " Custom file extensions
+  autocmd BufNewFile,BufRead *.fizz set syntax=javascript noexpandtab tabstop=4 shiftwidth=4
+  autocmd BufNewFile,BufRead Brewfile set syntax=ruby
+augroup END
 
 
 "=====================================================
@@ -351,7 +354,26 @@ nnoremap <leader>ui :<C-u>call <SID>create_go_doc_comment()<CR>
 
 
 "===================== PLUGINS ======================
+let g:rainbow_active = 1
 
+" ==================== LanguageClient ===============
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+
+let g:LanguageClient_rootMarkers = {
+    \ 'go': ['.git', 'go.mod'],
+    \ }
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['flow-language-server', '--stdio'],
+    \ 'json': ['json-languageserver', '--stdio'],
+    \ 'css': ['css-languageserver', '--stdio'],
+    \ 'sh': ['bash-language-server', 'start'],
+    \ 'go': ['gopls'],
+    \ 'yaml': ['yaml-language-server'],
+    \ }
 
 " ==================== Fugitive ====================
 vnoremap <leader>gb :Gblame<CR>
