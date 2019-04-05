@@ -1,14 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
-echo install LSP servers
-yarn global add flow-language-server
+echo "install LSP servers"
+#npm i -g flow-language-server
 npm i -g yaml-language-server
 npm i -g vscode-json-languageservice
 npm i -g bash-language-server 
 npm i -g markdown-language-server
-yarn global add vscode-html-languageserver-bin
-yarn global add vscode-css-languageserver-bin
+npm i -g vscode-html-languageserver-bin
+npm i -g vscode-css-languageserver-bin
 go get -u golang.org/x/tools/cmd/gopls
-
-# conflicts with vim-go
-# go get -u -v github.com/sourcegraph/go-langserver

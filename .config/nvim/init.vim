@@ -1,7 +1,7 @@
 " I use the same vimrc for both nvim and vim
 call plug#begin('~/.vim/plugged')
 
-Plug 'AndrewRadev/splitjoin.vim'
+" Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
@@ -11,7 +11,7 @@ Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'elzr/vim-json', {'for' : 'json'}
 Plug 'fatih/vim-go'
 Plug 'fatih/vim-hclfmt'
-Plug 'fatih/vim-nginx' , {'for' : 'nginx'}
+"Plug 'fatih/vim-nginx' , {'for' : 'nginx'}
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
@@ -20,25 +20,24 @@ Plug 'mileszs/ack.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/nerdtree'
 Plug 't9md/vim-choosewin'
-Plug 'roxma/vim-tmux-clipboard'
+" Plug 'roxma/vim-tmux-clipboard' " screws up yank paste
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-eunuch'
+"Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter' " +/-/~ signs in the gutter<Paste>
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-scriptease'
-Plug 'ervandew/supertab'
+"Plug 'tpope/vim-repeat'  " not using
+Plug 'ervandew/supertab'  " tab autocompletion
 Plug 'luochen1990/rainbow' " Rainbow parenthesis
 Plug 'itchyny/lightline.vim' " status across bottom
-Plug 'ap/vim-buftabline' " tabs across top
 Plug 'mhinz/vim-startify' "fancy start screen
-Plug 'mhartington/oceanic-next' " Color scheme
+" Plug 'mhartington/oceanic-next' " Color scheme
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 
@@ -108,13 +107,16 @@ if has('persistent_undo')
 endif
 
 " color
-set termguicolors
+"set termguicolors  " 24-bit color
+set t_Co=256  " 256-bit color
 syntax enable
-" set t_Co=256
-let g:oceanic_next_terminal_bold = 1
-let g:oceanic_next_terminal_italic = 1
-colorscheme OceanicNext
 set background=dark
+" OceanicNext:
+"let g:oceanic_next_terminal_bold = 1
+"let g:oceanic_next_terminal_italic = 1
+"colorscheme OceanicNext
+" PaperColor
+colorscheme PaperColor
 
 augroup filetypedetect
   command! -nargs=* -complete=help Help vertical belowright help <args>
@@ -160,9 +162,8 @@ function! LightlineFilename()
   return expand('%')
 endfunction
 
-set laststatus=2
 let g:lightline = {
- \ 'colorscheme': 'oceanicnext',
+ \ 'colorscheme': 'PaperColor',
  \ 'active': {
  \   'left':[ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
  \ },
@@ -172,18 +173,19 @@ let g:lightline = {
  \ 'component_function': {
  \   'gitbranch': 'fugitive#head',
  \   'filename': 'LightlineFilename',
- \ }
- \ }
-let g:lightline.separator = {
- \ 'left': '', 'right': ''
+ \ },
+ \ 'separator': {
+ \   'left': '', 'right': '' 
+ \ },
+ \ 'subseparator': {
+ \   'left': '', 'right': ''
+ \ },
+ \ 'tabline': {
+ \   'left': [ ['tabs'] ],
+ \   'right': [ ['close'] ]
+ \ },
  \}
-let g:lightline.subseparator = {
- \ 'left': '', 'right': ''
- \}
-let g:lightline.tabline = {
- \ 'left': [ ['tabs'] ],
- \ 'right': [ ['close'] ]
- \ }
+
 
 "=====================================================
 "===================== MAPPINGS ======================
@@ -284,9 +286,6 @@ noremap k gk
 " Exit on j
 imap jj <Esc>
 
-" Source (reload configuration)
-nnoremap <silent> <F5> :source $MNVIMRC<CR>
-
 nnoremap <F6> :setlocal spell! spell?<CR>
 
 " Search mappings: These will make it so that going to the next one in a
@@ -354,6 +353,7 @@ nnoremap <leader>ui :<C-u>call <SID>create_go_doc_comment()<CR>
 
 
 "===================== PLUGINS ======================
+let g:deoplete#enable_at_startup = 1
 let g:rainbow_active = 1
 
 " ==================== LanguageClient ===============
@@ -513,7 +513,7 @@ let g:vim_markdown_no_extensions_in_markdown = 1
 " function will generate the following front matter under the cursor:
 "
 "   +++
-"   author = "Fatih Arslan"
+"   author = "Dan Cardamore"
 "   date = 2018-02-03 08:41:20
 "   title = "Speed up vim"
 "   slug = "speed-up-vim"
@@ -524,7 +524,7 @@ let g:vim_markdown_no_extensions_in_markdown = 1
 "
 function! s:create_front_matter()
   let fm = ["+++"]
-  call add(fm, 'author = "Fatih Arslan"')
+  call add(fm, 'author = "Dan Cardamore"')
   call add(fm, printf("date = \"%s\"", strftime("%Y-%m-%d %X")))
 
   let filename = expand("%:r")
