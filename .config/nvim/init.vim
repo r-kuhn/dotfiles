@@ -23,11 +23,13 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter' " +/-/~ signs in the gutter<Paste>
-Plug 'ervandew/supertab'  " tab autocompletion
+"Plug 'ervandew/supertab'  " tab autocompletion
 Plug 'luochen1990/rainbow' " Rainbow parenthesis
-Plug 'itchyny/lightline.vim' " status across bottom
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify' "fancy start screen
 Plug 'mhartington/oceanic-next' " Color scheme
+Plug 'mattn/emmet-vim' " html faster editing
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -53,7 +55,7 @@ endif
 set laststatus=2
 set encoding=utf-8              " Set default encoding to UTF-8
 set autoread                    " Automatically reread changed files without asking me anything
-set autoindent                  
+set autoindent
 set backspace=indent,eol,start  " Makes backspace key more powerful.
 set incsearch                   " Shows the match while typing
 set hlsearch                    " Highlight found searches
@@ -72,7 +74,7 @@ set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
 set noshowmatch              " Do not show matching brackets by flickering
 set noshowmode               " We show the mode with airline or lightline
 set ignorecase               " Search case insensitive...
-set smartcase                " ... but not it begins with upper case 
+set smartcase                " ... but not it begins with upper case
 set completeopt=menu,menuone
 set nocursorcolumn           " speed up syntax highlighting
 set nocursorline
@@ -89,7 +91,7 @@ set lazyredraw
 set clipboard^=unnamed
 set clipboard^=unnamedplus
 
-" increase max memory to show syntax highlighting for large files 
+" increase max memory to show syntax highlighting for large files
 set maxmempattern=20000
 
 " ~/.viminfo needs to be writable and readable. Set oldfiles to 1000 last
@@ -97,7 +99,7 @@ set maxmempattern=20000
 set viminfo='1000
 
 " restore cursor _except_ for commit messages
-autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif 
+autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 if has('persistent_undo')
   set undofile
@@ -119,14 +121,15 @@ colorscheme OceanicNext
 augroup filetypedetect
   command! -nargs=* -complete=help Help vertical belowright help <args>
   autocmd FileType help wincmd L
-  
+
+  autocmd BufWritePre * %s/\s\+$//e " trim trailing whitespace
   autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
   autocmd BufNewFile,BufRead .nginx.conf*,nginx.conf* setf nginx
   autocmd BufNewFile,BufRead *.hcl setf conf
-  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 
+  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
   autocmd BufRead,BufNewFile *.gotmpl set filetype=gotexttmpl
-  
+
   autocmd BufNewFile,BufRead *.ino setlocal noet ts=4 sw=4 sts=4
   autocmd BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
   autocmd BufNewFile,BufRead *.md setlocal noet ts=4 sw=4
@@ -135,7 +138,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.hcl setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.proto setlocal expandtab shiftwidth=2 tabstop=2
-  
+
   autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
@@ -150,40 +153,10 @@ augroup END
 "=====================================================
 "===================== STATUSLINE ====================
 
-" lightline bar
-function! LightlineFilename()
-  let root = fnamemodify(get(b:, 'git_dir'), ':h')
-  let path = expand('%:p')
-  if path[:len(root)-1] ==# root
-    return path[len(root)+1:]
-  endif
-  return expand('%')
-endfunction
-
-let g:lightline = {
- \ 'colorscheme': 'oceanicnext',
- \ 'active': {
- \   'left':[ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
- \ },
- \ 'component': {
- \   'lineinfo': ' %3l:%-2v'
- \ },
- \ 'component_function': {
- \   'gitbranch': 'fugitive#head',
- \   'filename': 'LightlineFilename',
- \ },
- \ 'separator': {
- \   'left': '', 'right': '' 
- \ },
- \ 'subseparator': {
- \   'left': '', 'right': ''
- \ },
- \ 'tabline': {
- \   'left': [ ['tabs'] ],
- \   'right': [ ['close'] ]
- \ },
- \}
-
+"=============== Airline ============================
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme="oceanicnext"
+let g:airline_powerline_fonts = 1
 
 "=====================================================
 "===================== MAPPINGS ======================
@@ -260,7 +233,7 @@ if has('terminal')
   tnoremap <C-j> <C-w>j
   tnoremap <C-k> <C-w>k
   tnoremap <C-l> <C-w>l
- 
+
   " Open terminal in vertical, horizontal and new tab
   nnoremap <leader>tv :vsplit<cr>:term ++curwin<CR>
   nnoremap <leader>ts :split<cr>:term ++curwin<CR>
@@ -456,7 +429,7 @@ augroup END
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_layout = { 'down': '~20%' }
 
-" search 
+" search
 nmap <C-p> :FzfHistory<cr>
 imap <C-p> <esc>:<C-u>FzfHistory<cr>
 
@@ -479,11 +452,11 @@ command! -bang -nargs=* Rg
 command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
 
 " ==================== delimitMate ====================
-let g:delimitMate_expand_cr = 1   
-let g:delimitMate_expand_space = 1    
-let g:delimitMate_smart_quotes = 1    
-let g:delimitMate_expand_inside_quotes = 0    
-let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'   
+let g:delimitMate_expand_cr = 1
+let g:delimitMate_expand_space = 1
+let g:delimitMate_smart_quotes = 1
+let g:delimitMate_expand_inside_quotes = 0
+let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
 
 imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 
@@ -495,7 +468,7 @@ noremap <Leader>f :NERDTreeFind<cr>
 let NERDTreeShowHidden=1
 
 " ==================== ag ====================
-let g:ackprg = 'ag --vimgrep --smart-case'                                                   
+let g:ackprg = 'ag --vimgrep --smart-case'
 
 " ==================== markdown ====================
 let g:vim_markdown_folding_disabled = 1
@@ -529,7 +502,7 @@ function! s:create_front_matter()
   let tl = split(filename, "-")
   " in case the file is in form of foo.md instead of
   " year-month-day-foo.markdown
-  if !empty(str2nr(tl[0])) 
+  if !empty(str2nr(tl[0]))
     let tl = split(filename, "-")[3:]
   endif
 
@@ -574,8 +547,8 @@ let g:vim_json_syntax_conceal = 0
 " pressing tab. I like this better than autocompletion, but it's still fast.
 let g:SuperTabDefaultCompletionType = "context"
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"  
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>" 
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 
 " ==================== Various other plugin settings ====================
