@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
-Plug 'cespare/vim-toml'
+Plug 'honza/vim-snippets' " snippets documented here: https://github.com/honza/vim-snippets
 Plug 'corylanou/vim-present', {'for' : 'present'}
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'elzr/vim-json', {'for' : 'json'}
