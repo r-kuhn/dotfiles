@@ -123,17 +123,19 @@ augroup filetypedetect
   autocmd FileType help wincmd L
 
   autocmd BufWritePre * %s/\s\+$//e " trim trailing whitespace
+  autocmd BufNewFile,BufRead Brewfile set syntax=ruby
   autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
   autocmd BufNewFile,BufRead .nginx.conf*,nginx.conf* setf nginx
   autocmd BufNewFile,BufRead *.hcl setf conf
   autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
   autocmd BufRead,BufNewFile *.gotmpl set filetype=gotexttmpl
+  autocmd BufNewFile,BufRead *.fizz set syntax=javascript noexpandtab tabstop=4 shiftwidth=4
 
   autocmd BufNewFile,BufRead *.ino setlocal noet ts=4 sw=4 sts=4
   autocmd BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
   autocmd BufNewFile,BufRead *.md setlocal noet ts=4 sw=4
-  autocmd BufNewFile,BufRead *.html setlocal noet ts=4 sw=4
+  autocmd BufNewFile,BufRead *.html setlocal noet ts=4 sw=4 filetype=eruby
   autocmd BufNewFile,BufRead *.vim setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.hcl setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
@@ -144,9 +146,6 @@ augroup filetypedetect
   autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
   autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
 
-  " Custom file extensions
-  autocmd BufNewFile,BufRead *.fizz set syntax=javascript noexpandtab tabstop=4 shiftwidth=4
-  autocmd BufNewFile,BufRead Brewfile set syntax=ruby
 augroup END
 
 
