@@ -96,6 +96,9 @@ set maxmempattern=20000
 " recently opened files, :FzfHistory uses it
 set viminfo='1000
 
+" restore cursor _except_ for commit messages
+autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif 
+
 if has('persistent_undo')
   set undofile
   set undodir=~/.cache/vim
