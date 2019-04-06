@@ -29,6 +29,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify' "fancy start screen
 Plug 'mhartington/oceanic-next' " Color scheme
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'mattn/emmet-vim' " html faster editing
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
@@ -107,16 +108,19 @@ if has('persistent_undo')
 endif
 
 " color
-set termguicolors  " 24-bit color
-"set t_Co=256  " 256-bit color
 syntax enable
 set background=dark
-" OceanicNext:
-let g:oceanic_next_terminal_bold = 1
-let g:oceanic_next_terminal_italic = 1
-colorscheme OceanicNext
-" PaperColor
-"colorscheme PaperColor
+if ($COLORTERM=="truecolor")
+  set termguicolors  " 24-bit color
+  let g:oceanic_next_terminal_bold = 1
+  let g:oceanic_next_terminal_italic = 1
+  colorscheme OceanicNext
+  let g:airline_theme="oceanicnext"
+else
+  set t_Co=256  " 256-bit color
+  colorscheme PaperColor
+  let g:airline_theme="PaperColor"
+endif
 
 augroup filetypedetect
   command! -nargs=* -complete=help Help vertical belowright help <args>
@@ -154,7 +158,6 @@ augroup END
 
 "=============== Airline ============================
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme="oceanicnext"
 let g:airline_powerline_fonts = 1
 
 "=====================================================
