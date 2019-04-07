@@ -42,7 +42,7 @@ export GO111MODULE=on
 
 case $(uname) in
   Darwin)
-    alias ls='ls -G' 
+    alias ls='ls -G'
     export GOROOT=${HOME}/.go
     export GOPATH=${HOME}/go
     export GOBIN=${HOME}/go/bin
@@ -55,7 +55,7 @@ case $(uname) in
   Linux)
     export GOBIN=${GOPATH}/bin
     export GOPATH=${HOME}/go
-    alias ls='ls --color=auto' 
+    alias ls='ls --color=auto'
     export PATH=${HOME}/bin:${HOME}/.npm/bin:${PATH}:${GOPATH}/bin
     ;;
 esac
@@ -82,10 +82,21 @@ antibody bundle < ~/.zsh_plugins.txt
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
 
-# Configure FZF
-if [ -n "${commands[fzf-share]}" ]; then
-  source "$(fzf-share)/key-bindings.zsh"
+# setup fzf
+if [ -e ~/.fzf ]; then
+  PATH=$PATH:~/.fzf/bin
+  source ~/.fzf/shell/key-bindings.zsh
+  source ~/.fzf/shell/completion.zsh
 fi
+
+# fzf + ag configuration
+export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS='
+--color fg:242,bg:236,hl:65,fg+:15,bg+:239,hl+:108
+--color info:108,prompt:109,spinner:108,pointer:168,marker:168
+'
 
 #zsh shortcuts
 alias vi='nvim'

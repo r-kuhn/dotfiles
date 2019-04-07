@@ -5,6 +5,7 @@ tap "homebrew/core"
 tap "getantibody/tap"
 #tap "aws/tap"
 
+brew "ag"
 brew "bat"
 #brew "gobuffalo/tap/buffalo"
 brew "coreutils"
