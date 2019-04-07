@@ -61,6 +61,7 @@ case $(uname) in
 esac
 
 
+# POWERLEVEL9K
 export DEFAULT_USER=dan
 POWERLEVEL9K_MODE='powerline'
 POWERLEVEL9K_STATUS_OK=false
@@ -72,6 +73,11 @@ POWERLEVEL9K_ETC_ICON=''
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+
+# Pure prompt
+PURE_CMD_MAX_EXEC_TIME=5
+PURE_GIT_PULL=0
+
 
 # These are needed for oh-my-zsh
 #export ZSH=${HOME}/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh
@@ -106,6 +112,7 @@ export EDITOR=nvim
 
 alias l='ls -lFh'
 alias -g R='| rg'
+alias -g A='| ag'
 alias grep='grep --color'
 alias stmux='tmux new-session -sAD -s main'
 

@@ -5,5 +5,10 @@ zsh-users/zsh-autosuggestions
 ael-code/zsh-colored-man-pages
 MichaelAquilina/zsh-you-should-use
 
-bhilburn/powerlevel9k
+# Powerlevel 9k prompt
+#bhilburn/powerlevel9k
+
+# Pure prompt
+mafredri/zsh-async
+sindresorhus/pure
 

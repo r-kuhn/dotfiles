@@ -22,6 +22,7 @@ Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-rooter' " Roots things like fzf to .git root
 Plug 'airblade/vim-gitgutter' " +/-/~ signs in the gutter<Paste>
 "Plug 'ervandew/supertab'  " tab autocompletion
 Plug 'luochen1990/rainbow' " Rainbow parenthesis
