@@ -120,7 +120,7 @@ if ($COLORTERM=="truecolor")
 else
   set t_Co=256  " 256-bit color
   colorscheme PaperColor
-  let g:airline_theme="PaperColor"
+  let g:airline_theme="papercolor"
 endif
 
 augroup filetypedetect
