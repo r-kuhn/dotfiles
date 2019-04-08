@@ -431,7 +431,6 @@ augroup END
 " ==================== FZF ====================
 nmap ; :Buffers<CR>
 nmap <C-p> :Files<CR>
-nmap <C-t> :Tags<CR>
 
 " ==================== delimitMate ====================
 let g:delimitMate_expand_cr = 1
@@ -451,6 +450,8 @@ let NERDTreeShowHidden=1
 
 " ==================== ag ====================
 let g:ackprg = 'ag --vimgrep --smart-case'
+map <Leader>a :Ack!<Space>
+map <C-S-f> :Ack!<Space>
 
 " ==================== markdown ====================
 let g:vim_markdown_folding_disabled = 1
