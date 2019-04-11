@@ -5,7 +5,7 @@
         "source.organizeImports": true
     },
     "editor.cursorBlinking": "smooth",
-    "editor.fontFamily": "FuraCode Nerd Font",
+    "editor.fontFamily": "Operator Mono Lig",
     "editor.fontLigatures": true,
     "editor.fontSize": 13,
     "editor.formatOnPaste": true,
@@ -80,7 +80,7 @@
     "vim.sneak": true,
     "vim.useCtrlKeys": true,
     "vim.useSystemClipboard": true,
-    "workbench.colorTheme": "Oceanic Next",
+    "workbench.colorTheme": "Solarized Dark",
     "workbench.fontAliasing": "antialiased",
     "workbench.iconTheme": "vscode-icons",
     "workbench.statusBar.feedback.visible": false
