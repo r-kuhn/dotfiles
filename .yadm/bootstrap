@@ -66,6 +66,9 @@ if [[ "$system_type" == "Linux" ]]; then
 	echo "Nothing to do on NixOS"
 fi
 
+echo "Setup terminfo for italics and 24-bit color"
+tic -x ~/.config/tmux/tmux.terminfo
+
 # Setup VIM
 if command -v nvim >/dev/null 2>&1; then
 	echo "Bootstraping nvim"

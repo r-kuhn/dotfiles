@@ -1,3 +1,4 @@
+" vim: sw=2 sw=2 et
 " I use the same vimrc for both nvim and vim
 call plug#begin('~/.vim/plugged')
 
@@ -124,6 +125,7 @@ else
   colorscheme PaperColor
   let g:airline_theme="papercolor"
 endif
+highlight Comment cterm=italic
 
 augroup filetypedetect
   command! -nargs=* -complete=help Help vertical belowright help <args>
@@ -546,4 +548,4 @@ nmap <Leader>gi <Plug>(grammarous-open-info-window)
 nmap <Leader>gc <Plug>(grammarous-close-info-window)
 nmap <Leader>gf <Plug>(grammarous-fixit)
 
-" vim: sw=2 sw=2 et
+
