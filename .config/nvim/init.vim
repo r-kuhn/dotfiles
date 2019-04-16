@@ -26,7 +26,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-rooter' " Roots things like fzf to .git root
 Plug 'airblade/vim-gitgutter' " +/-/~ signs in the gutter<Paste>
-"Plug 'ervandew/supertab'  " tab autocompletion
+Plug 'ervandew/supertab'  " tab autocompletion
 Plug 'luochen1990/rainbow' " Rainbow parenthesis
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -34,11 +34,10 @@ Plug 'mhinz/vim-startify' "fancy start screen
 Plug 'mhartington/oceanic-next' " Color scheme
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'mattn/emmet-vim' " html faster editing
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() }}
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
@@ -370,8 +369,8 @@ let g:go_test_prepend_name = 1
 let g:go_list_type = "quickfix"
 let g:go_auto_type_info = 0
 let g:go_auto_sameids = 0
-"let g:go_info_mode = "gocode"
-"let g:go_def_mode = "gopls"
+let g:go_info_mode = "gocode"
+let g:go_def_mode = "gopls"
 let g:go_echo_command_info = 1
 let g:go_autodetect_gopath = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'golint']
@@ -533,10 +532,10 @@ let g:vim_json_syntax_conceal = 0
 " ==================== Completion + Snippet ====================
 " Ultisnips has native support for SuperTab. SuperTab does omnicompletion by
 " pressing tab. I like this better than autocompletion, but it's still fast.
-"let g:SuperTabDefaultCompletionType = "context"
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:SuperTabDefaultCompletionType = "context"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 
 " ==================== Various other plugin settings ====================
@@ -549,42 +548,4 @@ nmap <Leader>gi <Plug>(grammarous-open-info-window)
 nmap <Leader>gc <Plug>(grammarous-close-info-window)
 nmap <Leader>gf <Plug>(grammarous-fixit)
 
-"===============================================================
-"    CoC
-"===============================================================
 
-" use <tab> for trigger completion and navigate to next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-" Use <Tab> and <S-Tab> for navigate completion list:
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Use <cr> to confirm complete
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Close preview window when completion is done.
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" Snippets
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? coc#rpc#request('doKeymap', ['snippets-expand-jump','']) :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<Tab>'
-let g:coc_snippet_prev = '<S-Tab>'
