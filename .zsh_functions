@@ -4,7 +4,7 @@ function random_string() {
 }
 
 function reflexgorun() {
-  "$@" ; reflex -R '^node_modules/' -r '\.(go$|fizz$|toml$)' -- $@
+  "$@" ; reflex -R '^node_modules/' -r '\.(go$|fizz$|toml$|html$)' -- $@
 }
 
 function true_colours() {
