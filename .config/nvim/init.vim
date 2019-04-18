@@ -22,6 +22,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 't9md/vim-choosewin'
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-rooter' " Roots things like fzf to .git root
@@ -456,7 +457,8 @@ noremap <Leader>f :NERDTreeFind<cr>
 let NERDTreeShowHidden=1
 
 " ==================== ag ====================
-let g:ackprg = 'ag --vimgrep --smart-case'
+" let g:ackprg = 'ag --vimgrep --smart-case'
+let g:ackprg = 'rg --vimgrep --no-heading'
 map <Leader>a :Ack!<Space>
 map <C-S-f> :Ack!<Space>
 
