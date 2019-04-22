@@ -92,10 +92,6 @@ set belloff+=ctrlg " If Vim beeps during completion
 
 set lazyredraw
 
-"http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
-set clipboard^=unnamed
-set clipboard^=unnamedplus
-
 " increase max memory to show syntax highlighting for large files
 set maxmempattern=20000
 
@@ -374,7 +370,7 @@ let g:go_debug_windows = {
 
 let g:go_test_prepend_name = 1
 let g:go_list_type = "quickfix"
-let g:go_auto_type_info = 0
+let g:go_auto_type_info = 1
 let g:go_auto_sameids = 0
 let g:go_info_mode = "gocode"
 let g:go_def_mode = "gopls"
