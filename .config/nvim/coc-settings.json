@@ -1,0 +1,84 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "markdown",
+    "json",
+    "go",
+  ],
+  "suggest": {
+    //"autoTrigger": "always",
+		"triggerAfterInsertEnter": true,
+		"timeout": 300,
+		"noselect": false,
+		//"keepCompleteopt": true,
+		"minTriggerInputLength": 1,
+		"acceptSuggestionOnCommitCharacter": true,
+    "snippetIndicator": "☆",
+		//"enablePreview": true,
+		//"messageLevel": "error",
+		//"numberSelect": false,
+		//"fixInsertedWord": true,
+		//"jumpCommand": "split",
+		//"hoverTarget": true
+  },
+  "diagnostic": {
+    "displayByAle": false,
+		"enable": true,
+		//"signOffset": 1000,
+		"errorSign": "•",
+		"warningSign": "•",
+		"infoSign": "•",
+		"hintSign": "•",
+		"virtualText": true,
+		"virtualTextPrefix": "<!-- ",
+		"enableMessage": "never"
+  },
+  "codeLens": {
+    "enable": true,
+  },
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".git/"],
+      "filetypes": ["go"]
+    },
+    "dockerfile": {
+      "command": "docker-langserver",
+      "filetypes": ["dockerfile"],
+      "args": ["--stdio"]
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
+    },
+    "efm": {
+      "command": "efm-langserver",
+      "args": [],
+      // custom config path
+      // "args": ["-c", "/path/to/your/config.yaml"],
+      "filetypes": ["vim", "eruby", "markdown"]
+    }
+  },
+  "snippets": {
+    "extends": {
+      "cpp": ["c"],
+      "javascriptreact": ["javascript"],
+      "typescript": ["javascript"]
+    },
+    "shortcut": "S",
+    "autoTrigger": true,
+    "ultisnips": {
+      "enabled": true,
+      "directories": [
+        "UltiSnips",
+        "gosnippets/UltiSnips"
+      ]
+    }
+  }
+}
