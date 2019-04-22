@@ -8,6 +8,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets' " snippets documented here: https://github.com/honza/vim-snippets
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'elzr/vim-json', {'for' : 'json'}
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " nixos doesn't install this nicely
 Plug 'fatih/vim-go'
 Plug 'fatih/vim-hclfmt'
 Plug 'godlygeek/tabular'
