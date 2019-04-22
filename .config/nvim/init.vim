@@ -6,16 +6,13 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets' " snippets documented here: https://github.com/honza/vim-snippets
-Plug 'corylanou/vim-present', {'for' : 'present'}
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'elzr/vim-json', {'for' : 'json'}
 Plug 'fatih/vim-go'
 Plug 'fatih/vim-hclfmt'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-hashicorp-tools'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
+Plug 'Shougo/denite.nvim', {'do': ':UpdateRemotePlugins' } " Fuzzy finding, buffer management
 Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -24,13 +21,12 @@ Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-rooter' " Roots things like fzf to .git root
 Plug 'airblade/vim-gitgutter' " +/-/~ signs in the gutter<Paste>
 Plug 'ervandew/supertab'  " tab autocompletion
 Plug 'luochen1990/rainbow' " Rainbow parenthesis
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'jreybert/vimagit'
 Plug 'mhinz/vim-startify' "fancy start screen
 Plug 'mhartington/oceanic-next' " Color scheme
 Plug 'NLKNguyen/papercolor-theme'
@@ -78,7 +74,6 @@ set hidden
 set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
 set noshowmatch              " Do not show matching brackets by flickering
 set noshowmode               " We show the mode with airline or lightline
-"set ignorecase               " Search case insensitive...
 "Search is ignore case, but autocomplete is case sensitive
 set smartcase                " ... but not it begins with upper case
 au InsertEnter * set noignorecase
@@ -162,9 +157,6 @@ augroup filetypedetect
 augroup END
 
 
-"=====================================================
-"===================== STATUSLINE ====================
-
 "=============== Airline ============================
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -190,7 +182,7 @@ augroup quickfix
 augroup END
 
 " Enter automatically into the files directory
-autocmd BufEnter * silent! lcd %:p:h
+"autocmd BufEnter * silent! lcd %:p:h
 
 " Automatically resize screens to be equally the same
 " autocmd VimResized * wincmd =
@@ -333,8 +325,21 @@ function! s:create_go_doc_comment()
 endfunction
 nnoremap <leader>ui :<C-u>call <SID>create_go_doc_comment()<CR>
 
+" === Denite shorcuts === "
+"   ;         - Browser currently open buffers
+"   <leader>t - Browse list of files in current directory
+"   <leader>g - Search current directory for occurences of given term and
+"   close window if no results
+"   <leader>j - Search current directory for occurences of word under cursor
+nmap ; :Denite buffer -split=floating -winrow=1<CR>
+nmap <C-p> :DeniteProjectDir file/rec -split=floating -winrow=1<CR>
+nnoremap <leader>f :<C-u>Denite grep:. -no-empty -mode=normal<CR>
+nnoremap <leader>* :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
 
+
+"===================== === === ======================
 "===================== PLUGINS ======================
+"===================== === === ======================
 let g:deoplete#enable_at_startup = 1
 let g:rainbow_active = 1
 
@@ -345,9 +350,6 @@ nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 
-let g:LanguageClient_rootMarkers = {
-    \ 'go': ['.git', 'go.mod'],
-    \ }
 let g:LanguageClient_serverCommands = {
     \ 'javascript': ['flow-language-server', '--stdio'],
     \ 'json': ['json-languageserver', '--stdio'],
@@ -356,10 +358,10 @@ let g:LanguageClient_serverCommands = {
     \ 'go': ['gopls'],
     \ 'yaml': ['yaml-language-server'],
     \ }
-
-" ==================== Fugitive ====================
-vnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gb :Gblame<CR>
+let g:LanguageClient_rootMarkers = {
+    \ 'go': ['.git', 'go.mod'],
+    \ }
+autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 
 " ==================== vim-go ====================
 let g:go_fmt_fail_silently = 1
@@ -436,10 +438,6 @@ augroup go
 augroup END
 
 
-" ==================== FZF ====================
-nmap ; :Buffers<CR>
-nmap <C-p> :Files<CR>
-
 " ==================== delimitMate ====================
 let g:delimitMate_expand_cr = 1
 let g:delimitMate_expand_space = 1
@@ -452,15 +450,9 @@ imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 " ==================== NerdTree ====================
 " For toggling
 noremap <Leader>n :NERDTreeToggle<cr>
-noremap <Leader>f :NERDTreeFind<cr>
+"noremap <Leader>f :NERDTreeFind<cr>
 
 let NERDTreeShowHidden=1
-
-" ==================== ag ====================
-" let g:ackprg = 'ag --vimgrep --smart-case'
-let g:ackprg = 'rg --vimgrep --no-heading'
-map <Leader>a :Ack!<Space>
-map <C-S-f> :Ack!<Space>
 
 " ==================== markdown ====================
 let g:vim_markdown_folding_disabled = 1
@@ -470,66 +462,6 @@ let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_no_extensions_in_markdown = 1
-
-" create a hugo front matter in toml format to the beginning of a file. Open
-" empty markdown file, i.e: '2018-02-05-speed-up-vim.markdown'. Calling this
-" function will generate the following front matter under the cursor:
-"
-"   +++
-"   author = "Dan Cardamore"
-"   date = 2018-02-03 08:41:20
-"   title = "Speed up vim"
-"   slug = "speed-up-vim"
-"   url = "/2018/02/03/speed-up-vim/"
-"   featured_image = ""
-"   description =  ""
-"   +++
-"
-function! s:create_front_matter()
-  let fm = ["+++"]
-  call add(fm, 'author = "Dan Cardamore"')
-  call add(fm, printf("date = \"%s\"", strftime("%Y-%m-%d %X")))
-
-  let filename = expand("%:r")
-  let tl = split(filename, "-")
-  " in case the file is in form of foo.md instead of
-  " year-month-day-foo.markdown
-  if !empty(str2nr(tl[0]))
-    let tl = split(filename, "-")[3:]
-  endif
-
-  let title = join(tl, " ")
-  let title = toupper(title[0]) . title[1:]
-  call add(fm, printf("title = \"%s\"", title))
-
-  let slug = join(tl, "-")
-  call add(fm, printf("slug = \"%s\"", slug))
-  call add(fm, printf("url = \"%s/%s/\"", strftime("%Y/%m/%d"), slug))
-
-  call add(fm, 'featured_image = ""')
-  call add(fm, 'description = ""')
-  call add(fm, "+++")
-  call append(0, fm)
-endfunction
-
-" create a shortcode that inserts an image holder with caption or class
-" attribute that defines on how to set the layout.
-function! s:create_figure()
-  let fig = ["{{< figure"]
-  call add(fig, 'src="/images/image.jpg"')
-  call add(fig, 'class="left"')
-  call add(fig, 'caption="This looks good!"')
-  call add(fig, ">}}")
-
-  let res = [join(fig, " ")]
-  call append(line("."), res)
-endfunction
-
-augroup md
-  autocmd!
-  autocmd Filetype markdown command! -bang HugoFrontMatter call <SID>create_front_matter()
-  autocmd Filetype markdown command! -bang HugoFig call <SID>create_figure()
-augroup END
 
 " ==================== vim-json ====================
 let g:vim_json_syntax_conceal = 0
@@ -546,11 +478,77 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " ==================== Various other plugin settings ====================
 nmap  -  <Plug>(choosewin)
 
-" Trigger a highlight in the appropriate direction when pressing these keys:
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+" ================== Denite setup =================="
+" Use ripgrep for searching current directory for files
+" By default, ripgrep will respect rules in .gitignore
+"   --files: Print each file that would be searched (but don't search)
+"   --glob:  Include or exclues files for searching that match the given glob
+"            (aka ignore .git files)
+"
+call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
 
-nmap <Leader>gi <Plug>(grammarous-open-info-window)
-nmap <Leader>gc <Plug>(grammarous-close-info-window)
-nmap <Leader>gf <Plug>(grammarous-fixit)
+" Use ripgrep in place of "grep"
+call denite#custom#var('grep', 'command', ['rg'])
 
+" Custom options for ripgrep
+"   --vimgrep:  Show results with every match on it's own line
+"   --hidden:   Search hidden directories and files
+"   --heading:  Show the file name above clusters of matches from each file
+"   --S:        Search case insensitively if the pattern is all lowercase
+call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--heading', '-S'])
 
+" Recommended defaults for ripgrep via Denite docs
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+
+" Remove date from buffer list
+call denite#custom#var('buffer', 'date_format', '')
+
+" Custom options for Denite
+"   auto_resize             - Auto resize the Denite window height automatically.
+"   prompt                  - Customize denite prompt
+"   direction               - Specify Denite window direction as directly below current pane
+"   winminheight            - Specify min height for Denite window
+"   highlight_mode_insert   - Specify h1-CursorLine in insert mode
+"   prompt_highlight        - Specify color of prompt
+"   highlight_matched_char  - Matched characters highlight
+"   highlight_matched_range - matched range highlight
+let s:denite_options = {'default' : {
+\ 'auto_resize': 1,
+\ 'prompt': 'λ:',
+\ 'direction': 'rightbelow',
+\ 'winminheight': '10',
+\ 'highlight_mode_insert': 'Visual',
+\ 'highlight_mode_normal': 'Visual',
+\ 'prompt_highlight': 'Function',
+\ 'highlight_matched_char': 'Function',
+\ 'highlight_matched_range': 'Normal',
+\ 'root_markers': '.git'
+\ }}
+
+" Loop through denite options and enable them
+function! s:profile(opts) abort
+  for l:fname in keys(a:opts)
+    for l:dopt in keys(a:opts[l:fname])
+      call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
+    endfor
+  endfor
+endfunction
+
+call s:profile(s:denite_options)
+
+" Change mappings.
+call denite#custom#map(
+      \ 'insert',
+      \ '<C-n>',
+      \ '<denite:move_to_next_line>',
+      \ 'noremap'
+      \)
+call denite#custom#map(
+      \ 'insert',
+      \ '<C-p>',
+      \ '<denite:move_to_previous_line>',
+      \ 'noremap'
+      \)

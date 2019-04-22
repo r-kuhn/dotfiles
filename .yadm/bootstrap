@@ -43,6 +43,7 @@ if [ "$system_type" = "Darwin" ]; then
 	pip3 install --user flake8
 	pip3 install --user pgcli
 	pip3 install --user powerline-status
+	pip3 install --user pynvim
 
 	# Symlink in the vscode settings for Mac
 	if [ ! -L "$HOME/Library/Application Support/Code/User/snippets" ]; then

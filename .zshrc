@@ -88,13 +88,6 @@ antibody bundle < ~/.zsh_plugins.txt
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
 
-# setup fzf
-if [ -e ~/.fzf ]; then
-  PATH=$PATH:~/.fzf/bin
-  source ~/.fzf/shell/key-bindings.zsh
-  source ~/.fzf/shell/completion.zsh
-fi
-
 # fzf + ag configuration
 export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
