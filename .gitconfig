@@ -1,24 +1,10 @@
-[color]
-	ui = auto
 [alias]
-	gpush = push gerrit HEAD:refs/for/master
-	commitsquash = commit --amend --no-edit
-	dpush = push gerrit HEAD:refs/drafts/master
 	co = checkout
-[core]
-[includeIf "gitdir:~/.yadm/"]
-	path = ~/.gitconfig-personal
-[includeIf "gitdir:~/p/"]
-	path = ~/.gitconfig-personal
 [branch]
 	autoSetupRebase = local
 	autoSetupMerge = always
 [commit]
 	verbose = true
-[include]
-	path = .gitconfig.local
-[review "https://gerrit.sg.apple.com"]
-	username = dcardamore
 [user]
 	email = dan@hld.ca
 	name = Dan Cardamore
@@ -29,10 +15,3 @@
   interactive = auto
   ui = true
   pager = true
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[credential "https://source.developers.google.com"]
-	helper = gcloud.sh

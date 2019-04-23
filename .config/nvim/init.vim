@@ -463,6 +463,9 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
+" Show docs for current function in echo area
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if &filetype == 'vim'
@@ -474,12 +477,6 @@ endfunction
 
 " Remap for rename current word.
 nmap <Leader>c* <Plug>(coc-rename)
-
-augroup cocsettings
-	autocmd!
-	" Update signature help on jump placeholder.
-	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
 
 nmap <silent> gd :call <SID>GoToDefinition()<CR>
 nmap <silent> gD <Plug>(coc-declaration)
