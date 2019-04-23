@@ -166,7 +166,6 @@ augroup filetypedetect
 
 augroup END
 
-
 "=============== Airline ============================
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -403,13 +402,13 @@ call denite#custom#map(
 
 " === ALE
 " specify some specific ale linter sources, rest are using defaults
-let g:ale_fixers = ['prettier', 'eslint']
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
       \ 'javascript': ['prettier', 'eslint'],
-      \ 'go': ['gofmt'],
+      \ 'go': ['gofmt', 'goimports'],
       \ 'css': ['prettier'],
       \}
+let g:ale_gofmt_options='-s'
 let g:ale_linters_explicit = 1
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0 "using CoC
@@ -488,7 +487,7 @@ endfunction
 " Remap for rename current word.
 nmap <Leader>c* <Plug>(coc-rename)
 
-nmap <silent> gd :call <SID>GoToDefinition()<CR>
+nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gD <Plug>(coc-declaration)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
