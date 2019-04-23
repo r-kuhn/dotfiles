@@ -74,10 +74,10 @@ set backspace=indent,eol,start  " Makes backspace key more powerful.
 set incsearch                   " Shows the match while typing
 set hlsearch                    " Highlight found searches
 set mouse=a                     "Enable mouse mode
-
 set noerrorbells             " No beeps
 set number                   " Show line numbers
 set showcmd                  " Show me what I'm typing
+set cmdheight=1              " better command section, needed for coc
 set noswapfile               " Don't use swapfile
 set nobackup                 " Don't create annoying backup files
 set splitright               " Split vertical windows right to the current windows
@@ -98,6 +98,7 @@ set updatetime=300
 set pumheight=10             " Completion window max size
 set conceallevel=2           " Concealed text is completely hidden
 set inccommand=split         " preview changes live such as %s
+set signcolumn=yes           " always show sign columns
 
 set shortmess+=c   " Shut off completion messages
 set belloff+=ctrlg " If Vim beeps during completion
@@ -463,8 +464,17 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
-" Show docs for current function in echo area
-autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
@@ -501,6 +511,7 @@ let g:vista_executive_for = {
   \ }
 let g:vista#renderer#enable_icon = 0
 
+nnoremap <silent> <space>d  :<C-u>CocList diagnostics<cr>
 " fuzzy finder for tags
 nnoremap <silent> <space>o  :<C-u>Vista finder coc<CR>
 " tag list:

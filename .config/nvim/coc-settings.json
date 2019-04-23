@@ -5,6 +5,7 @@
   ],
   "coc.preferences.jumpCommand": "split",
   "coc.preferences.formatOnType": true,
+  "coc.preferences.hoverTarget": "echo",
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "javascript",
@@ -21,6 +22,7 @@
   "diagnostic.hintSign": ">>",
   "diagnostic.infoSign": "◉",
   "diagnostic.errorSign": "✘",
+  "diagnostic.messageTarget": "echo",
   "diagnostic.warningSign": "⚠",
   "diagnostic.virtualText": true,
   "diagnostic.checkCurrentLine": false,
