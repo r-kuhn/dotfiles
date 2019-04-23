@@ -107,7 +107,7 @@ alias l='ls -lFh'
 alias -g R='| rg'
 alias -g A='| ag'
 alias grep='grep --color'
-alias stmux='tmux new-session -sAD -s main'
+alias tmux='tmux attach|| tmux'
 
 source ~/.zsh_functions
 

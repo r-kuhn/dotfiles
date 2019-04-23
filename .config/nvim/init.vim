@@ -1,41 +1,46 @@
 " vim: sw=2 sw=2 et
-" I use the same vimrc for both nvim and vim
+"
+" TODO:
+"   * neoclide/coc-list for denite type work
+"   * move all plugin config together.  if the mappings are separate join
+"   them.
+"
+"
+" Notes:
+"   Good Configs to reference:
+"     * https://github.com/fannheyward/init.vim/blob/master/init.vim
+"			* https://github.com/damnever/dotfiles/blob/master/vimrc
+"
 call plug#begin('~/.vim/plugged')
 
 Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets' " snippets documented here: https://github.com/honza/vim-snippets
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
-Plug 'elzr/vim-json', {'for' : 'json'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " nixos doesn't install this nicely
-Plug 'fatih/vim-hclfmt'
-Plug 'godlygeek/tabular'
-Plug 'hashivim/vim-hashicorp-tools'
 Plug 'Shougo/denite.nvim', {'do': ':UpdateRemotePlugins' } " Fuzzy finding, buffer management
-Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 't9md/vim-choosewin'
+Plug 't9md/vim-choosewin' " hit '-' to pick a window
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'tpope/vim-commentary'
-Plug 'airblade/vim-gitgutter' " +/-/~ signs in the gutter<Paste>
-"Plug 'ervandew/supertab'  " tab autocompletion
+Plug 'tpope/vim-commentary' " gc to comment out sections
 Plug 'luochen1990/rainbow' " Rainbow parenthesis
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'jreybert/vimagit'
+Plug 'mhinz/vim-signify' " git gutter
+Plug 'tpope/vim-fugitive' " git handling
+Plug 'jreybert/vimagit' " git hunk handling
 Plug 'mhinz/vim-startify' "fancy start screen
-Plug 'mhartington/oceanic-next' " Color scheme
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'mhartington/oceanic-next' " Color scheme for 24-bit
+Plug 'NLKNguyen/papercolor-theme' " color scheme for 8-bit
 Plug 'mattn/emmet-vim' " html faster editing
-
-" New plugins:
-Plug 'sheerun/vim-polyglot' " Better syntax highlighting
+Plug 'liuchengxu/vista.vim', {'on': 'Vista' } " LSP tag browsing
+Plug 'sheerun/vim-polyglot' " handle most file types
 Plug 'w0rp/ale' " Linting
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " language server
+Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
@@ -44,10 +49,6 @@ Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
-
-" End of new plugins
-
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 
@@ -73,10 +74,10 @@ set backspace=indent,eol,start  " Makes backspace key more powerful.
 set incsearch                   " Shows the match while typing
 set hlsearch                    " Highlight found searches
 set mouse=a                     "Enable mouse mode
-
 set noerrorbells             " No beeps
 set number                   " Show line numbers
 set showcmd                  " Show me what I'm typing
+set cmdheight=1              " better command section, needed for coc
 set noswapfile               " Don't use swapfile
 set nobackup                 " Don't create annoying backup files
 set splitright               " Split vertical windows right to the current windows
@@ -97,6 +98,7 @@ set updatetime=300
 set pumheight=10             " Completion window max size
 set conceallevel=2           " Concealed text is completely hidden
 set inccommand=split         " preview changes live such as %s
+set signcolumn=yes           " always show sign columns
 
 set shortmess+=c   " Shut off completion messages
 set belloff+=ctrlg " If Vim beeps during completion
@@ -164,14 +166,12 @@ augroup filetypedetect
 
 augroup END
 
-
 "=============== Airline ============================
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
-
 
 "=====================================================
 "===================== MAPPINGS ======================
@@ -193,35 +193,12 @@ augroup quickfix
     autocmd FileType qf setlocal wrap
 augroup END
 
-" Enter automatically into the files directory
-"autocmd BufEnter * silent! lcd %:p:h
-
-" Automatically resize screens to be equally the same
-" autocmd VimResized * wincmd =
-
 " Fast saving
 nnoremap <leader>w :w!<cr>
 nnoremap <silent> <leader>q :q!<CR>
 
 " Center the screen
 nnoremap <space> zz
-
-" Remove search highlight
-" nnoremap <leader><space> :nohlsearch<CR>
-function! s:clear_highlight()
-  let @/ = ""
-  call go#guru#ClearSameIds()
-endfunction
-nnoremap <silent> <leader><space> :<C-u>call <SID>clear_highlight()<CR>
-
-" echo the number under the cursor as binary, useful for bitwise operations
-function! s:echoBinary()
-  echo printf("%08b", expand('<cword>'))
-endfunction
-nnoremap <silent> gb :<C-u>call <SID>echoBinary()<CR>
-
-" Source the current Vim file
-nnoremap <leader>pr :Runtime<CR>
 
 " Close all but the current one
 nnoremap <leader>o :only<CR>
@@ -262,17 +239,22 @@ if has('terminal')
   " NOTE(arslan): startinsert doesn't work in Terminal-normal mode.
   " autocmd WinEnter * if &buftype == 'terminal' | call feedkeys("i") | endif
 endif
+" Time out on key codes but not mappings.
+" Basically this makes terminal Vim work sanely.
+if !has('gui_running')
+  set notimeout
+  set ttimeout
+  set ttimeoutlen=10
+  augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+  augroup END
+endif
 
-" Visual linewise up and down by default (and use gj gk to go quicker)
-noremap <Up> gk
-noremap <Down> gj
-noremap j gj
-noremap k gk
 
-" Exit on j
+" hit jj for escape
 imap jj <Esc>
-
-nnoremap <F6> :setlocal spell! spell?<CR>
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -301,19 +283,6 @@ map q: :q
 vnoremap / <Esc>/\%><C-R>=line("'<")-1<CR>l\%<<C-R>=line("'>")+1<CR>l
 vnoremap ? <Esc>?\%><C-R>=line("'<")-1<CR>l\%<<C-R>=line("'>")+1<CR>l
 
-" Time out on key codes but not mappings.
-" Basically this makes terminal Vim work sanely.
-if !has('gui_running')
-  set notimeout
-  set ttimeout
-  set ttimeoutlen=10
-  augroup FastEscape
-    autocmd!
-    au InsertEnter * set timeoutlen=0
-    au InsertLeave * set timeoutlen=1000
-  augroup END
-endif
-
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
@@ -324,29 +293,6 @@ function! s:create_go_doc_comment()
   execute ":norm I// \<Esc>$"
 endfunction
 nnoremap <leader>ui :<C-u>call <SID>create_go_doc_comment()<CR>
-
-" Improve completion for coc:
-inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
-
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Remap for rename current word.
-nmap <Leader>c* <Plug>(coc-rename)
-
-augroup cocsettings
-	autocmd!
-	" Update signature help on jump placeholder.
-	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
 
 " === Denite shorcuts === "
 "   ;         - Browser currently open buffers
@@ -360,27 +306,20 @@ nnoremap <leader>f :<C-u>Denite grep:. -no-empty -mode=normal<CR>
 nnoremap <leader>* :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
 
 
-"===================== === === ======================
 "===================== PLUGINS ======================
-"===================== === === ======================
-let g:deoplete#enable_at_startup = 1
 let g:rainbow_active = 1
-
-" ==================== delimitMate ====================
-let g:delimitMate_expand_cr = 1
-let g:delimitMate_expand_space = 1
-let g:delimitMate_smart_quotes = 1
-let g:delimitMate_expand_inside_quotes = 0
-let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
-
-" ==================== NerdTree ====================
-" For toggling
 noremap <Leader>n :NERDTreeToggle<cr>
-"noremap <Leader>f :NERDTreeFind<cr>
-
 let NERDTreeShowHidden=1
+" hit '-' to choose windows
+nmap  -  <Plug>(choosewin)
+let g:vim_json_syntax_conceal = 0
 
-" ==================== markdown ====================
+" === Signify
+let g:signify_vcs_list = ['git']
+nmap <silent> gj <plug>(signify-next-hunk)
+nmap <silent> gk <plug>(signify-prev-hunk)
+
+" === markdown
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_fenced_languages = ['go=go', 'viml=vim', 'bash=sh']
 let g:vim_markdown_conceal = 0
@@ -389,33 +328,15 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_no_extensions_in_markdown = 1
 
-" ==================== vim-json ====================
-let g:vim_json_syntax_conceal = 0
-
-" ==================== Completion + Snippet ====================
-" Ultisnips has native support for SuperTab. SuperTab does omnicompletion by
-" pressing tab. I like this better than autocompletion, but it's still fast.
-" let g:SuperTabDefaultCompletionType = "context"
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-
-" ==================== Various other plugin settings ====================
-nmap  -  <Plug>(choosewin)
-
-" ================== Denite setup =================="
+" === Denite
 " Use ripgrep for searching current directory for files
 " By default, ripgrep will respect rules in .gitignore
 "   --files: Print each file that would be searched (but don't search)
 "   --glob:  Include or exclues files for searching that match the given glob
 "            (aka ignore .git files)
-"
 call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
-
 " Use ripgrep in place of "grep"
 call denite#custom#var('grep', 'command', ['rg'])
-
 " Custom options for ripgrep
 "   --vimgrep:  Show results with every match on it's own line
 "   --hidden:   Search hidden directories and files
@@ -479,15 +400,15 @@ call denite#custom#map(
       \ 'noremap'
       \)
 
-" ============ ALE
+" === ALE
 " specify some specific ale linter sources, rest are using defaults
-let g:ale_fixers = ['prettier', 'eslint']
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
       \ 'javascript': ['prettier', 'eslint'],
-      \ 'go': ['gofmt'],
+      \ 'go': ['gofmt', 'goimports'],
       \ 'css': ['prettier'],
       \}
+let g:ale_gofmt_options='-s'
 let g:ale_linters_explicit = 1
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0 "using CoC
@@ -507,10 +428,6 @@ let g:ale_go_golangci_lint_package = 1
 
 let g:ale_set_signs = 1
 let g:ale_sign_column_always = 1
-" let g:ale_sign_error = "◉"
-" let g:ale_sign_warning = "◉"
-" highlight ALEErrorSign ctermfg=9 ctermbg=15 guifg=#C30500 guibg=#F5F5F5
-" highlight ALEWarningSign ctermfg=11 ctermbg=15 guifg=#ED6237 guibg=#F5F5F5
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
@@ -541,6 +458,63 @@ function! <SID>LocationNext()
     endtry
 endfunction
 
-" COC
-" Disable automatically opening quickfix list upon errors.
-"let g:coc_auto_copen = v:false
+" === COC
+" Improve completion for coc:
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Remap for rename current word.
+nmap <Leader>c* <Plug>(coc-rename)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gD <Plug>(coc-declaration)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gn <Plug>(coc-rename)
+nmap <silent> ge <Plug>(coc-diagnostic-next)
+nmap <silent> gx <Plug>(coc-fix-current)
+nmap <silent> ga <Plug>(coc-codeaction)
+
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_executive_for = {
+  \ 'go': 'coc',
+  \ 'sh': 'coc',
+  \ }
+let g:vista#renderer#enable_icon = 0
+
+nnoremap <silent> <space>d  :<C-u>CocList diagnostics<cr>
+" fuzzy finder for tags
+nnoremap <silent> <space>o  :<C-u>Vista finder coc<CR>
+" tag list:
+nnoremap <silent> <space>t  :<C-u>Vista coc<CR>
+" toggle vista window
+nnoremap <silent> <space>v  :<C-u>Vista!<CR>
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>
