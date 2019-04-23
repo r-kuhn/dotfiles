@@ -1,4 +1,10 @@
 {
+  "coc.source.file.triggerCharacters": [
+    "/",
+    "."
+  ],
+  "coc.preferences.jumpCommand": "split",
+  "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "javascript",
@@ -9,41 +15,55 @@
     "json",
     "go",
   ],
-  "suggest": {
-    //"autoTrigger": "always",
-		"triggerAfterInsertEnter": true,
-		"timeout": 300,
-		"noselect": false,
-		//"keepCompleteopt": true,
-		"minTriggerInputLength": 1,
-		"acceptSuggestionOnCommitCharacter": true,
-    "snippetIndicator": "☆",
-		//"enablePreview": true,
-		//"messageLevel": "error",
-		//"numberSelect": false,
-		//"fixInsertedWord": true,
-		//"jumpCommand": "split",
-		//"hoverTarget": true
+  "codeLens.enable": true,
+  "diagnostic.enable": true,
+  "diagnostic.enableMessage": "always",
+  "diagnostic.hintSign": ">>",
+  "diagnostic.infoSign": "◉",
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.virtualText": true,
+  "diagnostic.checkCurrentLine": false,
+  "diagnostic.virtualTextPrefix": "<== ",
+  "signature.target": "echo",
+  // for coc-list
+  "list.indicator": ">",
+  "list.selectedSignText": "*",
+  "list.normalMappings": {
+    "v": "action:vsplit",
+    "x": "action:split"
   },
-  "diagnostic": {
-    "displayByAle": false,
-		"enable": true,
-		//"signOffset": 1000,
-		"errorSign": "•",
-		"warningSign": "•",
-		"infoSign": "•",
-		"hintSign": "•",
-		"virtualText": true,
-		"virtualTextPrefix": "<!-- ",
-		"enableMessage": "never"
+  "list.insertMappings": {
+    "<C-n>": "normal:j",
+    "<C-p>": "normal:k",
+    "<C-x>": "action:split",
+    "<C-v>": "action:vsplit"
   },
-  "codeLens": {
-    "enable": true,
+  "pairs.disableLanguages": ["vim"],
+  "snippets.extends": {
+      "cpp": ["c"],
+      "javascriptreact": ["javascript"],
+      "typescript": ["javascript"]
   },
+  "snippets.shortcut": "S",
+  "snippets.autoTrigger": true,
+  "snippets.ultisnips.enable": true,
+  "snippets.ultisnips.directories": [
+    "UltiSnips",
+    "gosnippets/UltiSnips"
+  ],
+  "suggest.triggerAfterInsertEnter": true,
+  "suggest.timeout": 500,
+  "suggest.noselect": false,
+  "suggest.minTriggerInputLength": 1,
+  "suggest.acceptSuggestionOnCommitCharacter": true,
+  "suggest.snippetIndicator": "☆",
+  "suggest.detailMaxLength": 111,
+  "suggest.maxCompleteItemCount": 50,
   "languageserver": {
     "golang": {
       "command": "gopls",
-      "rootPatterns": ["go.mod", ".git/"],
+      "rootPatterns": ["go.mod", ".git/", ".hg/", "vendor/"],
       "filetypes": ["go"]
     },
     "dockerfile": {
@@ -65,20 +85,5 @@
       "filetypes": ["vim", "eruby", "markdown"]
     }
   },
-  "snippets": {
-    "extends": {
-      "cpp": ["c"],
-      "javascriptreact": ["javascript"],
-      "typescript": ["javascript"]
-    },
-    "shortcut": "S",
-    "autoTrigger": true,
-    "ultisnips": {
-      "enabled": true,
-      "directories": [
-        "UltiSnips",
-        "gosnippets/UltiSnips"
-      ]
-    }
-  }
+  "python.linting.flake8Enabled": true
 }

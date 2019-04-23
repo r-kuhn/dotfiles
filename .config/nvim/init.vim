@@ -1,9 +1,24 @@
 " vim: sw=2 sw=2 et
-" I use the same vimrc for both nvim and vim
+"
+" TODO:
+"   * neoclide/coc-list for denite type work
+"   * delete delimitMate from config if coc-pairs works well
+"   * move all plugin config together.  if the mappings are separate join
+"   them.
+" 	* vim-signify
+"		* vista.vim
+"		* editorconfig-vim
+"
+"
+" Notes:
+"   Good Configs to reference:
+"     * https://github.com/fannheyward/init.vim/blob/master/init.vim
+"			* https://github.com/damnever/dotfiles/blob/master/vimrc
+"
 call plug#begin('~/.vim/plugged')
 
 Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'Raimondi/delimitMate'
+"Plug 'Raimondi/delimitMate'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets' " snippets documented here: https://github.com/honza/vim-snippets
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
@@ -21,21 +36,25 @@ Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-commentary'
-Plug 'airblade/vim-gitgutter' " +/-/~ signs in the gutter<Paste>
+" Plug 'airblade/vim-gitgutter' " +/-/~ signs in the gutter<Paste>
+Plug 'mhinz/vim-signify' " git gutter
 "Plug 'ervandew/supertab'  " tab autocompletion
 Plug 'luochen1990/rainbow' " Rainbow parenthesis
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
 Plug 'jreybert/vimagit'
 Plug 'mhinz/vim-startify' "fancy start screen
 Plug 'mhartington/oceanic-next' " Color scheme
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'mattn/emmet-vim' " html faster editing
+Plug 'liuchengxu/vista.vim', {'on': 'Vista' } " LSP tag browsing
 
 " New plugins:
 Plug 'sheerun/vim-polyglot' " Better syntax highlighting
 Plug 'w0rp/ale' " Linting
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " language server
+Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
@@ -171,7 +190,6 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
-
 
 "=====================================================
 "===================== MAPPINGS ======================
@@ -325,28 +343,6 @@ function! s:create_go_doc_comment()
 endfunction
 nnoremap <leader>ui :<C-u>call <SID>create_go_doc_comment()<CR>
 
-" Improve completion for coc:
-inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
-
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Remap for rename current word.
-nmap <Leader>c* <Plug>(coc-rename)
-
-augroup cocsettings
-	autocmd!
-	" Update signature help on jump placeholder.
-	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
 
 " === Denite shorcuts === "
 "   ;         - Browser currently open buffers
@@ -366,19 +362,17 @@ nnoremap <leader>* :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
 let g:deoplete#enable_at_startup = 1
 let g:rainbow_active = 1
 
-" ==================== delimitMate ====================
-let g:delimitMate_expand_cr = 1
-let g:delimitMate_expand_space = 1
-let g:delimitMate_smart_quotes = 1
-let g:delimitMate_expand_inside_quotes = 0
-let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
-
 " ==================== NerdTree ====================
 " For toggling
 noremap <Leader>n :NERDTreeToggle<cr>
 "noremap <Leader>f :NERDTreeFind<cr>
 
 let NERDTreeShowHidden=1
+
+" === Signify
+let g:signify_vcs_list = ['git']
+nmap <silent> gj <plug>(signify-next-hunk)
+nmap <silent> gk <plug>(signify-prev-hunk)
 
 " ==================== markdown ====================
 let g:vim_markdown_folding_disabled = 1
@@ -541,6 +535,57 @@ function! <SID>LocationNext()
     endtry
 endfunction
 
-" COC
-" Disable automatically opening quickfix list upon errors.
-"let g:coc_auto_copen = v:false
+" === COC
+
+" Improve completion for coc:
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Remap for rename current word.
+nmap <Leader>c* <Plug>(coc-rename)
+
+augroup cocsettings
+	autocmd!
+	" Update signature help on jump placeholder.
+	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+nmap <silent> gd :call <SID>GoToDefinition()<CR>
+nmap <silent> gD <Plug>(coc-declaration)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gn <Plug>(coc-rename)
+nmap <silent> ge <Plug>(coc-diagnostic-next)
+nmap <silent> gx <Plug>(coc-fix-current)
+nmap <silent> ga <Plug>(coc-codeaction)
+
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_executive_for = {
+  \ 'go': 'coc',
+  \ 'sh': 'coc',
+  \ }
+let g:vista#renderer#enable_icon = 0
+
+" fuzzy finder for tags
+nnoremap <silent> <space>o  :<C-u>Vista finder coc<CR>
+" tag list:
+nnoremap <silent> <space>t  :<C-u>Vista coc<CR>
+" toggle vista window
+nnoremap <silent> <space>v  :<C-u>Vista!<CR>
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>
