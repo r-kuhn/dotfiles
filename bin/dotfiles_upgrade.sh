@@ -15,8 +15,10 @@ if [ "$system_type" = "Darwin" ]; then
 	npm install -g npm
 	npm config set update-notifier false
 
+  "${HOME}/bin/install-more-tools.sh"
+
   # Upgrade all pip packages
-  pip3 freeze — local | grep -v ‘^\-e’ | cut -d = -f 1 | xargs -n1 pip3 install -U
+  pip3 freeze — local | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U
 fi
 
 

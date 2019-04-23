@@ -20,5 +20,13 @@ go get -u honnef.co/go/tools/cmd/keyify
 go get -u github.com/fatih/motion
 go get -u github.com/koron/iferr
 go get -u github.com/gobuffalo/buffalo/buffalo
-go get github.com/gobuffalo/buffalo-pop
-go get github.com/cespare/reflex
+go get -u github.com/gobuffalo/buffalo-pop
+go get -u github.com/cespare/reflex
+go get -u github.com/mattn/efm-langserver/cmd/efm-langserver
+
+
+# Get npm stuff too
+npm install -g markdownlint-cli
+
+# Python stuff
+pip3 install vim-vint
