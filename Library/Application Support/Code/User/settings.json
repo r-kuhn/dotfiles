@@ -112,7 +112,7 @@
     "vim.useCtrlKeys": true,
     "vim.useSystemClipboard": true,
     "vim.highlightedyank.enable": true,
-    "workbench.colorTheme": "Night Owl",
+    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
     "workbench.fontAliasing": "antialiased",
     "workbench.statusBar.feedback.visible": false,
     "terminal.integrated.fontFamily": "Operator Mono Lig",
@@ -124,5 +124,10 @@
         "WAIT",
         "SCHD"
     ],
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+    "emmet.includeLanguages": {
+        "erb": "html"
+    },
+    "files.autoSave": "afterDelay",
+    "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons"
 }

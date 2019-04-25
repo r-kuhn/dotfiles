@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+go get -u golang.org/x/tools/cmd/gopls
 go get -u github.com/klauspost/asmfmt/cmd/asmfmt
 go get -u github.com/derekparker/delve/cmd/dlv
 go get -u github.com/kisielk/errcheck
