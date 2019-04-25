@@ -42,7 +42,7 @@ if [ "$system_type" = "Darwin" ]; then
 	pip3 install --user pylint
 	pip3 install --user flake8
 	pip3 install --user pgcli
-	pip3 install --user powerline-status
+	# pip3 install --user powerline-status
 	pip3 install --user pynvim
 
 	# Symlink in the vscode settings for Mac
@@ -75,4 +75,3 @@ if command -v nvim >/dev/null 2>&1; then
 	echo "Bootstraping nvim"
 	nvim '+PlugInstall' '+UpdateRemotePlugins' '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 fi
-
