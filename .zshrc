@@ -103,6 +103,7 @@ alias nano='nvim'
 alias vim='nvim'
 export EDITOR=nvim
 
+alias e='emacs'
 alias l='ls -lFh'
 alias -g R='| rg'
 alias -g A='| ag'

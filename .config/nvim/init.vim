@@ -256,8 +256,9 @@ if !has('gui_running')
 endif
 
 
-" hit jj for escape
+" hit jj or fd for escape
 imap jj <Esc>
+imap fd <Esc>
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
