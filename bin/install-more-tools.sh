@@ -27,7 +27,8 @@ go get -u github.com/mattn/efm-langserver/cmd/efm-langserver
 
 
 # Get npm stuff too
-npm install -g markdownlint-cli
+npm i -g markdownlint-cli
+npm i -g bash-language-server
 
 # Python stuff
 pip3 install vim-vint

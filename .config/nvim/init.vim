@@ -26,6 +26,8 @@ Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-commentary' " gc to comment out sections
+"Plug 'godlygeek/tabular'  " for markdown mode.   Don't think I need it
+Plug 'plasticboy/vim-markdown' " for markdown
 Plug 'luochen1990/rainbow' " Rainbow parenthesis
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -155,7 +157,7 @@ augroup filetypedetect
 
   autocmd BufNewFile,BufRead *.ino setlocal noet ts=4 sw=4 sts=4
   autocmd BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
-  autocmd BufNewFile,BufRead *.md setlocal noet ts=4 sw=4
+  autocmd BufNewFile,BufRead *.md setlocal et ts=4 sw=4 tw=80
   autocmd BufNewFile,BufRead *.html setlocal noet ts=4 sw=4 filetype=eruby
   autocmd BufNewFile,BufRead *.vim setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.hcl setlocal expandtab shiftwidth=2 tabstop=2

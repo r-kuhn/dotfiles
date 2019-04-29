@@ -70,7 +70,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(monokai-pro-theme)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -194,6 +194,7 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(spacemacs-dark
+                         monokai-pro
                          spacemacs-light)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
@@ -468,7 +469,7 @@ before packages are loaded."
 
   (setq-default dotspacemacs-configuration-layers
                 '((syntax-checking :variables syntax-checking-use-original-bitmaps t)))
- 
+
   (setq-default dotspacemacs-configuration-layers '(
                                                     (org :variables org-enable-github-support t)))
 
