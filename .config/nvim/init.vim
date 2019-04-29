@@ -33,7 +33,8 @@ Plug 'mhinz/vim-signify' " git gutter
 Plug 'tpope/vim-fugitive' " git handling
 Plug 'jreybert/vimagit' " git hunk handling
 Plug 'mhinz/vim-startify' "fancy start screen
-Plug 'mhartington/oceanic-next' " Color scheme for 24-bit
+"Plug 'mhartington/oceanic-next' " Color scheme for 24-bit
+Plug 'phanviet/vim-monokai-pro'
 Plug 'NLKNguyen/papercolor-theme' " color scheme for 8-bit
 Plug 'mattn/emmet-vim' " html faster editing
 Plug 'liuchengxu/vista.vim', {'on': 'Vista' } " LSP tag browsing
@@ -125,10 +126,12 @@ syntax enable
 set background=dark
 if ($COLORTERM=="truecolor")
   set termguicolors  " 24-bit color
-  let g:oceanic_next_terminal_bold = 1
-  let g:oceanic_next_terminal_italic = 1
-  colorscheme OceanicNext
-  let g:airline_theme="oceanicnext"
+  colorscheme monokai_pro
+  let g:airline_theme="base16_monokai"
+  " let g:oceanic_next_terminal_bold = 1
+  " let g:oceanic_next_terminal_italic = 1
+  " colorscheme OceanicNext
+  " let g:airline_theme="oceanicnext"
 else
   set t_Co=256  " 256-bit color
   colorscheme PaperColor

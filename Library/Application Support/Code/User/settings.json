@@ -7,7 +7,7 @@
     "editor.cursorBlinking": "smooth",
     "editor.fontFamily": "Operator Mono Lig",
     "editor.fontLigatures": true,
-    "editor.fontSize": 15,
+    "editor.fontSize": 14,
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.minimap.enabled": false,
@@ -31,10 +31,8 @@
         "goToTypeDefinition": true,
         "documentSymbols": true,
     },
-    "go.lintFlags": [
-        "--fast"
-    ],
-    "go.lintTool": "golangci-lint",
+    // "go.lintFlags": [ "--fast" ],
+    // "go.lintTool": "golangci-lint",
     "go.useLanguageServer": true,
     "go.vetOnSave": "off",
     "[go]": {
@@ -108,14 +106,14 @@
             ]
         }
     ],
-    "vim.sneak": true,
+    "vim.sneak": false,
     "vim.useCtrlKeys": true,
     "vim.useSystemClipboard": true,
     "vim.highlightedyank.enable": true,
-    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
+    "workbench.colorTheme": "Monokai Pro (Filter Ristretto)",
     "workbench.fontAliasing": "antialiased",
     "workbench.statusBar.feedback.visible": false,
-    "terminal.integrated.fontFamily": "Operator Mono Lig",
+    "terminal.integrated.fontFamily": "Fira Code",
     "terminal.integrated.fontSize": 15,
     "terminal.integrated.scrollback": 5000,
     "org.todoKeywords": [
@@ -128,6 +126,6 @@
     "emmet.includeLanguages": {
         "erb": "html"
     },
-    "files.autoSave": "afterDelay",
-    "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons"
+    "workbench.iconTheme": "Monokai Pro (Filter Ristretto) Icons",
+    "extensions.ignoreRecommendations": false
 }
