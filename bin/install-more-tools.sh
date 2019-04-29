@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+go get -u golang.org/x/tools/cmd/gopls
 go get -u github.com/klauspost/asmfmt/cmd/asmfmt
 go get -u github.com/derekparker/delve/cmd/dlv
 go get -u github.com/kisielk/errcheck
@@ -20,5 +21,13 @@ go get -u honnef.co/go/tools/cmd/keyify
 go get -u github.com/fatih/motion
 go get -u github.com/koron/iferr
 go get -u github.com/gobuffalo/buffalo/buffalo
-go get github.com/gobuffalo/buffalo-pop
-go get github.com/cespare/reflex
+go get -u github.com/gobuffalo/buffalo-pop
+go get -u github.com/cespare/reflex
+go get -u github.com/mattn/efm-langserver/cmd/efm-langserver
+
+
+# Get npm stuff too
+npm install -g markdownlint-cli
+
+# Python stuff
+pip3 install vim-vint

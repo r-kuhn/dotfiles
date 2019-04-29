@@ -7,7 +7,7 @@
     "editor.cursorBlinking": "smooth",
     "editor.fontFamily": "Operator Mono Lig",
     "editor.fontLigatures": true,
-    "editor.fontSize": 13,
+    "editor.fontSize": 15,
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.minimap.enabled": false,
@@ -22,12 +22,14 @@
     "go.buildOnSave": "off",
     "go.formatTool": "goimports",
     "go.languageServerExperimentalFeatures": {
-        "autoComplete": true,
         "format": true,
+        "autoComplete": true,
+        "diagnostics": true,
         "goToDefinition": true,
-        "goToTypeDefinition": true,
         "hover": true,
-        "signatureHelp": true
+        "signatureHelp": true,
+        "goToTypeDefinition": true,
+        "documentSymbols": true,
     },
     "go.lintFlags": [
         "--fast"
@@ -35,10 +37,21 @@
     "go.lintTool": "golangci-lint",
     "go.useLanguageServer": true,
     "go.vetOnSave": "off",
+    "[go]": {
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "gopls": {
+        "enablePlaceholders": true,
+        "enhancedHover": true
+    },
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "terraform.telemetry.enabled": false,
-    "vim.easymotion": true,
+    "vim.easymotion": false,
     "vim.handleKeys": {
         "<C-a>": false,
         "<C-f>": false
@@ -57,6 +70,24 @@
         }
     ],
     "vim.leader": "<space>",
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        },
+    ],
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "after": [
@@ -80,8 +111,23 @@
     "vim.sneak": true,
     "vim.useCtrlKeys": true,
     "vim.useSystemClipboard": true,
-    "workbench.colorTheme": "Solarized Dark",
+    "vim.highlightedyank.enable": true,
+    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
     "workbench.fontAliasing": "antialiased",
-    "workbench.iconTheme": "vscode-icons",
-    "workbench.statusBar.feedback.visible": false
+    "workbench.statusBar.feedback.visible": false,
+    "terminal.integrated.fontFamily": "Operator Mono Lig",
+    "terminal.integrated.fontSize": 15,
+    "terminal.integrated.scrollback": 5000,
+    "org.todoKeywords": [
+        "TODO",
+        "DONE",
+        "WAIT",
+        "SCHD"
+    ],
+    "window.zoomLevel": 0,
+    "emmet.includeLanguages": {
+        "erb": "html"
+    },
+    "files.autoSave": "afterDelay",
+    "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons"
 }

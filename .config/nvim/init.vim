@@ -314,6 +314,7 @@ let NERDTreeShowHidden=1
 " hit '-' to choose windows
 nmap  -  <Plug>(choosewin)
 let g:vim_json_syntax_conceal = 0
+let g:UltiSnipsUsePythonVersion = 3
 
 " === Signify
 let g:signify_vcs_list = ['git']
