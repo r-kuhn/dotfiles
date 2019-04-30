@@ -33,7 +33,11 @@ setopt histignorespace
 setopt histverify
 setopt histexpiredupsfirst
 
+# Emacs mode:
 bindkey -e
+# Vi mode
+#bindkey -v
+#export KEYTIMEOUT=1
 
 autoload -Uz compinit
 compinit

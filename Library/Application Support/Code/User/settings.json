@@ -110,7 +110,7 @@
     "vim.useCtrlKeys": true,
     "vim.useSystemClipboard": true,
     "vim.highlightedyank.enable": true,
-    "workbench.colorTheme": "Monokai Pro (Filter Ristretto)",
+    "workbench.colorTheme": "Night Owl Light",
     "workbench.fontAliasing": "antialiased",
     "workbench.statusBar.feedback.visible": false,
     "terminal.integrated.fontFamily": "Fira Code",
@@ -124,7 +124,8 @@
     ],
     "window.zoomLevel": 0,
     "emmet.includeLanguages": {
-        "erb": "html"
+        "erb": "erb",
+        "html": "html"
     },
     "workbench.iconTheme": "Monokai Pro (Filter Ristretto) Icons",
     "extensions.ignoreRecommendations": false
