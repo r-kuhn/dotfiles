@@ -25,6 +25,10 @@ go get -u github.com/gobuffalo/buffalo-pop
 go get -u github.com/cespare/reflex
 go get -u github.com/mattn/efm-langserver/cmd/efm-langserver
 
+# for spacemacs
+go get -u -v golang.org/x/tools/cmd/godoc
+go get -u -v github.com/cweill/gotests/...
+go get -u github.com/haya14busa/gopkgs/cmd/gopkgs
 
 # Get npm stuff too
 npm i -g markdownlint-cli
