@@ -110,11 +110,11 @@
     "vim.useCtrlKeys": true,
     "vim.useSystemClipboard": true,
     "vim.highlightedyank.enable": true,
-    "workbench.colorTheme": "Night Owl Light",
+    "workbench.colorTheme": "Monokai Pro (Filter Ristretto)",
     "workbench.fontAliasing": "antialiased",
     "workbench.statusBar.feedback.visible": false,
     "terminal.integrated.fontFamily": "Fira Code",
-    "terminal.integrated.fontSize": 15,
+    "terminal.integrated.fontSize": 14,
     "terminal.integrated.scrollback": 5000,
     "org.todoKeywords": [
         "TODO",
@@ -128,5 +128,6 @@
         "html": "html"
     },
     "workbench.iconTheme": "Monokai Pro (Filter Ristretto) Icons",
-    "extensions.ignoreRecommendations": false
+    "extensions.ignoreRecommendations": false,
+    "breadcrumbs.enabled": false
 }

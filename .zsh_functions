@@ -4,7 +4,8 @@ function random_string() {
 }
 
 function reflexgorun() {
-  "$@" ; reflex -R '^node_modules/' -r '\.(go$|fizz$|toml$|html$)' -- $@
+  cmd="$@"
+  sh -c "${cmd}" ; reflex -R '^node_modules/' -r '\.(go$|fizz$|toml$|html$)' -- sh -c "${cmd}"
 }
 
 function true_colours() {
@@ -30,4 +31,3 @@ function initop () {
   fi
   eval "$(op signin my)"
 }
-
