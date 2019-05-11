@@ -1,133 +1,111 @@
 {
-    "bracket-pair-colorizer-2.showBracketsInGutter": true,
-    "bracket-pair-colorizer-2.showBracketsInRuler": true,
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-    },
-    "editor.cursorBlinking": "smooth",
-    "editor.fontFamily": "Operator Mono Lig",
-    "editor.fontLigatures": true,
-    "editor.fontSize": 14,
-    "editor.formatOnPaste": true,
+  "bracket-pair-colorizer-2.showBracketsInGutter": true,
+  "bracket-pair-colorizer-2.showBracketsInRuler": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "editor.cursorBlinking": "smooth",
+  "editor.fontFamily": "Operator Mono Lig",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "git.autofetch": true,
+  "gitlens.advanced.telemetry.enabled": false,
+  "go.alternateTools": {
+    "go-langserver": "gopls"
+  },
+  "go.buildOnSave": "off",
+  "go.formatTool": "goimports",
+  "go.languageServerExperimentalFeatures": {
+    "format": true,
+    "autoComplete": true,
+    "diagnostics": true,
+    "goToDefinition": true,
+    "hover": true,
+    "signatureHelp": true,
+    "goToTypeDefinition": true,
+    "documentSymbols": true
+  },
+  // "go.lintFlags": [ "--fast" ],
+  // "go.lintTool": "golangci-lint",
+  "go.useLanguageServer": true,
+  "go.vetOnSave": "off",
+  "[go]": {
+    "editor.insertSpaces": false,
     "editor.formatOnSave": true,
-    "editor.minimap.enabled": false,
-    "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
-    "files.trimTrailingWhitespace": true,
-    "git.autofetch": true,
-    "gitlens.advanced.telemetry.enabled": false,
-    "go.alternateTools": {
-        "go-langserver": "gopls"
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "gopls": {
+    "enablePlaceholders": true,
+    "enhancedHover": true
+  },
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+  "terraform.telemetry.enabled": false,
+  "vim.easymotion": false,
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  },
+  "vim.hlsearch": true,
+  "vim.incsearch": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "after": ["<Esc>"],
+      "before": ["j", "j"]
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
     },
-    "go.buildOnSave": "off",
-    "go.formatTool": "goimports",
-    "go.languageServerExperimentalFeatures": {
-        "format": true,
-        "autoComplete": true,
-        "diagnostics": true,
-        "goToDefinition": true,
-        "hover": true,
-        "signatureHelp": true,
-        "goToTypeDefinition": true,
-        "documentSymbols": true,
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "after": ["d", "d"],
+      "before": ["<leader>", "d"]
     },
-    // "go.lintFlags": [ "--fast" ],
-    // "go.lintTool": "golangci-lint",
-    "go.useLanguageServer": true,
-    "go.vetOnSave": "off",
-    "[go]": {
-        "editor.insertSpaces": false,
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": true
-        }
-    },
-    "gopls": {
-        "enablePlaceholders": true,
-        "enhancedHover": true
-    },
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
-    "terraform.telemetry.enabled": false,
-    "vim.easymotion": false,
-    "vim.handleKeys": {
-        "<C-a>": false,
-        "<C-f>": false
-    },
-    "vim.hlsearch": true,
-    "vim.incsearch": true,
-    "vim.insertModeKeyBindings": [
-        {
-            "after": [
-                "<Esc>"
-            ],
-            "before": [
-                "j",
-                "j"
-            ]
-        }
-    ],
-    "vim.leader": "<space>",
-    "vim.visualModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                ">"
-            ],
-            "commands": [
-                "editor.action.indentLines"
-            ]
-        },
-        {
-            "before": [
-                "<"
-            ],
-            "commands": [
-                "editor.action.outdentLines"
-            ]
-        },
-    ],
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "after": [
-                "d",
-                "d"
-            ],
-            "before": [
-                "<leader>",
-                "d"
-            ]
-        },
-        {
-            "before": [
-                "<C-n>"
-            ],
-            "commands": [
-                ":nohl"
-            ]
-        }
-    ],
-    "vim.sneak": false,
-    "vim.useCtrlKeys": true,
-    "vim.useSystemClipboard": true,
-    "vim.highlightedyank.enable": true,
-    "workbench.colorTheme": "Monokai Pro (Filter Ristretto)",
-    "workbench.fontAliasing": "antialiased",
-    "workbench.statusBar.feedback.visible": false,
-    "terminal.integrated.fontFamily": "Fira Code",
-    "terminal.integrated.fontSize": 14,
-    "terminal.integrated.scrollback": 5000,
-    "org.todoKeywords": [
-        "TODO",
-        "DONE",
-        "WAIT",
-        "SCHD"
-    ],
-    "window.zoomLevel": 0,
-    "emmet.includeLanguages": {
-        "erb": "erb",
-        "html": "html"
-    },
-    "workbench.iconTheme": "Monokai Pro (Filter Ristretto) Icons",
-    "extensions.ignoreRecommendations": false,
-    "breadcrumbs.enabled": false
+    {
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
+    }
+  ],
+  "vim.sneak": false,
+  "vim.useCtrlKeys": true,
+  "vim.useSystemClipboard": true,
+  "vim.highlightedyank.enable": true,
+  "workbench.fontAliasing": "antialiased",
+  "workbench.statusBar.feedback.visible": false,
+  "terminal.integrated.fontFamily": "Fira Code",
+  "terminal.integrated.fontSize": 14,
+  "window.zoomLevel": 0,
+  "emmet.includeLanguages": {
+    "erb": "erb",
+    "html": "html"
+  },
+  "workbench.iconTheme": "Monokai Pro (Filter Machine) Icons",
+  "extensions.ignoreRecommendations": false,
+  "breadcrumbs.enabled": false,
+  "workbench.colorTheme": "Monokai Pro (Filter Machine)",
+  "workbench.startupEditor": "newUntitledFile",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "mjml.autoPreview": true,
+  "mjml.beautifyHtmlOutput": true,
+  "mjml.templateGallery": true,
+  "errorLens.warningColor": "rgba(240,0,0,0.4)"
 }
