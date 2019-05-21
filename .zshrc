@@ -66,17 +66,17 @@ esac
 
 
 # POWERLEVEL9K
-export DEFAULT_USER=dan
-POWERLEVEL9K_MODE='powerline'
-POWERLEVEL9K_STATUS_OK=false
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs)
-POWERLEVEL9K_HOME_SUB_ICON=''
-POWERLEVEL9K_FOLDER_ICON=''
-POWERLEVEL9K_ETC_ICON=''
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-POWERLEVEL9K_SHORTEN_DELIMITER=""
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+# export DEFAULT_USER=dan
+# POWERLEVEL9K_MODE='powerline'
+# POWERLEVEL9K_STATUS_OK=false
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs)
+# POWERLEVEL9K_HOME_SUB_ICON=''
+# POWERLEVEL9K_FOLDER_ICON=''
+# POWERLEVEL9K_ETC_ICON=''
+# POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+# POWERLEVEL9K_SHORTEN_DELIMITER=""
+# POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 
 # Pure prompt
 PURE_CMD_MAX_EXEC_TIME=5
@@ -101,6 +101,15 @@ export FZF_DEFAULT_OPTS='
 --color info:108,prompt:109,spinner:108,pointer:168,marker:168
 '
 
+
+source ~/.zsh_functions
+
+if executable_exists lsd; then
+    alias ls='lsd'
+    alias ll='lsd -la'
+fi
+
+
 #zsh shortcuts
 alias vi='nvim'
 alias nano='nvim'
@@ -114,8 +123,6 @@ alias -g A='| ag'
 alias grep='grep --color'
 alias tmux='tmux attach|| tmux'
 
-source ~/.zsh_functions
-
 # setup direnv
 eval "$(direnv hook zsh)"
 
@@ -124,11 +131,11 @@ eval "$(direnv hook zsh)"
 # Auto completes
 #
 # GCloud
-if [ -e "${HOME}/brew/Caskroom/google-cloud-sdk/latest" ]; then
-  source "${HOME}/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-  source "${HOME}/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-  export PATH=$PATH:${HOME}/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin
-fi
+# if [ -e "${HOME}/brew/Caskroom/google-cloud-sdk/latest" ]; then
+#   source "${HOME}/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+#   source "${HOME}/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+#   export PATH=$PATH:${HOME}/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin
+# fi
 
 source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
 true
