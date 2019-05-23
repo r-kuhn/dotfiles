@@ -7,9 +7,9 @@ function random_string() {
   cat /dev/urandom | LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w ${1:-32} | head -n 1
 }
 
-function reflexgorun() {
+function watchexec() {
   cmd="$@"
-  sh -c "${cmd}" ; reflex -R '^(node_modules/|public/)' -r '\.(go$|fizz$|toml$|html$)' -- sh -c "${cmd}"
+  rg -l . | entr sh -c "$cmd"
 }
 
 function true_colours() {
