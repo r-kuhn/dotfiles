@@ -33,38 +33,45 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(javascript
-     ;; ----------------------------------------------------------------
+   '(;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      auto-completion
      better-defaults
-     emacs-lisp
-     git
-     helm
-     html
-     prettier
-     markdown
-     multiple-cursors
-     org
-     (shell :variables
-             shell-default-height 30
-             shell-default-position 'bottom)
-     spell-checking
-     syntax-checking
-     treemacs
-     version-control
-     themes-megapack
-     osx
-
-     lsp
      (go :variables
          go-tab-width 4
          go-backend 'lsp
          go-use-golangci-lint t)
+     emacs-lisp
+     git
+     ; github
+     helm
+     html
+     javascript
+     lsp
+     markdown
+     multiple-cursors
+     osx
+     org
+     prettier
+     (shell :variables
+     ;       shell-default-shell 'multi-term
+            shell-default-height 30
+            shell-default-position 'right) ; 'bottom
+     spell-checking
+     sql
+     syntax-checking
+     treemacs
+     (version-control :variables
+                      version-control-diff-tool 'diff-hl
+                      version-control-diff-side 'left
+                      version-control-global-margin 't
+                      )
+     themes-megapack
      )
+
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -200,7 +207,9 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-themes '(
                          doom-city-lights
                          doom-one-light
+                         spacemacs
                          )
+
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -220,7 +229,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-default-font '("Operator Mono Lig"
                                :size 14
                                :weight normal
-                               :width normal)
+                               :width normal
+                               :powerline-scale 1.2)
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -360,7 +370,15 @@ It should only modify the values of Spacemacs settings."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   ;dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers '(:relative nil
+                               :disabled-for-modes dired-mode
+                                                   doc-view-mode
+                                                   markdown-mode
+                                                   org-mode
+                                                   pdf-view-mode
+                                                   text-mode
+                               :size-limit-kb 1000)
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -453,6 +471,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  (setq-default git-magit-status-fullscreen t)
   )
 
 (defun dotspacemacs/user-load ()
@@ -496,6 +515,7 @@ before packages are loaded."
 
   (evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
 
+  ; Go
   (setq go-format-before-save t)
   (setq gofmt-command "goimports")
 
@@ -503,7 +523,19 @@ before packages are loaded."
                 '((syntax-checking :variables syntax-checking-enable-tooltips t)))
 
   (setq-default dotspacemacs-configuration-layers '(
-                                                    (org :variables org-enable-github-support t)))
+                                                   (org :variables org-enable-github-support t)))
+
+  ; Themes and fonts
+  (setq spacemacs-theme-comment-italic t
+        spacemacs-theme-keyword-italic t)
+
+  (global-git-commit-mode t) ; emacs is the editor for git
+  (diff-hl-flydiff-mode '(:global t)) ; for git gutters
+
+  ; Set some things to be italics
+  (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
+  (set-face-attribute 'font-lock-function-name-face nil :slant 'italic)
+  (set-face-attribute 'font-lock-variable-name-face nil :slant 'italic)
 
   (use-package lsp-mode
     :commands lsp
@@ -537,6 +569,7 @@ before packages are loaded."
     ;; (setq-default flycheck-check-syntax-automatically nil)
     ;; (setq-default flycheck-idle-change-delay 4)
     (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc clojure-cider-typed))
+    (flycheck-add-mode 'javascript-eslint 'web-mode)
     (setq flycheck-mode-line-prefix "✔"))
 
   ;; (use-package flycheck-inline
@@ -548,6 +581,9 @@ before packages are loaded."
     :ensure nil
     :defer t
     :diminish flymake-mode)
+
+  (setq web-mode-content-types-alist
+        '(("erb"  . "/Users/dan/p/optimus/.*\\.html\\'")))
 
   (add-to-list 'auto-mode-alist '("\\.fizz$" . js-mode))
 
