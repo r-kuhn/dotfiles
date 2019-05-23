@@ -370,15 +370,15 @@ It should only modify the values of Spacemacs settings."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   ;dotspacemacs-line-numbers nil
-   dotspacemacs-line-numbers '(:relative nil
-                               :disabled-for-modes dired-mode
-                                                   doc-view-mode
-                                                   markdown-mode
-                                                   org-mode
-                                                   pdf-view-mode
-                                                   text-mode
-                               :size-limit-kb 1000)
+   dotspacemacs-line-numbers nil
+   ;; dotspacemacs-line-numbers '(:relative nil
+   ;;                             :disabled-for-modes dired-mode
+   ;;                                                 doc-view-mode
+   ;;                                                 markdown-mode
+   ;;                                                 org-mode
+   ;;                                                 pdf-view-mode
+   ;;                                                 text-mode
+   ;;                             :size-limit-kb 1000)
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -507,6 +507,7 @@ before packages are loaded."
 
   (add-hook 'term-mode-hook
             (lambda ()
+              (setq bidi-paragraph-direction 'left-to-right)
               (define-key evil-insert-state-local-map (kbd "C-a") 'term-send-raw)
               (define-key evil-insert-state-local-map (kbd "C-p") 'term-send-raw)
               (define-key evil-insert-state-local-map (kbd "C-n") 'term-send-raw)
