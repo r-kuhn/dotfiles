@@ -33,45 +33,42 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(;; ----------------------------------------------------------------
+   '(
+     ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      auto-completion
      better-defaults
+     emacs-lisp
      (go :variables
          go-tab-width 4
          go-backend 'lsp
          go-use-golangci-lint t)
-     emacs-lisp
      git
-     ; github
      helm
      html
      javascript
      lsp
      markdown
-     multiple-cursors
      osx
      org
      prettier
      (shell :variables
-     ;       shell-default-shell 'multi-term
             shell-default-height 30
-            shell-default-position 'right) ; 'bottom
+            shell-default-position 'right)
      spell-checking
      sql
-     syntax-checking
+     (syntax-checking :variables
+                      syntax-checking-enable-tooltips t)
      treemacs
      (version-control :variables
                       version-control-diff-tool 'diff-hl
                       version-control-diff-side 'left
                       version-control-global-margin 't
                       )
-     themes-megapack
      )
-
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -203,13 +200,8 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   ;; dotspacemacs-themes '(spacemacs-light monokai)
-   dotspacemacs-themes '(
-                         doom-city-lights
-                         doom-one-light
-                         spacemacs
-                         )
-
+   dotspacemacs-themes '(doom-city-lights
+                         doom-one-light)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -371,14 +363,6 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; (default nil)
    dotspacemacs-line-numbers nil
-   ;; dotspacemacs-line-numbers '(:relative nil
-   ;;                             :disabled-for-modes dired-mode
-   ;;                                                 doc-view-mode
-   ;;                                                 markdown-mode
-   ;;                                                 org-mode
-   ;;                                                 pdf-view-mode
-   ;;                                                 text-mode
-   ;;                             :size-limit-kb 1000)
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -471,7 +455,9 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+
   (setq-default git-magit-status-fullscreen t)
+
   )
 
 (defun dotspacemacs/user-load ()
@@ -487,12 +473,14 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-
+  
   (if (eq system-type 'darwin)
-      (mac-auto-operator-composition-mode))
+    (mac-auto-operator-composition-mode)
+    )
 
   (setq make-backup-files nil) ; stop creating backup~ files
   (setq auto-save-default nil) ; stop creating #autosave# files<Paste>
+
 
   (setq-default evil-escape-key-sequence "jj")
   (setq-default evil-escape-delay 0.2)
@@ -504,14 +492,19 @@ before packages are loaded."
   (define-key global-map (kbd "C-j") #'evil-window-down)
   (define-key global-map (kbd "C-k") #'evil-window-up)
   (define-key global-map (kbd "C-l") #'evil-window-right)
+  (define-key evil-insert-state-map "\C-e" 'end-of-line)
+
+  (define-key evil-insert-state-map (kbd "C-SPC") 'company-manual-begin)
 
   (add-hook 'term-mode-hook
             (lambda ()
               (setq bidi-paragraph-direction 'left-to-right)
               (define-key evil-insert-state-local-map (kbd "C-a") 'term-send-raw)
-              (define-key evil-insert-state-local-map (kbd "C-p") 'term-send-raw)
-              (define-key evil-insert-state-local-map (kbd "C-n") 'term-send-raw)
+              (define-key evil-insert-state-local-map (kbd "C-c") 'term-send-raw)
+              (define-key evil-insert-state-local-map (kbd "C-d") 'term-send-raw)
               (define-key evil-insert-state-local-map (kbd "C-e") 'term-send-raw)
+              (define-key evil-insert-state-local-map (kbd "C-n") 'term-send-raw)
+              (define-key evil-insert-state-local-map (kbd "C-p") 'term-send-raw)
               (define-key evil-insert-state-local-map (kbd "C-r") 'term-send-raw)))
 
   (evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
@@ -519,12 +512,11 @@ before packages are loaded."
   ; Go
   (setq go-format-before-save t)
   (setq gofmt-command "goimports")
-
-  (setq-default dotspacemacs-configuration-layers
-                '((syntax-checking :variables syntax-checking-enable-tooltips t)))
-
-  (setq-default dotspacemacs-configuration-layers '(
-                                                   (org :variables org-enable-github-support t)))
+  ;; Workaround for https://github.com/syl20bnr/spacemacs/issues/6520
+  ;;  seems that aindent mode conflicts with go-mode
+  (defun disable-aindent()
+    (clean-aindent-mode -1))
+  (add-hook 'go-mode-hook 'disable-aindent)
 
   ; Themes and fonts
   (setq spacemacs-theme-comment-italic t
@@ -583,36 +575,9 @@ before packages are loaded."
     :defer t
     :diminish flymake-mode)
 
-  (setq web-mode-content-types-alist
-        '(("erb"  . "/Users/dan/p/optimus/.*\\.html\\'")))
 
-  (add-to-list 'auto-mode-alist '("\\.fizz$" . js-mode))
 
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
-(defun dotspacemacs/emacs-custom-settings ()
-  "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" "100e7c5956d7bb3fd0eebff57fde6de8f3b9fafa056a2519f169f85199cc1c96" "6d589ac0e52375d311afaa745205abb6ccb3b21f6ba037104d71111e7e76a3fc" "d2e9c7e31e574bf38f4b0fb927aaff20c1e5f92f72001102758005e53d77b8c9" "d9850d120be9d94dd7ae69053630e89af8767c36b131a3aa7b06f14007a24656" default)))
- '(evil-want-Y-yank-to-eol nil)
- '(package-selected-packages
-   (quote
-    (tern livid-mode skewer-mode js2-refactor multiple-cursors js2-mode js-doc import-js grizzl helm-gtags ggtags counsel-gtags web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js impatient-mode simple-httpd helm-css-scss haml-mode emmet-mode counsel-css company-web web-completion-data add-node-modules-path yasnippet-snippets xterm-color ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-evil toc-org symon string-inflection spaceline-all-the-icons smeargle shell-pop reveal-in-osx-finder restart-emacs rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer osx-trash osx-dictionary osx-clipboard orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim multi-term move-text monokai-pro-theme mmm-mode markdown-toc magit-svn magit-gitflow macrostep lsp-ui lsp-treemacs lorem-ipsum link-hint launchctl indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-lsp helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-golangci-lint flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish diff-hl counsel-projectile company-statistics company-lsp company-go column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-)

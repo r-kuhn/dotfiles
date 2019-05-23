@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # returns true if the executable exists
 function executable_exists() { [ ! -z `which "$1"` ]; }
 
@@ -7,7 +9,7 @@ function random_string() {
 
 function reflexgorun() {
   cmd="$@"
-  sh -c "${cmd}" ; reflex -R '^node_modules/' -r '\.(go$|fizz$|toml$|html$)' -- sh -c "${cmd}"
+  sh -c "${cmd}" ; reflex -R '^(node_modules/|public/)' -r '\.(go$|fizz$|toml$|html$)' -- sh -c "${cmd}"
 }
 
 function true_colours() {

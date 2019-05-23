@@ -104,10 +104,10 @@ export FZF_DEFAULT_OPTS='
 
 source ~/.zsh_functions
 
-if executable_exists lsd; then
-    alias ls='lsd'
-    alias ll='lsd -la'
-fi
+# if executable_exists lsd; then
+#     alias ls='lsd'
+#     alias ll='lsd -la'
+# fi
 
 
 #zsh shortcuts
