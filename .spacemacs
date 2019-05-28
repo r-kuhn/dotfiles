@@ -58,6 +58,7 @@ This function should only modify configuration layer settings."
      (shell :variables
             shell-default-height 30
             shell-default-position 'right)
+     spacemacs-all-the-icons  ; install fonts with M-x all-the-icons-install-fonts
      spell-checking
      sql
      (syntax-checking :variables
@@ -210,7 +211,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs :separator slant :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -362,7 +363,14 @@ It should only modify the values of Spacemacs settings."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers '(:relative nil
+                                         :disabled-for-modes dired-mode
+                                         doc-view-mode
+                                         markdown-mode
+                                         org-mode
+                                         pdf-view-mode
+                                         text-mode
+                                         :size-limit-kb 1000)
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -530,6 +538,10 @@ before packages are loaded."
   (set-face-attribute 'font-lock-function-name-face nil :slant 'italic)
   (set-face-attribute 'font-lock-variable-name-face nil :slant 'italic)
 
+  (use-package spaceline-all-the-icons 
+    :after spaceline
+    :config (spaceline-all-the-icons-theme))
+
   (use-package lsp-mode
     :commands lsp
     :config
@@ -560,7 +572,7 @@ before packages are loaded."
     ;; (setq-default flycheck-check-syntax-automatically '(mode-enabled save idle-change))
     (setq-default flycheck-check-syntax-automatically '(mode-enabled save))
     ;; (setq-default flycheck-check-syntax-automatically nil)
-    ;; (setq-default flycheck-idle-change-delay 4)
+    (setq-default flycheck-idle-change-delay 4)
     (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc clojure-cider-typed))
     (flycheck-add-mode 'javascript-eslint 'web-mode)
     (setq flycheck-mode-line-prefix "✔"))
@@ -574,8 +586,6 @@ before packages are loaded."
     :ensure nil
     :defer t
     :diminish flymake-mode)
-
-
 
   )
 

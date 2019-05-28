@@ -21,6 +21,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " nixos doesn'
 Plug 'Shougo/denite.nvim', {'do': ':UpdateRemotePlugins' } " Fuzzy finding, buffer management
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons' " icons for denite, nerdtree
 Plug 't9md/vim-choosewin' " hit '-' to pick a window
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -35,9 +36,9 @@ Plug 'mhinz/vim-signify' " git gutter
 Plug 'tpope/vim-fugitive' " git handling
 Plug 'jreybert/vimagit' " git hunk handling
 Plug 'mhinz/vim-startify' "fancy start screen
-"Plug 'mhartington/oceanic-next' " Color scheme for 24-bit
+Plug 'mhartington/oceanic-next' " Color scheme for 24-bit
 Plug 'phanviet/vim-monokai-pro'
-Plug 'NLKNguyen/papercolor-theme' " color scheme for 8-bit
+"Plug 'NLKNguyen/papercolor-theme' " color scheme for 8-bit
 Plug 'mattn/emmet-vim' " html faster editing
 Plug 'liuchengxu/vista.vim', {'on': 'Vista' } " LSP tag browsing
 Plug 'sheerun/vim-polyglot' " handle most file types
@@ -102,6 +103,8 @@ set pumheight=10             " Completion window max size
 set conceallevel=2           " Concealed text is completely hidden
 set inccommand=split         " preview changes live such as %s
 set signcolumn=yes           " always show sign columns
+set wildoptions=pum
+"set pumblend=20              " alpha blending for pum list
 
 set shortmess+=c   " Shut off completion messages
 set belloff+=ctrlg " If Vim beeps during completion
@@ -128,12 +131,12 @@ syntax enable
 set background=dark
 if ($COLORTERM=="truecolor")
   set termguicolors  " 24-bit color
-  colorscheme monokai_pro
-  let g:airline_theme="base16_monokai"
-  " let g:oceanic_next_terminal_bold = 1
-  " let g:oceanic_next_terminal_italic = 1
-  " colorscheme OceanicNext
-  " let g:airline_theme="oceanicnext"
+  "colorscheme monokai_pro
+  "let g:airline_theme="base16_monokai"
+  let g:oceanic_next_terminal_bold = 1
+  let g:oceanic_next_terminal_italic = 1
+  colorscheme OceanicNext
+  let g:airline_theme="oceanicnext"
 else
   set t_Co=256  " 256-bit color
   colorscheme PaperColor
@@ -158,7 +161,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.ino setlocal noet ts=4 sw=4 sts=4
   autocmd BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
   autocmd BufNewFile,BufRead *.md setlocal et ts=4 sw=4 tw=80
-  autocmd BufNewFile,BufRead *.html setlocal noet ts=4 sw=4 filetype=eruby
+  autocmd BufNewFile,BufRead *.html setlocal noet ts=4 sw=4 filetype=html.eruby
   autocmd BufNewFile,BufRead *.vim setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.hcl setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
@@ -186,9 +189,12 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 " i.e: <leader>w saves the current file
 let mapleader = ","
 
+" go to end of line while in insert mode
+inoremap <C-e> <C-o>$
+
 " Some useful quickfix shortcuts for quickfix
 map <C-n> :cn<CR>
-map <C-m> :cp<CR>
+map <C-p> :cp<CR>
 nnoremap <leader>a :cclose<CR>
 
 " put quickfix window always to the bottom
@@ -406,6 +412,18 @@ call denite#custom#map(
       \ '<denite:move_to_previous_line>',
       \ 'noremap'
       \)
+call denite#custom#map(
+      \ 'normal',
+      \ '<C-n>',
+      \ '<denite:move_to_next_line>',
+      \ 'noremap'
+      \)
+call denite#custom#map(
+      \ 'normal',
+      \ '<C-p>',
+      \ '<denite:move_to_previous_line>',
+      \ 'noremap'
+      \)
 
 " === ALE
 " specify some specific ale linter sources, rest are using defaults
@@ -470,6 +488,11 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
+" highlight CocErrorHighlight ctermfg=#f99157
+" highlight CocWarnHighlight ALEWarningSign
+" highlight link CocErrorHighlight ALEErrorSign
+" highlight link CocWarnHighlight ALEWarningSign
+
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
@@ -506,7 +529,7 @@ nmap <silent> ga <Plug>(coc-codeaction)
 
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ pumvisible() ? "\<C-j>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 
