@@ -26,6 +26,7 @@ Plug 't9md/vim-choosewin' " hit '-' to pick a window
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
 Plug 'tpope/vim-commentary' " gc to comment out sections
 "Plug 'godlygeek/tabular'  " for markdown mode.   Don't think I need it
 Plug 'plasticboy/vim-markdown' " for markdown
@@ -36,9 +37,6 @@ Plug 'mhinz/vim-signify' " git gutter
 Plug 'tpope/vim-fugitive' " git handling
 Plug 'jreybert/vimagit' " git hunk handling
 Plug 'mhinz/vim-startify' "fancy start screen
-Plug 'mhartington/oceanic-next' " Color scheme for 24-bit
-Plug 'phanviet/vim-monokai-pro'
-"Plug 'NLKNguyen/papercolor-theme' " color scheme for 8-bit
 Plug 'mattn/emmet-vim' " html faster editing
 Plug 'liuchengxu/vista.vim', {'on': 'Vista' } " LSP tag browsing
 Plug 'sheerun/vim-polyglot' " handle most file types
@@ -47,12 +45,22 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " language server
 Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+"Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+
+" Themes
+Plug 'mhartington/oceanic-next' " Color scheme for 24-bit
+"Plug 'phanviet/vim-monokai-pro'
+Plug 'NLKNguyen/papercolor-theme' " color scheme for 8-bit
+Plug 'rakr/vim-one'
+
 call plug#end()
 
 
@@ -129,21 +137,37 @@ endif
 
 " color
 syntax enable
-set background=dark
-if ($COLORTERM=="truecolor")
+
+if ($VIM_THEME=="atomonelight")
+  set background=light
+  if ($COLORTERM=="truecolor")
+    set termguicolors  " 24-bit color
+    colorscheme one
+    let g:airline_theme="one"
+    let g:one_allow_italics = 1 " I love italic for comments
+  endif
+elseif ($VIM_THEME=="onedark")
+  set background=dark
   set termguicolors  " 24-bit color
-  "colorscheme monokai_pro
-  "let g:airline_theme="base16_monokai"
-  let g:oceanic_next_terminal_bold = 1
-  let g:oceanic_next_terminal_italic = 1
-  colorscheme OceanicNext
-  let g:airline_theme="oceanicnext"
+  colorscheme one
+  let g:airline_theme="one"
+elseif ($VIM_THEME=="oceanicnext")
+  set background=dark
+  if ($COLORTERM=="truecolor")
+    set termguicolors  " 24-bit color
+    let g:oceanic_next_terminal_bold = 1
+    let g:oceanic_next_terminal_italic = 1
+    colorscheme OceanicNext
+    let g:airline_theme="oceanicnext"
+  endif
 else
+  set background=dark
   set t_Co=256  " 256-bit color
   colorscheme PaperColor
   let g:airline_theme="papercolor"
 endif
 highlight Comment cterm=italic
+
 
 augroup filetypedetect
   command! -nargs=* -complete=help Help vertical belowright help <args>
@@ -195,6 +219,9 @@ let mapleader = ","
 inoremap <C-e> <C-o>$
 inoremap <C-f> <C-o>l
 inoremap <C-b> <C-o>h
+
+" Emacs friendlier bindings that I'm used to hitting
+nnoremap <C-e> $
 
 " Some useful quickfix shortcuts for quickfix
 map <C-n> :cn<CR>
@@ -309,6 +336,10 @@ function! s:create_go_doc_comment()
   execute ":norm I// \<Esc>$"
 endfunction
 nnoremap <leader>ui :<C-u>call <SID>create_go_doc_comment()<CR>
+
+" === vim-go
+" disable vim-go :GoDef short cut (gd). this is handled by Coc
+let g:go_def_mapping_enabled = 0
 
 " === Denite shorcuts === "
 "   ;         - Browser currently open buffers
@@ -574,3 +605,4 @@ nnoremap <silent> <space>t  :<C-u>Vista coc<CR>
 " toggle vista window
 nnoremap <silent> <space>v  :<C-u>Vista!<CR>
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>

@@ -86,5 +86,8 @@
       "filetypes": ["vim", "eruby", "markdown"]
     }
   },
-  "python.linting.flake8Enabled": true
+  "python.linting.flake8Enabled": true,
+  "yank.highlight.enable": true,
+  "yank.highlight.duration": 500,
+  "yank.list.maxsize": 50
 }
