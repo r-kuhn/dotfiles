@@ -6,7 +6,7 @@
   },
   "editor.cursorBlinking": "smooth",
   // Operator Mono Font Settings:
-  "editor.fontFamily": "Operator Mono Lig",
+  "editor.fontFamily": "OperatorMonoLig Nerd Font",
   "editor.fontSize": 14,
   "terminal.integrated.fontFamily": "FuraCode Nerd Font",
   "terminal.integrated.fontSize": 13,

@@ -84,6 +84,7 @@ set showcmd                  " Show me what I'm typing
 set cmdheight=1              " better command section, needed for coc
 set noswapfile               " Don't use swapfile
 set nobackup                 " Don't create annoying backup files
+set nowritebackup
 set splitright               " Split vertical windows right to the current windows
 set splitbelow               " Split horizontal windows below to the current windows
 set autowrite                " Automatically save before :next, :make etc.
@@ -175,7 +176,7 @@ augroup filetypedetect
 augroup END
 
 "=============== Airline ============================
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
@@ -189,8 +190,11 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 " i.e: <leader>w saves the current file
 let mapleader = ","
 
-" go to end of line while in insert mode
+" Handy keyboard keys while in insert mode.  C-o makes next char run in normal
+" mode
 inoremap <C-e> <C-o>$
+inoremap <C-f> <C-o>l
+inoremap <C-b> <C-o>h
 
 " Some useful quickfix shortcuts for quickfix
 map <C-n> :cn<CR>
@@ -340,6 +344,12 @@ let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_no_extensions_in_markdown = 1
+
+" === Startify
+" Add icons to each entry
+function! StartifyEntryFormat()
+  return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
+endfunction
 
 " === Denite
 " Use ripgrep for searching current directory for files
@@ -505,17 +515,25 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
+" coc-pairs needs this to make it nicely indent on enter
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
 function! s:show_documentation()
-  if &filetype == 'vim'
+  if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
     call CocAction('doHover')
   endif
 endfunction
 
-" Remap for rename current word.
-nmap <Leader>c* <Plug>(coc-rename)
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gD <Plug>(coc-declaration)
@@ -528,10 +546,18 @@ nmap <silent> gx <Plug>(coc-fix-current)
 nmap <silent> ga <Plug>(coc-codeaction)
 
 
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-j>" :
+      \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_executive_for = {

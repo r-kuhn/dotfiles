@@ -6,3 +6,4 @@ ctrl-o			go back to previous cursor location
 K				documentation for current word
 ,f 				search in current project
 ctrl-p			open file in current project
+,rn				rename word under cursor
