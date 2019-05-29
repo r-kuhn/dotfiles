@@ -27,6 +27,7 @@
   "diagnostic.virtualText": true,
   "diagnostic.checkCurrentLine": false,
   "diagnostic.virtualTextPrefix": "<== ",
+  "diagnostic.displayByAle": false,
   "signature.target": "float",
   "list.indicator": ">",
   "list.selectedSignText": "*",

@@ -28,7 +28,6 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
 Plug 'tpope/vim-commentary' " gc to comment out sections
-"Plug 'godlygeek/tabular'  " for markdown mode.   Don't think I need it
 Plug 'plasticboy/vim-markdown' " for markdown
 Plug 'luochen1990/rainbow' " Rainbow parenthesis
 Plug 'vim-airline/vim-airline'
@@ -482,8 +481,8 @@ let g:ale_linters = {
       \ 'javascript': ['eslint'],
       \ 'c': ['clang', 'clangtidy', 'clang-format'],
       \ 'typescript': ['eslint'],
-      \ 'go': ['golangci-lint'],
       \ 'sh': ['shellcheck']}
+     " \ 'go': ['golangci-lint'], -- too damn battery hungry
 let g:ale_python_flake8_args='--exclude=migrations --ignore=E261 --max-line-length=80'
 " let g:ale_golangci_lint_options="'--enable-all'"
 let g:ale_go_golangci_lint_options = '
@@ -496,8 +495,8 @@ let g:ale_set_signs = 1
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+highlight ALEErrorSign ctermbg=NONE guifg=#ff6D00 ctermfg=red
+highlight ALEWarningSign ctermbg=NONE guifg=#ffBB00 ctermfg=yellow
 
 " Javascript / React improved highlighting/indentation
 let g:javascript_plugin_jsdoc = 1
@@ -529,10 +528,8 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
-" highlight CocErrorHighlight ctermfg=#f99157
-" highlight CocWarnHighlight ALEWarningSign
-" highlight link CocErrorHighlight ALEErrorSign
-" highlight link CocWarnHighlight ALEWarningSign
+highlight CocErrorSign ctermfg=red ctermbg=NONE guifg=#ff6D00
+highlight CocWarningSign ctermfg=yellow ctermbg=NONE guifg=#ffbb00
 
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
