@@ -145,11 +145,6 @@ if ($VIM_THEME=="atomonelight")
     let g:airline_theme="one"
     let g:one_allow_italics = 1 " I love italic for comments
   endif
-elseif ($VIM_THEME=="onedark")
-  set background=dark
-  set termguicolors  " 24-bit color
-  colorscheme one
-  let g:airline_theme="one"
 elseif ($VIM_THEME=="oceanicnext")
   set background=dark
   if ($COLORTERM=="truecolor")
@@ -340,16 +335,6 @@ nnoremap <leader>ui :<C-u>call <SID>create_go_doc_comment()<CR>
 " disable vim-go :GoDef short cut (gd). this is handled by Coc
 let g:go_def_mapping_enabled = 0
 
-" === Denite shorcuts === "
-"   ;         - Browser currently open buffers
-"   <leader>t - Browse list of files in current directory
-"   <leader>g - Search current directory for occurences of given term and
-"   close window if no results
-"   <leader>j - Search current directory for occurences of word under cursor
-nmap ; :Denite buffer -split=floating -winrow=1<CR>
-nmap <C-p> :DeniteProjectDir file/rec -split=floating -winrow=1<CR>
-nnoremap <leader>f :<C-u>Denite grep:. -no-empty -mode=normal<CR>
-nnoremap <leader>* :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
 
 
 "===================== PLUGINS ======================
@@ -360,6 +345,7 @@ let NERDTreeShowHidden=1
 nmap  -  <Plug>(choosewin)
 let g:vim_json_syntax_conceal = 0
 let g:UltiSnipsUsePythonVersion = 3
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 
 " === Signify
 let g:signify_vcs_list = ['git']
@@ -376,6 +362,8 @@ let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_no_extensions_in_markdown = 1
 
 " === Startify
+let g:startify_change_to_vcs_root = 1
+
 " Add icons to each entry
 function! StartifyEntryFormat()
   return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
@@ -465,6 +453,16 @@ call denite#custom#map(
       \ 'noremap'
       \)
 
+"   ;         - Browser currently open buffers
+"   <leader>t - Browse list of files in current directory
+"   <leader>g - Search current directory for occurences of given term and
+"   close window if no results
+"   <leader>j - Search current directory for occurences of word under cursor
+nmap ; :Denite buffer -split=floating -winrow=1<CR>
+nmap <C-p> :DeniteProjectDir file/rec -split=floating -winrow=1<CR>
+nnoremap <leader>f :<C-u>Denite grep -no-empty -mode=normal<CR>
+nnoremap <leader>* :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
+
 " === ALE
 " specify some specific ale linter sources, rest are using defaults
 let g:ale_fixers = {
@@ -547,7 +545,8 @@ augroup end
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" nnoremap <silent> K :call <SID>show_documentation()<CR> " vim-go overwrites
+nnoremap <silent> T :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
