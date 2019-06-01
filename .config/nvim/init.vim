@@ -111,7 +111,7 @@ set pumheight=10             " Completion window max size
 set conceallevel=2           " Concealed text is completely hidden
 set inccommand=split         " preview changes live such as %s
 set signcolumn=yes           " always show sign columns
-set wildoptions=pum
+"set wildoptions=pum " requires nvim 0.4+
 "set pumblend=20              " alpha blending for pum list
 
 set shortmess+=c   " Shut off completion messages
@@ -335,7 +335,13 @@ nnoremap <leader>ui :<C-u>call <SID>create_go_doc_comment()<CR>
 " disable vim-go :GoDef short cut (gd). this is handled by Coc
 let g:go_def_mapping_enabled = 0
 
-
+" create a go doc comment based on the word under the cursor
+function! s:create_go_doc_comment()
+  norm "zyiw
+  execute ":put! z"
+  execute ":norm I// \<Esc>$"
+endfunction
+nnoremap <leader>ui :<C-u>call <SID>create_go_doc_comment()<CR>
 
 "===================== PLUGINS ======================
 let g:rainbow_active = 1

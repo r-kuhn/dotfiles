@@ -4,6 +4,7 @@ zdharma/fast-syntax-highlighting
 zsh-users/zsh-autosuggestions
 ael-code/zsh-colored-man-pages
 MichaelAquilina/zsh-you-should-use
+zsh-users/zsh-completions
 
 # Powerlevel 9k prompt
 #bhilburn/powerlevel9k
@@ -11,4 +12,3 @@ MichaelAquilina/zsh-you-should-use
 # Pure prompt
 mafredri/zsh-async
 sindresorhus/pure
-

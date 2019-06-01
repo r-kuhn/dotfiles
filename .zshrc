@@ -39,7 +39,9 @@ bindkey -e
 #bindkey -v
 #export KEYTIMEOUT=1
 
-autoload -Uz compinit
+fpath=(~/.zsh/completion $fpath)
+
+autoload -Uz compinit && compinit -i
 compinit
 
 export GO111MODULE=on
@@ -88,7 +90,7 @@ PURE_GIT_PULL=0
 #export ZSH_CACHE_DIR=~/.cache/zsh
 
 source <(antibody init)
-antibody bundle < ~/.zsh_plugins.txt
+antibody bundle < ~/.zsh/plugins.txt
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
 
@@ -102,7 +104,7 @@ export FZF_DEFAULT_OPTS='
 '
 
 
-source ~/.zsh_functions
+source ~/.zsh/functions.zsh
 
 # if executable_exists lsd; then
 #     alias ls='lsd'
