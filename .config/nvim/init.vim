@@ -56,9 +56,11 @@ Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 
 " Themes
 Plug 'mhartington/oceanic-next' " Color scheme for 24-bit
-"Plug 'phanviet/vim-monokai-pro'
+Plug 'crusoexia/vim-monokai'
 Plug 'NLKNguyen/papercolor-theme' " color scheme for 8-bit
+Plug 'haishanh/night-owl.vim'
 Plug 'rakr/vim-one'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()
 
@@ -136,30 +138,52 @@ endif
 
 " color
 syntax enable
+if $COLORTERM=="truecolor"
+  set termguicolors  " 24-bit color
 
-if ($VIM_THEME=="atomonelight")
-  set background=light
-  if ($COLORTERM=="truecolor")
-    set termguicolors  " 24-bit color
+  if $VIM_THEME=='atomonelight'
+    set background=light
     colorscheme one
     let g:airline_theme="one"
-    let g:one_allow_italics = 1 " I love italic for comments
+    let g:one_allow_italics = 1
   endif
-elseif ($VIM_THEME=="oceanicnext")
-  set background=dark
-  if ($COLORTERM=="truecolor")
-    set termguicolors  " 24-bit color
+
+  if $VIM_THEME=='oceanicnext'
+    set background=dark
+    colorscheme OceanicNext
     let g:oceanic_next_terminal_bold = 1
     let g:oceanic_next_terminal_italic = 1
-    colorscheme OceanicNext
     let g:airline_theme="oceanicnext"
   endif
-else
+
+  if $VIM_THEME=='nightowl'
+    set background=dark
+    colorscheme night-owl
+    set termguicolors  " 24-bit color
+    let g:airline_theme="nightowl"
+  endif
+
+  if $VIM_THEME == 'dracula'
+    set background=dark
+    colorscheme dracula
+    let g:airline_theme="dracula"
+  endif
+
+  if $VIM_THEME == 'monokai'
+    set background=dark
+    colorscheme monokai
+    let g:airline_theme="monokai"
+    let g:monokai_term_italic = 1
+    let g:monokai_gui_italic = 1
+  endif
+
+else " no true color support
   set background=dark
   set t_Co=256  " 256-bit color
   colorscheme PaperColor
   let g:airline_theme="papercolor"
 endif
+
 highlight Comment cterm=italic
 
 
