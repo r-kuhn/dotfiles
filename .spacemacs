@@ -39,7 +39,16 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-complete-with-key-sequence nil
+                      auto-completion-complete-with-key-sequence-delay 0.1
+                      auto-completion-idle-delay 0.2
+                      auto-completion-private-snippets-directory "~/.config/emacs/snippets"
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-sort-by-usage nil)
      better-defaults
      emacs-lisp
      (go :variables
@@ -52,14 +61,20 @@ This function should only modify configuration layer settings."
      javascript
      lsp
      markdown
-     osx
+     (osx :variables osx-command-as       'hyper
+          osx-option-as        'meta
+          osx-control-as       'control
+          osx-function-as      nil
+          osx-right-command-as 'left
+          osx-right-option-as  'left
+          osx-right-control-as 'left)
      org
-     prettier
+     ;; prettier
      (shell :variables
             shell-default-height 30
             shell-default-position 'right)
-     spacemacs-all-the-icons  ; install fonts with M-x all-the-icons-install-fonts
-     spell-checking
+     ; spacemacs-all-the-icons  ; install fonts with M-x all-the-icons-install-fonts
+     ;; spell-checking
      sql
      (syntax-checking :variables
                       syntax-checking-enable-tooltips t)
@@ -219,11 +234,11 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Operator Mono Lig"
+   dotspacemacs-default-font '("OperatorMonoLig Nerd Font"
                                :size 14
                                :weight normal
-                               :width normal
-                               :powerline-scale 1.2)
+                               :width normal)
+                               ;; :powerline-scale 1.2)
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -481,9 +496,17 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  
-  (if (eq system-type 'darwin)
+
+  (when (eq system-type 'darwin)
     (mac-auto-operator-composition-mode)
+    ;; make fonts look better with anti-aliasing
+    (setq mac-allow-anti-aliasing t)
+    ;; delete files by moving them to the trash
+    (setq delete-by-moving-to-trash t)
+    (setq trash-directory "~/.Trash")
+
+    (setq mac-command-modifier 'meta)
+    (setq mac-option-modifier 'super)
     )
 
   (setq make-backup-files nil) ; stop creating backup~ files
@@ -496,10 +519,11 @@ before packages are loaded."
   (setq-default evil-escape-excluded-states '(visual))
   (setq-default evil-escape-excluded-major-modes '(magit))
                                         ; VIM keybindings
-  (define-key global-map (kbd "C-h") #'evil-window-left)
-  (define-key global-map (kbd "C-j") #'evil-window-down)
-  (define-key global-map (kbd "C-k") #'evil-window-up)
-  (define-key global-map (kbd "C-l") #'evil-window-right)
+
+  (define-key evil-normal-state-map (kbd "C-h") #'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-j") #'evil-window-down)
+  (define-key evil-normal-state-map (kbd "C-k") #'evil-window-up)
+  (define-key evil-normal-state-map (kbd "C-l") #'evil-window-right)
   (define-key evil-insert-state-map "\C-e" 'end-of-line)
 
   (define-key evil-insert-state-map (kbd "C-SPC") 'company-manual-begin)
@@ -513,7 +537,12 @@ before packages are loaded."
               (define-key evil-insert-state-local-map (kbd "C-e") 'term-send-raw)
               (define-key evil-insert-state-local-map (kbd "C-n") 'term-send-raw)
               (define-key evil-insert-state-local-map (kbd "C-p") 'term-send-raw)
-              (define-key evil-insert-state-local-map (kbd "C-r") 'term-send-raw)))
+              (define-key evil-insert-state-local-map (kbd "C-r") 'term-send-raw)
+              (define-key evil-insert-state-local-map (kbd "C-h") #'evil-window-left)
+              (define-key evil-insert-state-local-map (kbd "C-j") #'evil-window-down)
+              (define-key evil-insert-state-local-map (kbd "C-k") #'evil-window-up)
+              (define-key evil-insert-state-local-map (kbd "C-l") #'evil-window-right)
+              ))
 
   (evil-leader/set-key "/" 'spacemacs/helm-project-do-ag)
 
@@ -532,15 +561,16 @@ before packages are loaded."
 
   (global-git-commit-mode t) ; emacs is the editor for git
   (diff-hl-flydiff-mode '(:global t)) ; for git gutters
+  (fringe-mode 16) ; so that git gutters don't get cut off
 
   ; Set some things to be italics
   (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
   (set-face-attribute 'font-lock-function-name-face nil :slant 'italic)
   (set-face-attribute 'font-lock-variable-name-face nil :slant 'italic)
 
-  (use-package spaceline-all-the-icons 
-    :after spaceline
-    :config (spaceline-all-the-icons-theme))
+  ;; (use-package spaceline-all-the-icons
+  ;;   :after spaceline
+  ;;   :config (spaceline-all-the-icons-theme))
 
   (use-package lsp-mode
     :commands lsp
@@ -591,3 +621,24 @@ before packages are loaded."
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("d2e9c7e31e574bf38f4b0fb927aaff20c1e5f92f72001102758005e53d77b8c9" "8aca557e9a17174d8f847fb02870cb2bb67f3b6e808e46c0e54a44e3e18e1020" "a8c210aa94c4eae642a34aaf1c5c0552855dfca2153fa6dd23f3031ce19453d4" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "6b2636879127bf6124ce541b1b2824800afc49c6ccd65439d6eb987dbf200c36" default)))
+ '(evil-want-Y-yank-to-eol nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)

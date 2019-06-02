@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: test table for buffalo
+# key: btt
+# contributor : @dancardamore
+# --
+func (as *ActionSuite) Test$1() {
+  var tests = []struct {
+    name string
+    expected string
+    given string
+  }{
+    "t1",
+    "",
+    "",
+  }
+
+  for i := range tests {
+    tt := tests[i]
+    actual = _myfunc(tt.given)
+    as.Equal(tt.expected, actual, tt.name)
+  }
+}
