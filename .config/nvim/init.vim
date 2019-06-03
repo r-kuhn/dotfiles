@@ -1,16 +1,5 @@
 " vim: sw=2 sw=2 et
 "
-" TODO:
-"   * neoclide/coc-list for denite type work
-"   * move all plugin config together.  if the mappings are separate join
-"   them.
-"
-"
-" Notes:
-"   Good Configs to reference:
-"     * https://github.com/fannheyward/init.vim/blob/master/init.vim
-"			* https://github.com/damnever/dotfiles/blob/master/vimrc
-"
 call plug#begin('~/.vim/plugged')
 
 Plug 'ConradIrwin/vim-bracketed-paste'
@@ -18,7 +7,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets' " snippets documented here: https://github.com/honza/vim-snippets
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " nixos doesn't install this nicely
-Plug 'Shougo/denite.nvim', {'do': ':UpdateRemotePlugins' } " Fuzzy finding, buffer management
+"Plug 'Shougo/denite.nvim', {'do': ':UpdateRemotePlugins' } " Fuzzy finding, buffer management
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons' " icons for denite, nerdtree
@@ -34,7 +23,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-signify' " git gutter
 Plug 'tpope/vim-fugitive' " git handling
-Plug 'jreybert/vimagit' " git hunk handling
+"Plug 'jreybert/vimagit' " git hunk handling
 Plug 'mhinz/vim-startify' "fancy start screen
 Plug 'mattn/emmet-vim' " html faster editing
 Plug 'liuchengxu/vista.vim', {'on': 'Vista' } " LSP tag browsing
@@ -44,13 +33,13 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " language server
 Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-"Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+"Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 

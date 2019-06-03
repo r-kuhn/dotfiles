@@ -69,12 +69,12 @@ This function should only modify configuration layer settings."
           osx-right-option-as  'left
           osx-right-control-as 'left)
      org
-     ;; prettier
+     prettier
      (shell :variables
             shell-default-height 30
             shell-default-position 'right)
-     ; spacemacs-all-the-icons  ; install fonts with M-x all-the-icons-install-fonts
-     ;; spell-checking
+     spacemacs-all-the-icons  ; install fonts with M-x all-the-icons-install-fonts
+     spell-checking
      sql
      (syntax-checking :variables
                       syntax-checking-enable-tooltips t)
@@ -226,7 +226,9 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator slant :separator-scale 1.5)
+   ;dotspacemacs-mode-line-theme '(spacemacs :separator slant :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(doom :separator slant :separator-scale 1.5)
+   ;dotspacemacs-mode-line-theme '(all-the-icons :separator slant :separator-scale 1.5) ; really slow with diff-hl
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -363,7 +365,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
-   dotspacemacs-smooth-scrolling t
+   dotspacemacs-smooth-scrolling nil
 
    ;; Control line numbers activation.
    ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
@@ -497,8 +499,9 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+
   (when (eq system-type 'darwin)
-    (mac-auto-operator-composition-mode)
+    ; (mac-auto-operator-composition-mode)
     ;; make fonts look better with anti-aliasing
     (setq mac-allow-anti-aliasing t)
     ;; delete files by moving them to the trash
@@ -512,6 +515,7 @@ before packages are loaded."
   (setq make-backup-files nil) ; stop creating backup~ files
   (setq auto-save-default nil) ; stop creating #autosave# files<Paste>
 
+  (server-start)
 
   (setq-default evil-escape-key-sequence "jj")
   (setq-default evil-escape-delay 0.2)
@@ -568,6 +572,8 @@ before packages are loaded."
   (set-face-attribute 'font-lock-function-name-face nil :slant 'italic)
   (set-face-attribute 'font-lock-variable-name-face nil :slant 'italic)
 
+  ;; really slow with diff-hl:
+  ;;  https://github.com/domtronn/spaceline-all-the-icons.el/issues/9
   ;; (use-package spaceline-all-the-icons
   ;;   :after spaceline
   ;;   :config (spaceline-all-the-icons-theme))
