@@ -73,7 +73,7 @@ This function should only modify configuration layer settings."
      (shell :variables
             shell-default-height 30
             shell-default-position 'right)
-     spacemacs-all-the-icons  ; install fonts with M-x all-the-icons-install-fonts
+     ;spacemacs-all-the-icons  ; install fonts with M-x all-the-icons-install-fonts
      spell-checking
      sql
      (syntax-checking :variables
@@ -531,6 +531,8 @@ before packages are loaded."
   (define-key evil-insert-state-map "\C-e" 'end-of-line)
 
   (define-key evil-insert-state-map (kbd "C-SPC") 'company-manual-begin)
+  (define-key evil-normal-state-map (kbd ";") 'lazy-helm/helm-mini)
+  (define-key evil-normal-state-map (kbd "M-p") 'helm-projectile-find-file)
 
   (add-hook 'term-mode-hook
             (lambda ()
