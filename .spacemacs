@@ -74,6 +74,7 @@ This function should only modify configuration layer settings."
             shell-default-height 30
             shell-default-position 'right)
      ;spacemacs-all-the-icons  ; install fonts with M-x all-the-icons-install-fonts
+     shell-scripts
      spell-checking
      sql
      (syntax-checking :variables
@@ -587,6 +588,8 @@ before packages are loaded."
      (make-lsp-client :new-connection (lsp-stdio-connection "gopls")
                       :major-modes '(go-mode)
                       :server-id 'gopls)))
+  ;; (require 'lsp-html)
+  ;; (add-hook 'html-mode-hook #'lsp-html-enable)
 
   (use-package lsp-ui
     :defer t
