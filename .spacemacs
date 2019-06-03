@@ -44,7 +44,7 @@ This function should only modify configuration layer settings."
                       auto-completion-tab-key-behavior 'cycle
                       auto-completion-complete-with-key-sequence nil
                       auto-completion-complete-with-key-sequence-delay 0.1
-                      auto-completion-idle-delay 0.2
+                      auto-completion-idle-delay 0.1
                       auto-completion-private-snippets-directory "~/.config/emacs/snippets"
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t
@@ -529,11 +529,21 @@ before packages are loaded."
   (define-key evil-normal-state-map (kbd "C-j") #'evil-window-down)
   (define-key evil-normal-state-map (kbd "C-k") #'evil-window-up)
   (define-key evil-normal-state-map (kbd "C-l") #'evil-window-right)
+  (define-key evil-normal-state-map (kbd "C-f") #'evil-forward-char)
+  (define-key evil-normal-state-map (kbd "C-b") #'evil-backward-char)
+  (define-key evil-normal-state-map (kbd "C-e") #'evil-end-of-line)
+
+  (define-key evil-insert-state-map (kbd "C-f") #'evil-forward-char)
+  (define-key evil-insert-state-map (kbd "C-b") #'evil-backward-char)
   (define-key evil-insert-state-map "\C-e" 'end-of-line)
 
   (define-key evil-insert-state-map (kbd "C-SPC") 'company-manual-begin)
   (define-key evil-normal-state-map (kbd ";") 'lazy-helm/helm-mini)
   (define-key evil-normal-state-map (kbd "M-p") 'helm-projectile-find-file)
+
+  (with-eval-after-load 'company
+    (define-key company-active-map (kbd "C-n") #'company-select-next)
+    (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
   (add-hook 'term-mode-hook
             (lambda ()

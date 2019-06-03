@@ -90,6 +90,6 @@ call denite#custom#map(
 "   <leader>j - Search current directory for occurences of word under cursor
 nmap ; :Denite buffer -split=floating -winrow=1<CR>
 nmap <C-p> :DeniteProjectDir file/rec -split=floating -winrow=1<CR>
-nnoremap <leader>f :<C-u>Denite grep -no-empty -mode=normal<CR>
-nnoremap <leader>* :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
-
+" Ferret is nicer:
+"nnoremap <leader>f :<C-u>Denite grep -no-empty -mode=normal<CR>
+"nnoremap <leader>* :<C-u>DeniteCursorWord grep:. -mode=normal<CR>

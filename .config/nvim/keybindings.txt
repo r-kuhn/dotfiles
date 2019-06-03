@@ -4,6 +4,10 @@ space-t			outline of functions/variable
 gd				go to definition
 ctrl-o			go back to previous cursor location
 K				documentation for current word
-,f 				search in current project
 ctrl-p			open file in current project
 ,rn				rename word under cursor
+
+# ferret for project searcha and replace
+,a              project search (ack)
+,s              project search with word under cursor
+,r              project wide replace with results from ack in quickfix
