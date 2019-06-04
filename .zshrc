@@ -59,11 +59,16 @@ case $(uname) in
     export PATH=${HOME}/bin:${GOROOT}/bin:${GOBIN}:${HOME}/brew/bin:${HOME}/.npm/bin:/usr/local/bin:${HOME}/Library/Python/3.7/bin:${PATH}
     ;;
   Linux)
-    export GOBIN=${GOPATH}/bin
-    export GOPATH=${HOME}/go
-    alias ls='ls --color=auto'
-    export PATH=${HOME}/bin:${HOME}/.npm/bin:${PATH}:${GOPATH}/bin
-    ;;
+	  if [ -e "/nix" ]; then
+	  else
+		  export GOROOT=${HOME}/.go
+	  fi
+	  export GOPATH=$HOME/go
+	  export GOBIN=$GOPATH/bin
+
+	  alias ls='ls --color=auto'
+	  export PATH=${HOME}/bin:${HOME}/.npm/bin::${GOPATH}/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
+	  ;;
 esac
 
 
@@ -130,6 +135,11 @@ alias ee='emacsclient -c '
 eval "$(direnv hook zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if [ "${VIM_THEME+set}" != set ]; then
+  export VIM_THEME=oceanicnext
+fi
+
 
 # Auto completes
 #

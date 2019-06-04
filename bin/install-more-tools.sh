@@ -31,9 +31,9 @@ go get -u -v github.com/cweill/gotests/...
 go get -u github.com/haya14busa/gopkgs/cmd/gopkgs
 
 # Get npm stuff too
-npm i -g markdownlint-cli
-npm i -g bash-language-server
-npm i -g vscode-html-languageserver-bin
+#npm i -g markdownlint-cli
+#npm i -g bash-language-server
+#npm i -g vscode-html-languageserver-bin
 
 # Python stuff
-pip3 install vim-vint
+#pip3 install vim-vint

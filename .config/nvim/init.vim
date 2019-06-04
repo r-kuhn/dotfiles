@@ -45,7 +45,7 @@ Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
-"Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 
@@ -133,11 +133,10 @@ endif
 
 " color
 syntax enable
-if $COLORTERM=="truecolor"
-  set termguicolors  " 24-bit color
 
   if $VIM_THEME=='atomonelight'
     set background=light
+    set termguicolors  " 24-bit color
     colorscheme one
     let g:airline_theme="one"
     let g:one_allow_italics = 1
@@ -145,6 +144,7 @@ if $COLORTERM=="truecolor"
 
   if $VIM_THEME=='oceanicnext'
     set background=dark
+    set termguicolors  " 24-bit color
     colorscheme OceanicNext
     let g:oceanic_next_terminal_bold = 1
     let g:oceanic_next_terminal_italic = 1
@@ -153,6 +153,7 @@ if $COLORTERM=="truecolor"
 
   if $VIM_THEME=='nightowl'
     set background=dark
+    set termguicolors  " 24-bit color
     colorscheme night-owl
     set termguicolors  " 24-bit color
     let g:airline_theme="nightowl"
@@ -160,24 +161,27 @@ if $COLORTERM=="truecolor"
 
   if $VIM_THEME == 'dracula'
     set background=dark
+    set termguicolors  " 24-bit color
     colorscheme dracula
     let g:airline_theme="dracula"
   endif
 
   if $VIM_THEME == 'monokai'
     set background=dark
+    set termguicolors  " 24-bit color
     colorscheme monokai
     let g:airline_theme="monokai"
     let g:monokai_term_italic = 1
     let g:monokai_gui_italic = 1
   endif
 
-else " no true color support
-  set background=dark
-  set t_Co=256  " 256-bit color
-  colorscheme PaperColor
-  let g:airline_theme="papercolor"
-endif
+  if $VIM_THEME == 'papercolor'
+    set background=dark
+    set t_Co=256  " 256-bit color
+    colorscheme PaperColor
+    let g:airline_theme="papercolor"
+  endif
+
 
 highlight Comment cterm=italic
 
