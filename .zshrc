@@ -44,8 +44,10 @@ fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 compinit
 
-export GO111MODULE=on
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 
+export GO111MODULE=on
 case $(uname) in
   Darwin)
     alias ls='ls -G'
@@ -141,6 +143,7 @@ eval "$(direnv hook zsh)"
 if [ "${VIM_THEME+set}" != set ]; then
   export VIM_THEME=oceanicnext
 fi
+
 
 
 # Auto completes
