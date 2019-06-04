@@ -125,6 +125,8 @@ alias -g A='| ag'
 alias grep='grep --color'
 alias tmux='tmux attach|| tmux'
 alias ee='emacsclient -c '
+alias titan='mosh titan'
+alias lapetus='mosh -p 61001 lapetus'
 
 # setup direnv
 eval "$(direnv hook zsh)"
