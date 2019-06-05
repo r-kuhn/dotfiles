@@ -55,6 +55,7 @@ Plug 'crusoexia/vim-monokai'
 Plug 'NLKNguyen/papercolor-theme' " color scheme for 8-bit
 Plug 'haishanh/night-owl.vim'
 Plug 'rakr/vim-one'
+Plug 'joshdick/onedark.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()
@@ -140,6 +141,15 @@ syntax enable
     colorscheme one
     let g:airline_theme="one"
     let g:one_allow_italics = 1
+  endif
+
+  if $VIM_THEME=='onedark'
+    set background=light
+    set termguicolors  " 24-bit color
+    colorscheme onedark
+    let g:airline_theme="onedark"
+    let g:onedark_terminal_italics = 1
+    let g:onedark_hide_endofbuffer = 1
   endif
 
   if $VIM_THEME=='oceanicnext'
