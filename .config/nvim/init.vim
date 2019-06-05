@@ -35,7 +35,7 @@ Plug 'mattn/emmet-vim' " html faster editing
 Plug 'liuchengxu/vista.vim', {'on': 'Vista' } " LSP tag browsing
 Plug 'sheerun/vim-polyglot' " handle most file types
 Plug 'w0rp/ale' " Linting
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " language server
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
@@ -438,10 +438,11 @@ let g:ale_linters = {
       \ 'javascript': ['eslint'],
       \ 'c': ['clang', 'clangtidy', 'clang-format'],
       \ 'typescript': ['eslint'],
+      \ 'go': ['golangci-lint'],
       \ 'sh': ['shellcheck']}
-     " \ 'go': ['golangci-lint'], -- too damn battery hungry
 let g:ale_python_flake8_args='--exclude=migrations --ignore=E261 --max-line-length=80'
-" let g:ale_golangci_lint_options="'--enable-all'"
+let g:ale_golangci_lint_options="'--enable-all'"
+"let g:ale_golangci_lint_options="'--fast'"
 let g:ale_go_golangci_lint_options = '
   \ --config=~/.config/golangci.yml
   \ --fast
