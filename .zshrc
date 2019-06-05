@@ -141,7 +141,7 @@ eval "$(direnv hook zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if [ "${VIM_THEME+set}" != set ]; then
-  export VIM_THEME=oceanicnext
+  export VIM_THEME=onedark
 fi
 
 
