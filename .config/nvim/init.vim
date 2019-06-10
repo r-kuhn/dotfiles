@@ -275,39 +275,39 @@ nnoremap <leader>o :only<CR>
 " Better split switching
 map <C-j> <C-W>j
 map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+map <C-h> <C-W>h map <C-l> <C-W>l
+
 
 " Print full path
 map <C-f> :echo expand("%:p")<cr>
 
 " Terminal settings
-if has('terminal')
-  " Kill job and close terminal window
-  tnoremap <Leader>q <C-w><C-C><C-w>c<cr>
+" if has('terminal')
+"   " Kill job and close terminal window
+"   tnoremap <Leader>q <C-w><C-C><C-w>c<cr>
 
-  " switch to normal mode with esc
-  tnoremap <Esc> <C-W>N
+"   " switch to normal mode with esc
+"   tnoremap <Esc> <C-W>N
 
-  " mappings to move out from terminal to other views
-  tnoremap <C-h> <C-w>h
-  tnoremap <C-j> <C-w>j
-  tnoremap <C-k> <C-w>k
-  tnoremap <C-l> <C-w>l
+"   " mappings to move out from terminal to other views
+"   tnoremap <C-h> <C-w>h
+"   tnoremap <C-j> <C-w>j
+"   tnoremap <C-k> <C-w>k
+"   tnoremap <C-l> <C-w>l
 
-  " Open terminal in vertical, horizontal and new tab
-  nnoremap <leader>tv :vsplit<cr>:term ++curwin<CR>
-  nnoremap <leader>ts :split<cr>:term ++curwin<CR>
-  nnoremap <leader>tt :tabnew<cr>:term ++curwin<CR>
+"   " Open terminal in vertical, horizontal and new tab
+"   nnoremap <leader>tv :vsplit<cr>:term ++curwin<CR>
+"   nnoremap <leader>ts :split<cr>:term ++curwin<CR>
+"   nnoremap <leader>tt :tabnew<cr>:term ++curwin<CR>
 
-  tnoremap <leader>tv <C-w>:vsplit<cr>:term ++curwin<CR>
-  tnoremap <leader>ts <C-w>:split<cr>:term ++curwin<CR>
-  tnoremap <leader>tt <C-w>:tabnew<cr>:term ++curwin<CR>
+"   tnoremap <leader>tv <C-w>:vsplit<cr>:term ++curwin<CR>
+"   tnoremap <leader>ts <C-w>:split<cr>:term ++curwin<CR>
+"   tnoremap <leader>tt <C-w>:tabnew<cr>:term ++curwin<CR>
 
-  " always start terminal in insert mode when I switch to it
-  " NOTE(arslan): startinsert doesn't work in Terminal-normal mode.
-  " autocmd WinEnter * if &buftype == 'terminal' | call feedkeys("i") | endif
-endif
+"   " always start terminal in insert mode when I switch to it
+"   " NOTE(arslan): startinsert doesn't work in Terminal-normal mode.
+"   " autocmd WinEnter * if &buftype == 'terminal' | call feedkeys("i") | endif
+" endif
 " Time out on key codes but not mappings.
 " Basically this makes terminal Vim work sanely.
 if !has('gui_running')
@@ -431,6 +431,15 @@ cnoremap <C-N> <Down>
 
 " end of until its fixed
 
+" === TMUX
+" save files when switching from vim to tmux
+let g:tmux_navigator_save_on_switch = 2
+
+" === GIT GUTTER
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
+let g:gitgutter_map_keys = 0
+"let g:gitgutter_max_signs = 500
 
 " === ALE
 " specify some specific ale linter sources, rest are using defaults
@@ -516,7 +525,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 
 " Use K to show documentation in preview window
 " nnoremap <silent> K :call <SID>show_documentation()<CR> " vim-go overwrites
-nnoremap <silent> T :call <SID>show_documentation()<CR>
+nnoremap <silent> I :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -549,7 +558,7 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
