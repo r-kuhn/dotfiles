@@ -180,7 +180,7 @@ syntax enable
     set background=dark
     set termguicolors  " 24-bit color
     colorscheme monokai
-    let g:airline_theme="monokai"
+    let g:airline_theme="base16_monokai"
     let g:monokai_term_italic = 1
     let g:monokai_gui_italic = 1
   endif
