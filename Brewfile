@@ -47,6 +47,7 @@ brew "zsh"
 brew "zlib"
 
 cask "alfred"
+cask "arduino"
 cask "arq"
 cask "dash"
 cask "docker"
