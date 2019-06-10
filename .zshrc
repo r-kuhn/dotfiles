@@ -133,7 +133,7 @@ alias grep='grep --color'
 alias tmux='tmux attach|| tmux'
 alias ee='emacsclient -c '
 alias titan='mosh titan'
-alias lapetus='mosh -p 61001 lapetus'
+alias lapetus='mosh -p 61002 lapetus'
 
 # setup direnv
 eval "$(direnv hook zsh)"
@@ -141,7 +141,8 @@ eval "$(direnv hook zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if [ "${VIM_THEME+set}" != set ]; then
-  export VIM_THEME=onedark
+  export VIM_THEME=oceanicnext
+  #export VIM_THEME=atomonelight
 fi
 
 

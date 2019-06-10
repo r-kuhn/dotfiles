@@ -5,7 +5,7 @@
   ],
   "coc.preferences.jumpCommand": "split",
   "coc.preferences.formatOnType": true,
-  "coc.preferences.hoverTarget": "preview",
+  "coc.preferences.hoverTarget": "echo",
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "javascript",
@@ -18,7 +18,7 @@
   ],
   "codeLens.enable": true,
   "diagnostic.enable": true,
-  "diagnostic.enableMessage": "always",
+  "diagnostic.enableMessage": "never",
   "diagnostic.hintSign": "➤",
   "diagnostic.infoSign": "i",
   "diagnostic.warningSign": "⚠",
@@ -82,8 +82,6 @@
     "efm": {
       "command": "efm-langserver",
       "args": [],
-      // custom config path
-      // "args": ["-c", "/path/to/your/config.yaml"],
       "filetypes": ["vim", "eruby", "markdown"]
     }
   },
