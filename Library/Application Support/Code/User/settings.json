@@ -123,5 +123,7 @@
   "mjml.templateGallery": true,
   "errorLens.warningColor": "rgba(240,0,0,0.4)",
   "editor.hover.enabled": true,
-  "explorer.autoReveal": false
+  "explorer.autoReveal": false,
+  "aws.samcli.location": "/Users/dan/brew/bin/sam",
+  "aws.profile": "default"
 }

@@ -111,6 +111,7 @@ set inccommand=split         " preview changes live such as %s
 set signcolumn=yes           " always show sign columns
 "set wildoptions=pum " requires nvim 0.4+
 "set pumblend=20              " alpha blending for pum list
+set clipboard=unnamedplus   " have vim use the system clipboard
 
 set shortmess+=c   " Shut off completion messages
 set belloff+=ctrlg " If Vim beeps during completion

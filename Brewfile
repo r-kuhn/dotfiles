@@ -1,3 +1,4 @@
+tap "aws/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
@@ -8,6 +9,8 @@ tap "railwaycat/emacsmacport"
 tap "derailed/k9s"
 
 brew "ag"
+brew "awscli"
+brew "aws-sam-cli"
 brew "bat"
 brew "coreutils"
 brew "railwaycat/emacsmacport/emacs-mac"
@@ -32,7 +35,6 @@ brew "neovim"
 brew "nodejs"
 brew "postgres"
 brew "python"
-#brew "python@2"
 brew "reattach-to-user-namespace"
 brew "ripgrep"
 brew "shellcheck"
@@ -78,3 +80,6 @@ mas "Irvue", id: 1039633667
 mas "DaisyDisk", id: 411643860
 mas "Numbers", id: 409203825
 mas "1Password 7", id: 1333542190
+mas "ColorSlurp", id: 1287239339
+mas "Calca", id: 635758264
+mas "Transmit", id: 1436522307
