@@ -5,7 +5,7 @@
   ],
   "coc.preferences.jumpCommand": "split",
   "coc.preferences.formatOnType": true,
-  "coc.preferences.hoverTarget": "echo",
+  "coc.preferences.hoverTarget": "float",
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "javascript",
@@ -23,12 +23,12 @@
   "diagnostic.infoSign": "i",
   "diagnostic.warningSign": "⚠",
   "diagnostic.errorSign": "✘",
-  "diagnostic.messageTarget": "echo",
+  "diagnostic.messageTarget": "float",
   "diagnostic.virtualText": true,
   "diagnostic.checkCurrentLine": false,
   "diagnostic.virtualTextPrefix": "<== ",
   "diagnostic.displayByAle": false,
-  "signature.target": "echo",
+  "signature.target": "float",
   "list.indicator": ">",
   "list.selectedSignText": "*",
   "list.normalMappings": {
