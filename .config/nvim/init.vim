@@ -211,6 +211,7 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.gotmpl set filetype=gotexttmpl
   autocmd BufNewFile,BufRead *.fizz set syntax=javascript noexpandtab tabstop=4 shiftwidth=4
 
+  autocmd BufNewFile,BufRead *.js setlocal noet ts=2 sw=2 sts=2
   autocmd BufNewFile,BufRead *.ino setlocal noet ts=4 sw=4 sts=4
   autocmd BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
   autocmd BufNewFile,BufRead *.md setlocal et ts=4 sw=4 tw=80
