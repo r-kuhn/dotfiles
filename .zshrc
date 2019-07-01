@@ -61,10 +61,6 @@ case $(uname) in
     export PATH=${HOME}/bin:${GOROOT}/bin:${GOBIN}:${HOME}/brew/bin:${HOME}/.npm/bin:/usr/local/bin:${HOME}/Library/Python/3.7/bin:${PATH}
     ;;
   Linux)
-	  if [ -e "/nix" ]; then
-	  else
-		  export GOROOT=${HOME}/.go
-	  fi
 	  export GOPATH=$HOME/go
 	  export GOBIN=$GOPATH/bin
 
@@ -146,25 +142,5 @@ if [ "${VIM_THEME+set}" != set ]; then
 fi
 
 
-
-# Auto completes
-#
-# GCloud
-# if [ -e "${HOME}/brew/Caskroom/google-cloud-sdk/latest" ]; then
-#   source "${HOME}/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-#   source "${HOME}/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-#   export PATH=$PATH:${HOME}/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin
-# fi
-
 source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
 true
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
