@@ -159,6 +159,8 @@ fi
 source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
 true
 
+HEROKU_AC_ZSH_SETUP_PATH=/Users/dan/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 [[ -f /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/dan/brew/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
