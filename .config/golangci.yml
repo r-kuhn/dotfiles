@@ -35,6 +35,8 @@ linters-settings:
 linters:
   enable-all: true
   disable:
+    - dupl
+    - goconst
     - maligned
     - prealloc
     - gochecknoglobals

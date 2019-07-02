@@ -29,6 +29,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-signify' " git gutter
 Plug 'tpope/vim-fugitive' " git handling
+Plug 'tpope/vim-ragtag' " for better html.eruby indenting
 "Plug 'jreybert/vimagit' " git hunk handling
 Plug 'mhinz/vim-startify' "fancy start screen
 Plug 'mattn/emmet-vim' " html faster editing
