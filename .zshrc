@@ -51,7 +51,6 @@ export GO111MODULE=on
 case $(uname) in
   Darwin)
     alias ls='ls -G'
-    export GOROOT=${HOME}/.go
     export GOPATH=${HOME}/go
     export GOBIN=${HOME}/go/bin
 
