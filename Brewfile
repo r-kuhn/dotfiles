@@ -29,7 +29,7 @@ brew "k9s"
 brew "kubernetes-cli"
 brew "kubernetes-helm"
 brew "mas"
-#brew "mosh" # use head instead
+brew "mosh", args: ["HEAD"]
 brew "neovim"
 brew "nodejs"
 brew "postgres"
