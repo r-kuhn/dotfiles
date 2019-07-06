@@ -28,6 +28,9 @@ if [ "$system_type" = "Darwin" ]; then
 	echo "Disabling press-and-hold for keys in favor of a key repeat"
 	defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
+	defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
+	defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+
 	npm install -g jshint eslint neovim
 
 	# Python stuff
