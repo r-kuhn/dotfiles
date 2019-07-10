@@ -245,6 +245,9 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 " i.e: <leader>w saves the current file
 let mapleader = ","
 
+noremap <C-s> :update<CR>
+inoremap <C-s> <C-o>:update<CR>
+
 " Handy keyboard keys while in insert mode.  C-o makes next char run in normal
 " mode
 inoremap <C-e> <C-o>$
