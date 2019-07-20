@@ -57,7 +57,10 @@ case $(uname) in
     if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
       source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
     fi
-    export PATH=${HOME}/bin:${GOROOT}/bin:${GOBIN}:${HOME}/brew/bin:${HOME}/.npm/bin:/usr/local/bin:${HOME}/Library/Python/3.7/bin:${PATH}
+    export PATH=${HOME}/bin:${GOROOT}/bin:${GOBIN}:${HOME}/local:${HOME}/brew/bin:${HOME}/.npm/bin:/usr/local/bin:${HOME}/Library/Python/3.7/bin:${PATH}
+
+    source '/Users/dan/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+    source '/Users/dan/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
     ;;
   Linux)
 	  export GOPATH=$HOME/go

@@ -52,6 +52,7 @@ Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 
 " Themes
 Plug 'mhartington/oceanic-next' " Color scheme for 24-bit
+Plug 'srcery-colors/srcery-vim'
 Plug 'crusoexia/vim-monokai'
 Plug 'NLKNguyen/papercolor-theme' " color scheme for 8-bit
 Plug 'haishanh/night-owl.vim'
@@ -152,6 +153,15 @@ syntax enable
     let g:airline_theme="onedark"
     let g:onedark_terminal_italics = 1
     let g:onedark_hide_endofbuffer = 1
+  endif
+
+  if $VIM_THEME=='srcery'
+    set background=dark
+    set termguicolors  " 24-bit color
+    colorscheme srcery
+    let g:srcery_bold = 1
+    let g:srcery_italic = 1
+    let g:airline_theme="srcery"
   endif
 
   if $VIM_THEME=='oceanicnext'

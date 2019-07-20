@@ -86,7 +86,7 @@
     }
   },
   "python.linting.flake8Enabled": true,
-  "yank.highlight.enable": true,
+  "yank.highlight.enable": false,
   "yank.highlight.duration": 500,
   "yank.list.maxsize": 50
 }
