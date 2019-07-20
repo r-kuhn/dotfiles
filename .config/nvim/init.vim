@@ -205,7 +205,7 @@ syntax enable
   endif
 
 
-highlight Comment cterm=italic
+highlight Comment cterm=italic gui=italic
 
 
 augroup filetypedetect
