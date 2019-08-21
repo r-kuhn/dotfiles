@@ -110,10 +110,10 @@
       "erb": "erb",
       "html": "html"
     },
-    "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
+    "workbench.iconTheme": "Monokai Pro (Filter Ristretto) Icons",
     "extensions.ignoreRecommendations": false,
     "breadcrumbs.enabled": false,
-    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
+    "workbench.colorTheme": "Monokai Pro (Filter Ristretto)",
     "workbench.startupEditor": "newUntitledFile",
     "[html]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -125,5 +125,7 @@
     "editor.hover.enabled": true,
     "explorer.autoReveal": false,
     "aws.samcli.location": "/Users/dan/brew/bin/sam",
-    "aws.profile": "default"
+    "aws.profile": "default",
+    "workbench.activityBar.visible": true,
+    "mjml.minifyHtmlOutput": false
   }

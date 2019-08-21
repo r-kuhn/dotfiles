@@ -21,7 +21,7 @@ Plug 't9md/vim-choosewin' " hit '-' to pick a window
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
+"Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
 Plug 'tpope/vim-commentary' " gc to comment out sections
 Plug 'plasticboy/vim-markdown' " for markdown
 Plug 'luochen1990/rainbow' " Rainbow parenthesis
@@ -226,7 +226,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.ino setlocal noet ts=4 sw=4 sts=4
   autocmd BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
   autocmd BufNewFile,BufRead *.md setlocal et ts=4 sw=4 tw=80
-  autocmd BufNewFile,BufRead *.html setlocal noet ts=4 sw=4 filetype=html.eruby
+  autocmd BufNewFile,BufRead *plush.html setlocal noet ts=4 sw=4 filetype=html.eruby
   autocmd BufNewFile,BufRead *.vim setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.hcl setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
@@ -237,7 +237,7 @@ augroup filetypedetect
   autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
   " autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool
   autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
-
+  autocmd FileType html,eruby,erb,tmpl let b:closetag_html_style=1
 augroup END
 
 "=============== Airline ============================
@@ -519,8 +519,21 @@ endfunction
 
 " === COC
 " Improve completion for coc:
-inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+" dan comment out these two lines because the code above is newer
+" inoremap <silent><expr> <c-space> coc#refresh()
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
 highlight CocErrorSign ctermfg=red ctermbg=NONE guifg=#ff6D00
 highlight CocWarningSign ctermfg=yellow ctermbg=NONE guifg=#ffbb00
@@ -590,7 +603,7 @@ let g:vista_executive_for = {
 let g:vista#renderer#enable_icon = 0
 
 nnoremap <silent> <space>d  :<C-u>CocList diagnostics<cr>
-" fuzzy finder for tags
+" fuzzy finder for tas
 nnoremap <silent> <space>o  :<C-u>Vista finder coc<CR>
 " tag list:
 nnoremap <silent> <space>t  :<C-u>Vista coc<CR>
