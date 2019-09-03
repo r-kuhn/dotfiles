@@ -22,6 +22,7 @@ Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 "Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
+Plug 'derekwyatt/vim-scala'
 Plug 'tpope/vim-commentary' " gc to comment out sections
 Plug 'plasticboy/vim-markdown' " for markdown
 Plug 'luochen1990/rainbow' " Rainbow parenthesis
@@ -48,7 +49,7 @@ Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+"Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 
 " Themes
 Plug 'mhartington/oceanic-next' " Color scheme for 24-bit
@@ -197,13 +198,35 @@ syntax enable
     let g:monokai_gui_italic = 1
   endif
 
-  if $VIM_THEME == 'papercolor'
+  if $VIM_THEME == 'papercolor-dark'
     set background=dark
-    set t_Co=256  " 256-bit color
+    "set t_Co=256  " 256-bit color, should gracefully degrade
     colorscheme PaperColor
     let g:airline_theme="papercolor"
+    let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default': {
+  \       'allow_bold': 1,
+  \       'allow_italic': 1,
+  \     }
+  \   }
+  \ }
   endif
 
+  if $VIM_THEME == 'papercolor-light'
+    set background=light
+    "set t_Co=256  " 256-bit color, should gracefully degrade
+    colorscheme PaperColor
+    let g:airline_theme="papercolor"
+    let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default': {
+  \       'allow_bold': 1,
+  \       'allow_italic': 1,
+  \     }
+  \   }
+  \ }
+  endif
 
 highlight Comment cterm=italic gui=italic
 
@@ -231,6 +254,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.hcl setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.proto setlocal expandtab shiftwidth=2 tabstop=2
+  autocmd BufRead,BufNewFile *.sbt set filetype=scala
 
   autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2
@@ -611,3 +635,6 @@ nnoremap <silent> <space>t  :<C-u>Vista coc<CR>
 nnoremap <silent> <space>v  :<C-u>Vista!<CR>
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
+
+" Scala stuff
+nnoremap <silent> <M-B> :call CocRequest('scalametals', 'workspace/executeCommand', { 'command': 'build-import' })<CR>
