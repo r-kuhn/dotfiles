@@ -492,10 +492,6 @@ let g:FerretExecutable='rg,ag'
 nmap <leader>f  <Plug>(FerretAck)
 nmap <leader>*  <Plug>(FerretAckWord)
 
-" === denite
-" https://github.com/Shougo/denite.nvim/issues/640
-"source denite.vim
-" until its fixed:
 nmap <silent> ; :Buffers<CR>
 nnoremap <c-p> :FZF<cr>
 " if executable('ag')
