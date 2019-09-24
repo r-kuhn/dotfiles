@@ -40,6 +40,7 @@ linters:
     - gochecknoinits
     - typecheck
     - ineffassign
+    - interfacer
 
 run:
   deadline: 5m
@@ -48,9 +49,9 @@ run:
 
 issues:
   exclude-rules:
-    - text: "weak cryptographic primitive"
+    - path: _test\.go
       linters:
-        - gosec
+        - funlen
 
 # golangci.com configuration
 # https://github.com/golangci/golangci/wiki/Configuration
