@@ -17,6 +17,9 @@ linters-settings:
     packages:
   misspell:
     locale: US
+  funlen:
+    lines: 70
+    statements: 40
   lll:
     line-length: 140
   goimports:

@@ -6,14 +6,12 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets' " snippets documented here: https://github.com/honza/vim-snippets
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
+Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " nixos doesn't install this nicely
 
 Plug 'wincent/ferret' " project wide search and replace
-" until denite is fixed
 Plug 'junegunn/fzf.vim' " until denite is fixed
-"Plug 'mileszs/ack.vim'
 Plug 'Shougo/denite.nvim', {'do': ':UpdateRemotePlugins' } " Fuzzy finding, buffer management
-" end of until denite is fixed
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons' " icons for denite, nerdtree
@@ -41,6 +39,7 @@ Plug 'albertomontesg/lightline-asyncrun'
 Plug 'itchyny/vim-gitbranch' " branch name for for git repo
 Plug 'rhysd/git-messenger.vim' " git commit messages under curosr <Leader>gm
 Plug 'macthecadillac/lightline-gitdiff'
+Plug 'yuttie/comfortable-motion.vim' " inertia based scrolling
 Plug 'tpope/vim-ragtag' " for better html.eruby indenting
 "Plug 'jreybert/vimagit' " git hunk handling
 Plug 'mhinz/vim-startify' "fancy start screen
@@ -48,20 +47,6 @@ Plug 'mattn/emmet-vim' " html faster editing
 Plug 'liuchengxu/vista.vim', {'on': 'Vista' } " LSP tag browsing
 Plug 'sheerun/vim-polyglot' " handle most file types
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'w0rp/ale' " Linting
-"Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
-" Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
-"Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 
 " Themes
 Plug 'mhartington/oceanic-next' " Color scheme for 24-bit
@@ -315,7 +300,7 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 " This comes first, because we have mappings that depend on leader
 " With a map leader it's possible to do extra key combinations
 " i.e: <leader>w saves the current file
-let mapleader = ","
+let mapleader = " "
 
 noremap <C-s> :update<CR>
 inoremap <C-s> <C-o>:update<CR>
@@ -571,6 +556,20 @@ function! <SID>LocationNext()
 endfunction
 
 " === COC
+let g:coc_global_extensions = [
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-css',
+  \ 'coc-git',
+  \ 'coc-html',
+  \ 'coc-highlight',
+  \ 'coc-json',
+  \ 'coc-yaml',
+  \ 'coc-emmet',
+  \ 'coc-python',
+  \ 'coc-prettier',
+  \ 'coc-css'
+  \ ]
 " Improve completion for coc:
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
