@@ -27,7 +27,7 @@
   "diagnostic.virtualText": true,
   "diagnostic.checkCurrentLine": false,
   "diagnostic.virtualTextPrefix": "<== ",
-  "diagnostic.displayByAle": false,
+  "diagnostic.displayByAle": true,
   "signature.target": "float",
   "list.indicator": ">",
   "list.selectedSignText": "*",
@@ -41,11 +41,20 @@
     "<C-x>": "action:split",
     "<C-v>": "action:vsplit"
   },
-  "pairs.disableLanguages": ["vim", "html.eruby"],
+  "pairs.disableLanguages": [
+    "vim",
+    "html.eruby"
+  ],
   "snippets.extends": {
-      "cpp": ["c"],
-      "javascriptreact": ["javascript"],
-      "typescript": ["javascript"]
+    "cpp": [
+      "c"
+    ],
+    "javascriptreact": [
+      "javascript"
+    ],
+    "typescript": [
+      "javascript"
+    ]
   },
   "snippets.shortcut": "S",
   "snippets.autoTrigger": true,
@@ -66,33 +75,134 @@
   "languageserver": {
     "golang": {
       "command": "gopls",
-      "rootPatterns": ["go.mod", ".git/", ".hg/", "vendor/"],
-      "filetypes": ["go"]
+      "rootPatterns": [
+        "go.mod",
+        ".git/",
+        ".hg/",
+        "vendor/"
+      ],
+      "filetypes": [
+        "go"
+      ]
     },
     "dockerfile": {
       "command": "docker-langserver",
-      "filetypes": ["dockerfile"],
-      "args": ["--stdio"]
+      "filetypes": [
+        "dockerfile"
+      ],
+      "args": [
+        "--stdio"
+      ]
     },
     "bash": {
       "command": "bash-language-server",
-      "args": ["start"],
-      "filetypes": ["sh"],
-      "ignoredRootPaths": ["~"]
+      "args": [
+        "start"
+      ],
+      "filetypes": [
+        "sh"
+      ],
+      "ignoredRootPaths": [
+        "~"
+      ]
     },
     "efm": {
       "command": "efm-langserver",
       "args": [],
-      "filetypes": ["vim", "eruby", "markdown"]
+      "filetypes": [
+        "vim",
+        "eruby",
+        "markdown"
+      ]
     },
     "metals": {
       "command": "metals-vim",
-      "rootPatterns": ["build.sbt"],
-      "filetypes": ["scala", "sbt"]
+      "rootPatterns": [
+        "build.sbt"
+      ],
+      "filetypes": [
+        "scala",
+        "sbt"
+      ]
+    },
+    "python": {
+      "command": "python",
+      "args": [
+        "-mpyls",
+        "-vv",
+        "--log-file",
+        "/tmp/lsp_python.log"
+      ],
+      "trace.server": "verbose",
+      "filetypes": [
+        "python"
+      ],
+      "settings": {
+        "pyls": {
+          "enable": true,
+          "trace": {
+            "server": "verbose"
+          },
+          "commandPath": "",
+          "configurationSources": [
+            "pycodestyle"
+          ],
+          "plugins": {
+            "jedi_completion": {
+              "enabled": true
+            },
+            "jedi_hover": {
+              "enabled": true
+            },
+            "jedi_references": {
+              "enabled": true
+            },
+            "jedi_signature_help": {
+              "enabled": true
+            },
+            "jedi_symbols": {
+              "enabled": true,
+              "all_scopes": true
+            },
+            "mccabe": {
+              "enabled": true,
+              "threshold": 15
+            },
+            "preload": {
+              "enabled": true
+            },
+            "pycodestyle": {
+              "enabled": false
+            },
+            "pydocstyle": {
+              "enabled": false,
+              "match": "(?!test_).*\\.py",
+              "matchDir": "[^\\.].*"
+            },
+            "pyflakes": {
+              "enabled": true
+            },
+            "rope_completion": {
+              "enabled": true
+            },
+            "yapf": {
+              "enabled": true
+            }
+          }
+        }
+      },
+      "git.branchCharacter": "",
+      "git.changedDecorator": "*",
+      "git.conflictedDecorator": "",
+      "git.stagedDecorator": "",
+      "git.untrackedDecorator": "",
+      "git.addGlameToVirtualText": false,
+      "git.addedSign.hlGroup": "GitGutterAdd",
+      "git.changedSign.hlGroup": "GitGutterChange",
+      "git.removedSign.hlGroup": "GitGutterDelete",
+      "git.topRemovedSign.hlGroup": "GitGutterDelete",
+      "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+      "git.enableGutters": true
     }
-  },
-  "python.linting.flake8Enabled": true,
-  "yank.highlight.enable": false,
-  "yank.highlight.duration": 500,
-  "yank.list.maxsize": 50
+  }
 }

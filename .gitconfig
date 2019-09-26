@@ -157,5 +157,3 @@
 	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
-[url "ssh://git@gitlab.com"]
-	insteadOf = https://gitlab.com

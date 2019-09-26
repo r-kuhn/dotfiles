@@ -6,14 +6,12 @@ Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets' " snippets documented here: https://github.com/honza/vim-snippets
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
+Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " nixos doesn't install this nicely
 
 Plug 'wincent/ferret' " project wide search and replace
-" until denite is fixed
 Plug 'junegunn/fzf.vim' " until denite is fixed
-"Plug 'mileszs/ack.vim'
 Plug 'Shougo/denite.nvim', {'do': ':UpdateRemotePlugins' } " Fuzzy finding, buffer management
-" end of until denite is fixed
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons' " icons for denite, nerdtree
@@ -21,35 +19,34 @@ Plug 't9md/vim-choosewin' " hit '-' to pick a window
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'edkolev/tmuxline.vim'
 "Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
 Plug 'derekwyatt/vim-scala'
 Plug 'tpope/vim-commentary' " gc to comment out sections
 Plug 'plasticboy/vim-markdown' " for markdown
 Plug 'luochen1990/rainbow' " Rainbow parenthesis
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'mhinz/vim-signify' " git gutter
-Plug 'tpope/vim-fugitive' " git handling
+Plug 'dense-analysis/ale'
+
+" Lightline or Airline
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
+Plug 'albertomontesg/lightline-asyncrun'
+
+"Plug 'mhinz/vim-signify' " git gutter
+"Plug 'tpope/vim-fugitive' " git handling
+Plug 'itchyny/vim-gitbranch' " branch name for for git repo
+Plug 'rhysd/git-messenger.vim' " git commit messages under curosr <Leader>gm
+Plug 'macthecadillac/lightline-gitdiff'
+Plug 'yuttie/comfortable-motion.vim' " inertia based scrolling
 Plug 'tpope/vim-ragtag' " for better html.eruby indenting
 "Plug 'jreybert/vimagit' " git hunk handling
 Plug 'mhinz/vim-startify' "fancy start screen
 Plug 'mattn/emmet-vim' " html faster editing
 Plug 'liuchengxu/vista.vim', {'on': 'Vista' } " LSP tag browsing
 Plug 'sheerun/vim-polyglot' " handle most file types
-Plug 'w0rp/ale' " Linting
-Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
-Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
-"Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Themes
 Plug 'mhartington/oceanic-next' " Color scheme for 24-bit
@@ -60,6 +57,9 @@ Plug 'haishanh/night-owl.vim'
 Plug 'rakr/vim-one'
 Plug 'joshdick/onedark.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'kyoz/purify', { 'rtp': 'vim' }
+Plug 'cocopon/iceberg.vim'
+Plug 'gkeep/iceberg-dark'
 
 call plug#end()
 
@@ -87,7 +87,7 @@ set incsearch                   " Shows the match while typing
 set hlsearch                    " Highlight found searches
 set mouse=a                     "Enable mouse mode
 set noerrorbells             " No beeps
-set number                   " Show line numbers
+ set number                   " Show line numbers
 set showcmd                  " Show me what I'm typing
 set cmdheight=1              " better command section, needed for coc
 set noswapfile               " Don't use swapfile
@@ -154,6 +154,28 @@ syntax enable
     let g:airline_theme="onedark"
     let g:onedark_terminal_italics = 1
     let g:onedark_hide_endofbuffer = 1
+  endif
+
+  if $VIM_THEME=='purify'
+    set background=dark
+    set termguicolors  " 24-bit color
+    colorscheme purify
+    let g:airline_theme="purify"
+  endif
+
+  if $VIM_THEME=='iceberg'
+    set background=dark
+    set termguicolors  " 24-bit color
+    colorscheme iceberg
+    let g:airline_theme="iceberg"
+  endif
+
+  if $VIM_THEME=='iceberg-dark'
+    set background=dark
+    set termguicolors  " 24-bit color
+    colorscheme iceberg
+    let g:lightline = { 'colorscheme': 'icebergDark' }
+    let g:airline_theme="iceberg"
   endif
 
   if $VIM_THEME=='srcery'
@@ -271,13 +293,14 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
+
 "=====================================================
 "===================== MAPPINGS ======================
 
 " This comes first, because we have mappings that depend on leader
 " With a map leader it's possible to do extra key combinations
 " i.e: <leader>w saves the current file
-let mapleader = ","
+let mapleader = " "
 
 noremap <C-s> :update<CR>
 inoremap <C-s> <C-o>:update<CR>
@@ -454,10 +477,6 @@ let g:FerretExecutable='rg,ag'
 nmap <leader>f  <Plug>(FerretAck)
 nmap <leader>*  <Plug>(FerretAckWord)
 
-" === denite
-" https://github.com/Shougo/denite.nvim/issues/640
-"source denite.vim
-" until its fixed:
 nmap <silent> ; :Buffers<CR>
 nnoremap <c-p> :FZF<cr>
 " if executable('ag')
@@ -476,14 +495,9 @@ cnoremap <C-N> <Down>
 " save files when switching from vim to tmux
 let g:tmux_navigator_save_on_switch = 2
 
-" === GIT GUTTER
-let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 0
-let g:gitgutter_map_keys = 0
-"let g:gitgutter_max_signs = 500
-
 " === ALE
 " specify some specific ale linter sources, rest are using defaults
+let g:VIM_Linter = 'ale'
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
       \ 'javascript': ['prettier', 'eslint'],
@@ -542,6 +556,20 @@ function! <SID>LocationNext()
 endfunction
 
 " === COC
+let g:coc_global_extensions = [
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-css',
+  \ 'coc-git',
+  \ 'coc-html',
+  \ 'coc-highlight',
+  \ 'coc-json',
+  \ 'coc-yaml',
+  \ 'coc-emmet',
+  \ 'coc-python',
+  \ 'coc-prettier',
+  \ 'coc-css'
+  \ ]
 " Improve completion for coc:
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
@@ -638,3 +666,8 @@ nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
 " Scala stuff
 nnoremap <silent> <M-B> :call CocRequest('scalametals', 'workspace/executeCommand', { 'command': 'build-import' })<CR>
+
+
+"=============== Lightline ============================
+let g:Lightline_Linter = [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]
+source ~/.config/nvim/lightline.vimrc
