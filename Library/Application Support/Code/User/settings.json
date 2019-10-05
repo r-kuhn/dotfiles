@@ -154,5 +154,7 @@
   "editor.parameterHints.enabled": false,
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "files.eol": "\n", // formatting only supports LF line endings
+  "files.eol": "\n",
+  "python.jediEnabled": false,
+  "java.configuration.checkProjectSettingsExclusions": false, // formatting only supports LF line endings
 }

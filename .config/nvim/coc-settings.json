@@ -16,6 +16,7 @@
     "json",
     "go",
   ],
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "codeLens.enable": true,
   "diagnostic.enable": true,
   "diagnostic.enableMessage": "never",
@@ -28,6 +29,18 @@
   "diagnostic.checkCurrentLine": false,
   "diagnostic.virtualTextPrefix": "<== ",
   "diagnostic.displayByAle": true,
+  "git.branchCharacter": "",
+  "git.changedDecorator": "*",
+  "git.conflictedDecorator": "",
+  "git.stagedDecorator": "",
+  "git.untrackedDecorator": "",
+  "git.addGlameToVirtualText": false,
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+  "git.enableGutters": true,
   "signature.target": "float",
   "list.indicator": ">",
   "list.selectedSignText": "*",
@@ -65,7 +78,7 @@
     "~/.config/nvim/mysnippets"
   ],
   "suggest.triggerAfterInsertEnter": true,
-  "suggest.timeout": 2000,
+  "suggest.timeout": 5000,
   "suggest.noselect": false,
   "suggest.minTriggerInputLength": 1,
   "suggest.acceptSuggestionOnCommitCharacter": true,
@@ -190,19 +203,7 @@
             }
           }
         }
-      },
-      "git.branchCharacter": "",
-      "git.changedDecorator": "*",
-      "git.conflictedDecorator": "",
-      "git.stagedDecorator": "",
-      "git.untrackedDecorator": "",
-      "git.addGlameToVirtualText": false,
-      "git.addedSign.hlGroup": "GitGutterAdd",
-      "git.changedSign.hlGroup": "GitGutterChange",
-      "git.removedSign.hlGroup": "GitGutterDelete",
-      "git.topRemovedSign.hlGroup": "GitGutterDelete",
-      "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-      "git.enableGutters": true
+      }
     }
   }
 }

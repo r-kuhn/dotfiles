@@ -39,8 +39,8 @@ let g:lightline_gitdiff#indicator_modified = '*'
 let g:lightline_gitdiff#min_winwidth = '70'
 let g:lightline.active = {
             \ 'left': [ [ 'mode', 'paste' ],
-            \           [ 'readonly', 'filename', 'modified', 'gitstatus' ] ],
-            \ 'right': [ [ 'devicons_filetype', 'lineinfo' ],
+            \           [ 'readonly', 'relativepath', 'modified', 'gitbranch', 'gitstatus', 'blame' ] ],
+            \ 'right': [ [ 'devicons_filetype', 'currentFunction', 'lineinfo' ],
             \            g:Lightline_Linter,
             \           [ 'asyncrun_status' ] ]
             \ }
@@ -97,7 +97,9 @@ let g:lightline.component = {
 let g:lightline.component_function = {
             \ 'gitbranch': 'gitbranch#name',
             \ 'devicons_filetype': 'Devicons_Filetype',
-            \ 'devicons_fileformat': 'Devicons_Fileformat'
+            \ 'devicons_fileformat': 'Devicons_Fileformat',
+            \ 'currentFunction': 'CocCurrentFunction',
+            \ 'blame': 'LightLineGitBlame'
             \ }
 let g:lightline.component_expand = {
             \ 'lsc_checking': 'lightline#lsc#checking',

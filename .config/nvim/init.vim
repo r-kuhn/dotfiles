@@ -22,6 +22,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
 "Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
 Plug 'derekwyatt/vim-scala'
+Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-commentary' " gc to comment out sections
 Plug 'plasticboy/vim-markdown' " for markdown
 Plug 'luochen1990/rainbow' " Rainbow parenthesis
@@ -39,7 +40,6 @@ Plug 'albertomontesg/lightline-asyncrun'
 Plug 'itchyny/vim-gitbranch' " branch name for for git repo
 Plug 'rhysd/git-messenger.vim' " git commit messages under curosr <Leader>gm
 Plug 'macthecadillac/lightline-gitdiff'
-Plug 'yuttie/comfortable-motion.vim' " inertia based scrolling
 Plug 'tpope/vim-ragtag' " for better html.eruby indenting
 "Plug 'jreybert/vimagit' " git hunk handling
 Plug 'mhinz/vim-startify' "fancy start screen
@@ -102,6 +102,8 @@ set noshowmatch              " Do not show matching brackets by flickering
 set noshowmode               " We show the mode with airline or lightline
 "Search is ignore case, but autocomplete is case sensitive
 set smartcase                " ... but not it begins with upper case
+set foldmethod=syntax
+set foldlevel=99     " don't fold by default
 au InsertEnter * set noignorecase
 au InsertLeave * set ignorecase
 set completeopt=menu,menuone
@@ -277,6 +279,7 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.sh setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufNewFile,BufRead *.proto setlocal expandtab shiftwidth=2 tabstop=2
   autocmd BufRead,BufNewFile *.sbt set filetype=scala
+  autocmd BufWritePre *.{scala,sbt} Neoformat
 
   autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2
   autocmd FileType yaml setlocal expandtab shiftwidth=2 tabstop=2
@@ -300,7 +303,7 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 " This comes first, because we have mappings that depend on leader
 " With a map leader it's possible to do extra key combinations
 " i.e: <leader>w saves the current file
-let mapleader = " "
+let mapleader = ","
 
 noremap <C-s> :update<CR>
 inoremap <C-s> <C-o>:update<CR>
@@ -617,8 +620,21 @@ function! s:show_documentation()
   endif
 endfunction
 
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
+function! LightlineGitBlame() abort
+  let blame = get(b:, 'coc_git_blame', '')
+  " return blame
+  return winwidth(0) > 120 ? blame : ''
+endfunction
+
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for do action format
+nnoremap <silent> F :call CocAction('format')<CR>
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -651,6 +667,7 @@ let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_executive_for = {
   \ 'go': 'coc',
   \ 'sh': 'coc',
+  \ 'scala': 'coc',
   \ }
 let g:vista#renderer#enable_icon = 0
 
@@ -666,6 +683,11 @@ nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
 " Scala stuff
 nnoremap <silent> <M-B> :call CocRequest('scalametals', 'workspace/executeCommand', { 'command': 'build-import' })<CR>
+let g:neoformat_scala_scalafmt = {
+        \ 'exe': 'ng',
+        \ 'args': ['scalafmt', '--stdin'],
+        \ 'stdin': 1,
+        \ }
 
 
 "=============== Lightline ============================
