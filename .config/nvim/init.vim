@@ -435,6 +435,8 @@ nnoremap <leader>ui :<C-u>call <SID>create_go_doc_comment()<CR>
 " disable vim-go :GoDef short cut (gd). this is handled by Coc
 let g:go_def_mapping_enabled = 0
 
+let g:go_highlight_trailing_whitespace_error=0
+
 " create a go doc comment based on the word under the cursor
 function! s:create_go_doc_comment()
   norm "zyiw
