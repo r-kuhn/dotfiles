@@ -70,7 +70,7 @@
     ]
   },
   "snippets.shortcut": "S",
-  "snippets.autoTrigger": true,
+  "snippets.autoTrigger": false,
   "snippets.ultisnips.enable": true,
   "snippets.ultisnips.directories": [
     "UltiSnips",

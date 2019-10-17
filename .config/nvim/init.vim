@@ -21,6 +21,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
 "Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
+Plug 'rust-lang/rust.vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-commentary' " gc to comment out sections
@@ -423,6 +424,9 @@ vnoremap ? <Esc>?\%><C-R>=line("'<")-1<CR>l\%<<C-R>=line("'>")+1<CR>l
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
+" Rust
+let g:rustfmt_autosave = 1
+
 " create a go doc comment based on the word under the cursor
 function! s:create_go_doc_comment()
   norm "zyiw
@@ -573,7 +577,8 @@ let g:coc_global_extensions = [
   \ 'coc-emmet',
   \ 'coc-python',
   \ 'coc-prettier',
-  \ 'coc-css'
+  \ 'coc-css',
+  \ 'coc-rls'
   \ ]
 " Improve completion for coc:
 inoremap <silent><expr> <TAB>

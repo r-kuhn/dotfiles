@@ -45,8 +45,7 @@
     "goToTypeDefinition": true,
     "documentSymbols": true
   },
-  // "go.lintFlags": [ "--fast" ],
-  // "go.lintTool": "golangci-lint",
+  "go.lintTool": "golangci-lint",
   "[go]": {
     "editor.snippetSuggestions": "none",
     "editor.formatOnSave": true,
@@ -138,9 +137,6 @@
   "breadcrumbs.enabled": false,
   "workbench.colorTheme": "Monokai Pro (Filter Machine)",
   "workbench.startupEditor": "newUntitledFile",
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "mjml.autoPreview": true,
   "mjml.beautifyHtmlOutput": true,
   "mjml.templateGallery": true,
