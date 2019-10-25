@@ -22,6 +22,17 @@ if [ "$system_type" = "Darwin" ]; then
 fi
 
 
+if [ "$system_type" = "Linux" ]; then
+  yay -Syu
+	npm install -g npm
+	npm config set update-notifier false
+
+  "${HOME}/bin/install-more-tools.sh"
+
+  # Upgrade all pip packages
+  pip3 freeze — local | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U
+fi
+
 # Neovim
 if command -v nvim >/dev/null 2>&1; then
 	echo "Updating nvim"
