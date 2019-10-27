@@ -8,6 +8,8 @@ Plug 'honza/vim-snippets' " snippets documented here: https://github.com/honza/v
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'easymotion/vim-easymotion'
 Plug 'wincent/ferret' " project wide search and replace
+" Install fzf, need both lines
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " until denite is fixed
 Plug 'Shougo/denite.nvim', {'do': ':UpdateRemotePlugins' } " Fuzzy finding, buffer management
 Plug 'scrooloose/nerdtree'
@@ -519,6 +521,7 @@ let g:ale_linters = {
       \ 'javascript': ['eslint'],
       \ 'c': ['clang', 'clangtidy', 'clang-format'],
       \ 'typescript': ['eslint'],
+      \ 'rust': ['clippy'],
       \ 'go': ['golangci-lint'],
       \ 'sh': ['shellcheck']}
 let g:ale_python_flake8_args='--exclude=migrations --ignore=E261 --max-line-length=80'
