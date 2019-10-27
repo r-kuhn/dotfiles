@@ -6,7 +6,7 @@
   },
   "editor.cursorBlinking": "smooth",
   // Operator Mono Font Settings:
-  "editor.fontFamily": "OperatorMonoLig Nerd Font",
+  "editor.fontFamily": "VictorMono Nerd Font",
   "editor.fontSize": 14,
   "terminal.integrated.fontFamily": "FuraCode Nerd Font",
   "terminal.integrated.fontSize": 13,
@@ -152,5 +152,6 @@
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "files.eol": "\n",
   "python.jediEnabled": false,
-  "java.configuration.checkProjectSettingsExclusions": false, // formatting only supports LF line endings
+  "java.configuration.checkProjectSettingsExclusions": false,
+  "editor.fontWeight": "500", // formatting only supports LF line endings
 }
