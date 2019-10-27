@@ -68,7 +68,7 @@ case $(uname) in
 	  export GOBIN=$GOPATH/bin
 
 	  alias ls='ls --color=auto'
-	  export PATH=${HOME}/bin:${HOME}/.npm/bin::${GOPATH}/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
+	  export PATH=${HOME}/bin:${HOME}/.npm/bin::${GOPATH}/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin:$PATH
 	  ;;
 esac
 

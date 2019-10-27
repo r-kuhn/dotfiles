@@ -20,7 +20,7 @@ Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
-"Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
 Plug 'rust-lang/rust.vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'sbdchd/neoformat'
@@ -306,8 +306,12 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 " i.e: <leader>w saves the current file
 let mapleader = ","
 
+" Control-s saves the buffer
 noremap <C-s> :update<CR>
 inoremap <C-s> <C-o>:update<CR>
+noremap <C-q> :wq<CR>
+inoremap <C-q> <C-o>:wq<CR>
+
 
 " Handy keyboard keys while in insert mode.  C-o makes next char run in normal
 " mode
@@ -427,19 +431,11 @@ vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 " Rust
 let g:rustfmt_autosave = 1
 
-" create a go doc comment based on the word under the cursor
-function! s:create_go_doc_comment()
-  norm "zyiw
-  execute ":put! z"
-  execute ":norm I// \<Esc>$"
-endfunction
-nnoremap <leader>ui :<C-u>call <SID>create_go_doc_comment()<CR>
-
 " === vim-go
 " disable vim-go :GoDef short cut (gd). this is handled by Coc
 let g:go_def_mapping_enabled = 0
-
 let g:go_highlight_trailing_whitespace_error=0
+noremap <C-t> :GoCoverage<CR>
 
 " create a go doc comment based on the word under the cursor
 function! s:create_go_doc_comment()
