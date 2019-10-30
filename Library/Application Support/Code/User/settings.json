@@ -6,7 +6,7 @@
   },
   "editor.cursorBlinking": "smooth",
   // Operator Mono Font Settings:
-  "editor.fontFamily": "OperatorMonoLig Nerd Font",
+  "editor.fontFamily": "VictorMono Nerd Font",
   "editor.fontSize": 14,
   "terminal.integrated.fontFamily": "FuraCode Nerd Font",
   "terminal.integrated.fontSize": 13,
@@ -45,8 +45,7 @@
     "goToTypeDefinition": true,
     "documentSymbols": true
   },
-  // "go.lintFlags": [ "--fast" ],
-  // "go.lintTool": "golangci-lint",
+  "go.lintTool": "golangci-lint",
   "[go]": {
     "editor.snippetSuggestions": "none",
     "editor.formatOnSave": true,
@@ -138,9 +137,6 @@
   "breadcrumbs.enabled": false,
   "workbench.colorTheme": "Monokai Pro (Filter Machine)",
   "workbench.startupEditor": "newUntitledFile",
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "mjml.autoPreview": true,
   "mjml.beautifyHtmlOutput": true,
   "mjml.templateGallery": true,
@@ -156,5 +152,6 @@
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "files.eol": "\n",
   "python.jediEnabled": false,
-  "java.configuration.checkProjectSettingsExclusions": false, // formatting only supports LF line endings
+  "java.configuration.checkProjectSettingsExclusions": false,
+  "editor.fontWeight": "500", // formatting only supports LF line endings
 }

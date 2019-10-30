@@ -7,9 +7,9 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets' " snippets documented here: https://github.com/honza/vim-snippets
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'easymotion/vim-easymotion'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " nixos doesn't install this nicely
-
 Plug 'wincent/ferret' " project wide search and replace
+" Install fzf, need both lines
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " until denite is fixed
 Plug 'Shougo/denite.nvim', {'do': ':UpdateRemotePlugins' } " Fuzzy finding, buffer management
 Plug 'scrooloose/nerdtree'
@@ -20,7 +20,8 @@ Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
-"Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
+Plug 'rust-lang/rust.vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-commentary' " gc to comment out sections
@@ -305,8 +306,12 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 " i.e: <leader>w saves the current file
 let mapleader = ","
 
+" Control-s saves the buffer
 noremap <C-s> :update<CR>
 inoremap <C-s> <C-o>:update<CR>
+noremap <C-q> :wq<CR>
+inoremap <C-q> <C-o>:wq<CR>
+
 
 " Handy keyboard keys while in insert mode.  C-o makes next char run in normal
 " mode
@@ -423,19 +428,14 @@ vnoremap ? <Esc>?\%><C-R>=line("'<")-1<CR>l\%<<C-R>=line("'>")+1<CR>l
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
-" create a go doc comment based on the word under the cursor
-function! s:create_go_doc_comment()
-  norm "zyiw
-  execute ":put! z"
-  execute ":norm I// \<Esc>$"
-endfunction
-nnoremap <leader>ui :<C-u>call <SID>create_go_doc_comment()<CR>
+" Rust
+let g:rustfmt_autosave = 1
 
 " === vim-go
 " disable vim-go :GoDef short cut (gd). this is handled by Coc
 let g:go_def_mapping_enabled = 0
-
 let g:go_highlight_trailing_whitespace_error=0
+noremap <C-t> :GoCoverage<CR>
 
 " create a go doc comment based on the word under the cursor
 function! s:create_go_doc_comment()
@@ -468,6 +468,32 @@ let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_no_extensions_in_markdown = 1
+
+" === FZF
+let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:15,bg:-1,hl:1,fg+:#ffffff,bg+:0,hl+:1 --color=info:0,prompt:0,pointer:12,marker:4,spinner:11,header:-1 --layout=reverse  --margin=1,4'
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
+function! FloatingFZF()
+  let buf = nvim_create_buf(v:false, v:true)
+  call setbufvar(buf, '&signcolumn', 'no')
+
+  let height = float2nr(10)
+  let width = float2nr(80)
+  let horizontal = float2nr((&columns - width) / 2)
+  let vertical = 1
+
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': vertical,
+        \ 'col': horizontal,
+        \ 'width': width,
+        \ 'height': height,
+        \ 'style': 'minimal'
+        \ }
+
+  call nvim_open_win(buf, v:true, opts)
+endfunction
 
 " === Startify
 let g:startify_change_to_vcs_root = 1
@@ -517,6 +543,7 @@ let g:ale_linters = {
       \ 'javascript': ['eslint'],
       \ 'c': ['clang', 'clangtidy', 'clang-format'],
       \ 'typescript': ['eslint'],
+      \ 'rust': ['clippy'],
       \ 'go': ['golangci-lint'],
       \ 'sh': ['shellcheck']}
 let g:ale_python_flake8_args='--exclude=migrations --ignore=E261 --max-line-length=80'
@@ -573,7 +600,8 @@ let g:coc_global_extensions = [
   \ 'coc-emmet',
   \ 'coc-python',
   \ 'coc-prettier',
-  \ 'coc-css'
+  \ 'coc-css',
+  \ 'coc-rls'
   \ ]
 " Improve completion for coc:
 inoremap <silent><expr> <TAB>
