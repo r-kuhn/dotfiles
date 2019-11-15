@@ -30,7 +30,7 @@ if [ "$system_type" = "Linux" ]; then
   "${HOME}/bin/install-more-tools.sh"
 
   # Upgrade all pip packages
-  pip3 freeze — local | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U
+  pip3 freeze — local | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U --user
 fi
 
 # Neovim

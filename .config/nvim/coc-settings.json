@@ -24,11 +24,50 @@
   "diagnostic.checkCurrentLine": false,
   "diagnostic.virtualTextPrefix": "<== ",
   "diagnostic.displayByAle": true,
+  "git.branchCharacter": "",
+  "git.changedDecorator": "*",
+  "git.conflictedDecorator": "",
+  "git.stagedDecorator": "",
+  "git.untrackedDecorator": "",
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+  "git.enableGutters": true,
   "signature.target": "float",
   "pairs.disableLanguages": [
     "vim",
     "html.eruby"
   ],
+  "snippets.extends": {
+    "cpp": [
+      "c"
+    ],
+    "javascriptreact": [
+      "javascript"
+    ],
+    "typescript": [
+      "javascript"
+    ]
+  },
+  "snippets.shortcut": "S",
+  "snippets.autoTrigger": false,
+  "snippets.ultisnips.enable": true,
+  "snippets.ultisnips.directories": [
+    "UltiSnips",
+    "gosnippets/UltiSnips",
+    "~/.config/nvim/mysnippets"
+  ],
+  "suggest.triggerAfterInsertEnter": true,
+  "suggest.timeout": 5000,
+  "suggest.noselect": false,
+  "suggest.minTriggerInputLength": 1,
+  "suggest.acceptSuggestionOnCommitCharacter": true,
+  "suggest.snippetIndicator": "☆",
+  "suggest.detailMaxLength": 111,
+  "suggest.maxCompleteItemCount": 50,
+  "rust.clippy_preference": "on",
   "languageserver": {
     "golang": {
       "command": "gopls",

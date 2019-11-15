@@ -11,3 +11,4 @@ ctrl-p			open file in current project
 ,a              project search (ack)
 ,s              project search with word under cursor
 ,r              project wide replace with results from ack in quickfix
+,y              yank to OSC 52 clipboard
