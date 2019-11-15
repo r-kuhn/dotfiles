@@ -34,7 +34,6 @@
   "git.conflictedDecorator": "",
   "git.stagedDecorator": "",
   "git.untrackedDecorator": "",
-  "git.addGlameToVirtualText": false,
   "git.addedSign.hlGroup": "GitGutterAdd",
   "git.changedSign.hlGroup": "GitGutterChange",
   "git.removedSign.hlGroup": "GitGutterDelete",
@@ -85,6 +84,7 @@
   "suggest.snippetIndicator": "☆",
   "suggest.detailMaxLength": 111,
   "suggest.maxCompleteItemCount": 50,
+  "rust.clippy_preference": "on",
   "languageserver": {
     "golang": {
       "command": "gopls",

@@ -22,6 +22,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
 Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
 Plug 'rust-lang/rust.vim'
+Plug 'mhinz/vim-crates' " for updating Cargo.toml files
 Plug 'derekwyatt/vim-scala'
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-commentary' " gc to comment out sections
@@ -543,7 +544,6 @@ let g:ale_linters = {
       \ 'javascript': ['eslint'],
       \ 'c': ['clang', 'clangtidy', 'clang-format'],
       \ 'typescript': ['eslint'],
-      \ 'rust': ['clippy'],
       \ 'go': ['golangci-lint'],
       \ 'sh': ['shellcheck']}
 let g:ale_python_flake8_args='--exclude=migrations --ignore=E261 --max-line-length=80'
