@@ -311,6 +311,7 @@ noremap <C-s> :update<CR>
 inoremap <C-s> <C-o>:update<CR>
 noremap <C-q> :wq<CR>
 inoremap <C-q> <C-o>:wq<CR>
+inoremap <C-Q> <C-o>:q!<CR>
 
 
 " Handy keyboard keys while in insert mode.  C-o makes next char run in normal
@@ -596,6 +597,7 @@ let g:coc_global_extensions = [
   \ 'coc-html',
   \ 'coc-highlight',
   \ 'coc-json',
+  \ 'coc-yaml',
   \ 'coc-yaml',
   \ 'coc-emmet',
   \ 'coc-python',

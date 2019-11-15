@@ -1,12 +1,5 @@
 # https://github.com/syl20bnr/spacemacs/wiki/Terminal
-# install with `tic -x -o ~/.terminfo tmux.terminfo`
-
-tmux|tmux terminal multiplexer,
-  ritm=\E[23m, rmso=\E[27m, sitm=\E[3m, smso=\E[7m,
-  use=xterm, use=screen,
-
-tmux-256color|tmux with 256 colors,
-  use=xterm-256color, use=tmux,
+# install with `tic -x tmux.terminfo`
 
 xterm-24bit|xterm with 24-bit direct color mode,
    use=xterm-256color,

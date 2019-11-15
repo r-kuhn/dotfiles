@@ -6,18 +6,10 @@
   },
   "editor.cursorBlinking": "smooth",
   // Operator Mono Font Settings:
-  "editor.fontFamily": "VictorMono Nerd Font",
+  "editor.fontFamily": "OperatorMonoLig Nerd Font",
   "editor.fontSize": 14,
   "terminal.integrated.fontFamily": "FuraCode Nerd Font",
   "terminal.integrated.fontSize": 13,
-  // Input Mono font settings:
-  // "editor.fontFamily": "Input Mono Condensed",
-  // "terminal.integrated.fontFamily": "Input Mono Condensed",
-  // "editor.fontSize": 13,
-  // "terminal.integrated.fontSize": 13,
-  // Iosevka font settings:
-  // "terminal.integrated.fontFamily": "Iosevka Term",
-  // "editor.fontFamily": "Iosevka",
   "editor.fontLigatures": true,
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
@@ -27,8 +19,8 @@
   "files.trimTrailingWhitespace": true,
   "git.autofetch": true,
   "gitlens.advanced.telemetry.enabled": false,
-  "go.alternateTools": {
-    "go-langserver": "gopls"
+  "[html]": {
+    "editor.formatOnSave": false
   },
   "go.buildOnSave": "off",
   "go.vetOnSave": "off",
@@ -55,60 +47,71 @@
   },
   "gopls": {
     "usePlaceholders": true, // add parameter placeholders when completing a function
-    "completionDocumentation": true // for documentation in completion items
-  },
-  "gopls.env": {
-    "GOFLAGS": "--tags=development"
+    // Experimental settings
+    "completeUnimported": true, // autocomplete unimported packages
+    "watchFileChanges": true, // watch file changes outside of the editor
+    "deepCompletion": true, // enable deep completion
   },
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
-  "terraform.telemetry.enabled": false,
-  "vim.easymotion": false,
-  "vim.handleKeys": {
-    "<C-a>": false,
-    "<C-f>": false,
-    "<C-e>": false
+  "workbench.fontAliasing": "antialiased",
+  "window.zoomLevel": 0,
+  "emmet.includeLanguages": {
+    "erb": "erb",
+    "html": "html"
   },
-  "vim.hlsearch": true,
+  "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
+  "extensions.ignoreRecommendations": false,
+  "breadcrumbs.enabled": false,
+  "workbench.colorTheme": "Iceberg",
+  "workbench.startupEditor": "newUntitledFile",
+  "mjml.autoPreview": true,
+  "mjml.beautifyHtmlOutput": true,
+  "mjml.templateGallery": true,
+  "editor.hover.enabled": true,
+  "explorer.autoReveal": false,
+  "workbench.activityBar.visible": true,
+  "mjml.minifyHtmlOutput": false,
+  "editor.parameterHints.enabled": false,
+  "editor.suggestSelection": "first",
+  "workbench.colorCustomizations": {
+    "editorError.border": "#fff0",
+    "editorError.foreground": "#fff0",
+    "editorWarning.border": "#fff0",
+    "editorWarning.foreground": "#fff0"
+  },
+  "errorLens.errorBackground": "#fffo",
+  "errorLens.warningBackground": "#fffo",
+  "errorLens.fontStyleItalic": true,
+  "errorLens.gutterIconsEnabled": true,
+  "files.eol": "\n",
+  "python.jediEnabled": false,
+  "editor.fontWeight": "500", // formatting only supports LF line endings
+  "vim.easymotion": true,
+  "vim.sneak": true,
   "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
   "vim.insertModeKeyBindings": [
     {
-      "after": [
-        "<Esc>"
-      ],
       "before": [
         "j",
         "j"
-      ]
-    }
-  ],
-  "vim.leader": "<space>",
-  "vim.visualModeKeyBindingsNonRecursive": [
-    {
-      "before": [
-        ">"
       ],
-      "commands": [
-        "editor.action.indentLines"
-      ]
-    },
-    {
-      "before": [
-        "<"
-      ],
-      "commands": [
-        "editor.action.outdentLines"
+      "after": [
+        "<Esc>"
       ]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "after": [
-        "d",
-        "d"
-      ],
       "before": [
         "<leader>",
+        "d"
+      ],
+      "after": [
+        "d",
         "d"
       ]
     },
@@ -121,37 +124,9 @@
       ]
     }
   ],
-  "vim.sneak": false,
-  "vim.useCtrlKeys": true,
-  "vim.useSystemClipboard": true,
-  "vim.highlightedyank.enable": true,
-  "workbench.fontAliasing": "antialiased",
-  "workbench.statusBar.feedback.visible": false,
-  "window.zoomLevel": 0,
-  "emmet.includeLanguages": {
-    "erb": "erb",
-    "html": "html"
-  },
-  "workbench.iconTheme": "Monokai Pro (Filter Machine) Icons",
-  "extensions.ignoreRecommendations": false,
-  "breadcrumbs.enabled": false,
-  "workbench.colorTheme": "Monokai Pro (Filter Machine)",
-  "workbench.startupEditor": "newUntitledFile",
-  "mjml.autoPreview": true,
-  "mjml.beautifyHtmlOutput": true,
-  "mjml.templateGallery": true,
-  "errorLens.warningColor": "rgba(240,0,0,0.4)",
-  "editor.hover.enabled": true,
-  "explorer.autoReveal": false,
-  "aws.samcli.location": "/Users/dan/brew/bin/sam",
-  "aws.profile": "default",
-  "workbench.activityBar.visible": true,
-  "mjml.minifyHtmlOutput": false,
-  "editor.parameterHints.enabled": false,
-  "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "files.eol": "\n",
-  "python.jediEnabled": false,
-  "java.configuration.checkProjectSettingsExclusions": false,
-  "editor.fontWeight": "500", // formatting only supports LF line endings
+  "vim.leader": "<space>",
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  }
 }
