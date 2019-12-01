@@ -603,7 +603,8 @@ let g:coc_global_extensions = [
   \ 'coc-python',
   \ 'coc-prettier',
   \ 'coc-css',
-  \ 'coc-rls'
+  \ 'coc-rls',
+  \ 'coc-tabnine'
   \ ]
 " Improve completion for coc:
 inoremap <silent><expr> <TAB>
