@@ -22,8 +22,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
 Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
 Plug 'rust-lang/rust.vim'
-Plug 'mhinz/vim-crates' " for updating Cargo.toml files
 Plug 'derekwyatt/vim-scala'
+Plug 'meain/vim-package-info', { 'do': 'npm install' }
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-commentary' " gc to comment out sections
 Plug 'plasticboy/vim-markdown' " for markdown
@@ -355,33 +355,6 @@ map <C-h> <C-W>h map <C-l> <C-W>l
 " Print full path
 map <C-f> :echo expand("%:p")<cr>
 
-" Terminal settings
-" if has('terminal')
-"   " Kill job and close terminal window
-"   tnoremap <Leader>q <C-w><C-C><C-w>c<cr>
-
-"   " switch to normal mode with esc
-"   tnoremap <Esc> <C-W>N
-
-"   " mappings to move out from terminal to other views
-"   tnoremap <C-h> <C-w>h
-"   tnoremap <C-j> <C-w>j
-"   tnoremap <C-k> <C-w>k
-"   tnoremap <C-l> <C-w>l
-
-"   " Open terminal in vertical, horizontal and new tab
-"   nnoremap <leader>tv :vsplit<cr>:term ++curwin<CR>
-"   nnoremap <leader>ts :split<cr>:term ++curwin<CR>
-"   nnoremap <leader>tt :tabnew<cr>:term ++curwin<CR>
-
-"   tnoremap <leader>tv <C-w>:vsplit<cr>:term ++curwin<CR>
-"   tnoremap <leader>ts <C-w>:split<cr>:term ++curwin<CR>
-"   tnoremap <leader>tt <C-w>:tabnew<cr>:term ++curwin<CR>
-
-"   " always start terminal in insert mode when I switch to it
-"   " NOTE(arslan): startinsert doesn't work in Terminal-normal mode.
-"   " autocmd WinEnter * if &buftype == 'terminal' | call feedkeys("i") | endif
-" endif
 " Time out on key codes but not mappings.
 " Basically this makes terminal Vim work sanely.
 if !has('gui_running')
