@@ -10,16 +10,16 @@ linters-settings:
   dupl:
     threshold: 100
   goconst:
-    min-len: 5
-    min-occurrences: 8
+    min-len: 2
+    min-occurrences: 2
   depguard:
     list-type: blacklist
     packages:
-  misspell:
-    locale: US
   funlen:
     lines: 70
     statements: 40
+  misspell:
+    locale: US
   lll:
     line-length: 140
   goimports:
@@ -33,9 +33,36 @@ linters-settings:
       - wrapperFunc
 
 linters:
-  enable-all: true
+  # enable-all: true
+  enable:
+    - bodyclose
+    - deadcode
+    - depguard
+    - dogsled
+    - errcheck
+    - funlen
+    - gocognit
+    - gocritic
+    - gocyclo
+    - godox
+    - gofmt
+    - goimports
+    - golint
+    - gosec
+    - lll
+    - misspell
+    - nakedret
+    - scopelint
+    - staticcheck
+    - structcheck
+    - stylecheck
+    - unconvert
+    - unparam
+    - unused
+    - varcheck
+    - whitespace
   disable:
-    - dupl
+    - dupl # at least until the placeholder tests are implemented
     - goconst
     - maligned
     - prealloc
@@ -44,11 +71,14 @@ linters:
     - typecheck
     - ineffassign
     - interfacer
+    - wsl
 
 run:
   deadline: 5m
   skip-dirs:
     - node_modules
+  build-tags:
+    - development
 
 issues:
   exclude-rules:
