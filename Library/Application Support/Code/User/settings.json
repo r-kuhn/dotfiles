@@ -134,5 +134,6 @@
     "<C-f>": false
   },
   "terminal.integrated.scrollback": 10000,
-  "terminal.external.osxExec": "Kitty.app"
+  "terminal.external.osxExec": "Kitty.app",
+  "vscode-neovim.neovimPath": "/Users/dan/brew/bin/nvim"
 }
