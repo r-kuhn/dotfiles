@@ -52,18 +52,18 @@
     ]
   },
   "snippets.shortcut": "S",
-  "snippets.autoTrigger": false,
   "snippets.ultisnips.enable": true,
   "snippets.ultisnips.directories": [
     "UltiSnips",
     "gosnippets/UltiSnips",
     "~/.config/nvim/mysnippets"
   ],
-  "suggest.triggerAfterInsertEnter": true,
+  "suggest.autoTrigger": "always",
+  "suggest.floatEnable": true,
   "suggest.timeout": 5000,
   "suggest.noselect": false,
   "suggest.minTriggerInputLength": 1,
-  "suggest.acceptSuggestionOnCommitCharacter": true,
+  "suggest.acceptSuggestionOnCommitCharacter": false,
   "suggest.snippetIndicator": "☆",
   "suggest.detailMaxLength": 111,
   "suggest.maxCompleteItemCount": 50,
