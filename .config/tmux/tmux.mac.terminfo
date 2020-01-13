@@ -1,0 +1,12 @@
+# https://github.com/syl20bnr/spacemacs/wiki/Terminal
+# install with `tic -x tmux.terminfo`
+
+# tmux-24bit|tmuxscreen with 24-bit direct color mode,
+#    use=tmux-256color,
+#    sitm=\E[3m,
+#    ritm=\E[23m
+
+tmux-256color|tmux with 256 colors,
+  ritm=\E[23m, rmso=\E[27m, sitm=\E[3m, smso=\E[7m, Ms@,
+  khome=\E[1~, kend=\E[4~,
+  use=xterm-256color, use=screen-256color,

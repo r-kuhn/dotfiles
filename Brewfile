@@ -86,6 +86,7 @@ cask "adoptopenjdk8"
 #cask "iterm2"
 cask "kitty"
 cask "slack"
+cask "soulver"
 cask "visual-studio-code"
 
 #mas "Kindle", id: 405399194
