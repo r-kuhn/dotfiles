@@ -40,7 +40,7 @@ linters:
     - depguard
     - dogsled
     - errcheck
-    - funlen
+    # - funlen
     - gocognit
     - gocritic
     - gocyclo
