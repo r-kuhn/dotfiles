@@ -89,7 +89,7 @@ set incsearch                   " Shows the match while typing
 set hlsearch                    " Highlight found searches
 set mouse=a                     "Enable mouse mode
 set noerrorbells             " No beeps
- set number                   " Show line numbers
+set nonumber                   " line numbers
 set showcmd                  " Show me what I'm typing
 set cmdheight=1              " better command section, needed for coc
 set noswapfile               " Don't use swapfile
@@ -404,7 +404,7 @@ vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
 " Rust
-let g:rustfmt_autosave = 1
+" let g:rustfmt_autosave = 1
 
 " === vim-go
 " disable vim-go :GoDef short cut (gd). this is handled by Coc
@@ -576,10 +576,9 @@ let g:coc_global_extensions = [
   \ 'coc-python',
   \ 'coc-prettier',
   \ 'coc-css',
-  \ 'coc-rls',
+  \ 'coc-rust-analyzer',
   \ 'coc-tabnine'
   \ ]
-
 
 highlight CocErrorSign ctermfg=red ctermbg=NONE guifg=#ff6D00
 highlight CocWarningSign ctermfg=yellow ctermbg=NONE guifg=#ffbb00
