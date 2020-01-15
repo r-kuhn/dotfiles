@@ -37,6 +37,7 @@ brew "gpg2"
 brew "htop"
 brew "hugo"
 brew "ispell"
+brew "git-recent"
 brew "jq"
 brew "k9s"
 brew "kubernetes-cli"
@@ -66,14 +67,13 @@ brew "zlib"
 
 cask "alfred"
 cask "arduino"
-cask "arq"
+#cask "arq"
 cask "basecamp"
 #cask "dash"
 cask "docker"
 cask "caskroom/fonts/font-firacode-nerd-font"
 cask "caskroom/fonts/font-fira-code"
 cask "caskroom/fonts/font-victor-mono"
-cask "front"
 cask "java8"
 #cask "colorpicker-skalacolor"
 cask "google-chrome"
@@ -92,7 +92,7 @@ cask "visual-studio-code"
 #mas "Kindle", id: 405399194
 mas "Keynote", id: 409183694
 mas "Kaleidoscope", id: 587512244
-mas "Soulver", id: 413965349
+#mas "Soulver", id: 413965349
 mas "Bear", id: 1091189122
 mas "1Blocker", id: 1107421413
 mas "Deliveries", id: 924726344
