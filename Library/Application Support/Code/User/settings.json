@@ -20,23 +20,33 @@
     {
       "before": [
         "<leader>",
-        "d"
+        "t"
       ],
-      "after": [
-        "d",
-        "d"
+      "commands": [
+        "workbench.action.toggleSidebarVisibility"
       ]
     },
     {
       "before": [
-        "<C-n>"
+        "<leader>",
+        "f"
       ],
       "commands": [
-        ":nohl"
+        "revealInExplorer"
+      ],
+    },
+    {
+      "before": [
+        "<leader>",
+        "r",
+        "f"
+      ],
+      "commands": [
+        "fileutils.renameFile"
       ]
     }
   ],
-  "vim.leader": "<space>",
+  "vim.leader": ",",
   "vim.handleKeys": {
     "<C-a>": false,
     "<C-f>": false
