@@ -52,16 +52,22 @@
     "<C-f>": false
   },
   "go.formatTool": "goimports",
-  "go.useLanguageServer": true,
   "go.lintTool": "golangci-lint",
   "go.autocompleteUnimportedPackages": true,
+  "go.useLanguageServer": true,
   "go.languageServerExperimentalFeatures": {
     "format": true,
     "diagnostics": true,
     "documentLink": true
   },
-  "workbench.iconTheme": "Monokai Pro (Filter Ristretto) Icons",
-  "workbench.colorTheme": "Monokai Pro (Filter Ristretto)",
+  "[go]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "workbench.iconTheme": "Monokai Pro Icons",
+  "workbench.colorTheme": "Monokai Pro",
   "rust-analyzer.highlightingOn": true,
   "rust-analyzer.enableEnhancedTyping": false,
   "rust-analyzer.featureFlags": {
