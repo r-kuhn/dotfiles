@@ -57,4 +57,8 @@
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "terminalFocus"
     },
+    {
+        "key": "shift+cmd+a",
+        "command": "workbench.action.toggleActivityBarVisibility"
+    },
 ]
