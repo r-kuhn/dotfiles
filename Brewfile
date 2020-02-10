@@ -11,19 +11,15 @@ tap "caskroom/fonts"
 tap "getantibody/tap"
 tap "railwaycat/emacsmacport"
 tap "derailed/k9s"
-#tap "bazelbuild/tap"
+tap "homebrew/cask-drivers"
 
 brew "ag"
 brew "awscli"
 brew "bat"
-#brew "bazelbuild/tap/bazel"
-#brew "buildifier"
 brew "buffalo"
 brew "gobuffalo/tap/buffalo"
 brew "golangci/tap/golangci-lint"
 brew "coreutils"
-#brew "coursier/formulas/coursier", args: ["HEAD"]
-#brew "railwaycat/emacsmacport/emacs-mac"
 brew "direnv"
 brew "entr"
 brew "findutils"
@@ -52,7 +48,7 @@ brew "postgres"
 brew "python"
 brew "reattach-to-user-namespace"
 brew "ripgrep"
-#brew "sbt@1"
+brew "sbt@1"
 brew "shellcheck"
 brew "telnet"
 brew "terraform"
@@ -65,12 +61,9 @@ brew "yarn"
 brew "zsh"
 brew "zlib"
 
-cask "alfred"
 cask "arduino"
 cask "docker"
-cask "caskroom/fonts/font-firacode-nerd-font"
-cask "caskroom/fonts/font-fira-code"
-cask "caskroom/fonts/font-victor-mono"
+cask "amethyst"
 cask "java8"
 cask "google-chrome"
 cask "google-cloud-sdk"
@@ -95,7 +88,6 @@ mas "Pages", id: 409201541
 mas "Pixelmator", id: 407963104
 #mas "PDFpen 8", id: 1096330984
 mas "Todoist", id: 585829637
-#mas "Irvue", id: 1039633667
 #mas "DaisyDisk", id: 411643860
 mas "Numbers", id: 409203825
 mas "1Password 7", id: 1333542190
