@@ -1,9 +1,4 @@
 {
-  "coc.source.file.triggerCharacters": [
-    "/",
-    "."
-  ],
-  "coc.preferences.jumpCommand": "split",
   "coc.preferences.formatOnType": true,
   "coc.preferences.hoverTarget": "float",
   "coc.preferences.formatOnSaveFiletypes": [
@@ -14,10 +9,10 @@
     "typescriptreact",
     "markdown",
     "json",
-    "go",
+    "rust",
+    "scala",
+    "go"
   ],
-  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-  "codeLens.enable": true,
   "diagnostic.enable": true,
   "diagnostic.enableMessage": "never",
   "diagnostic.hintSign": "➤",
@@ -34,7 +29,6 @@
   "git.conflictedDecorator": "",
   "git.stagedDecorator": "",
   "git.untrackedDecorator": "",
-  "git.addGlameToVirtualText": false,
   "git.addedSign.hlGroup": "GitGutterAdd",
   "git.changedSign.hlGroup": "GitGutterChange",
   "git.removedSign.hlGroup": "GitGutterDelete",
@@ -42,18 +36,6 @@
   "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
   "git.enableGutters": true,
   "signature.target": "float",
-  "list.indicator": ">",
-  "list.selectedSignText": "*",
-  "list.normalMappings": {
-    "v": "action:vsplit",
-    "x": "action:split"
-  },
-  "list.insertMappings": {
-    "<C-n>": "normal:j",
-    "<C-p>": "normal:k",
-    "<C-x>": "action:split",
-    "<C-v>": "action:vsplit"
-  },
   "pairs.disableLanguages": [
     "vim",
     "html.eruby"
@@ -70,21 +52,24 @@
     ]
   },
   "snippets.shortcut": "S",
-  "snippets.autoTrigger": false,
   "snippets.ultisnips.enable": true,
   "snippets.ultisnips.directories": [
     "UltiSnips",
     "gosnippets/UltiSnips",
     "~/.config/nvim/mysnippets"
   ],
-  "suggest.triggerAfterInsertEnter": true,
+  "suggest.autoTrigger": "always",
+  "suggest.floatEnable": true,
   "suggest.timeout": 5000,
   "suggest.noselect": false,
   "suggest.minTriggerInputLength": 1,
-  "suggest.acceptSuggestionOnCommitCharacter": true,
+  "suggest.acceptSuggestionOnCommitCharacter": false,
   "suggest.snippetIndicator": "☆",
   "suggest.detailMaxLength": 111,
   "suggest.maxCompleteItemCount": 50,
+  "rust.clippy_preference": "on",
+  "rust-analyzer.cargo-watch.enable": false,
+  "rust-analyzer.cargo-watch.command": "clippy",
   "languageserver": {
     "golang": {
       "command": "gopls",

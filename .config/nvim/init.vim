@@ -3,8 +3,8 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets' " snippets documented here: https://github.com/honza/vim-snippets
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets' " snippets documented here: https://github.com/honza/vim-snippets
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'easymotion/vim-easymotion'
 Plug 'wincent/ferret' " project wide search and replace
@@ -23,6 +23,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'fatih/vim-go' , { 'do': ':GoUpdateBinaries' }
 Plug 'rust-lang/rust.vim'
 Plug 'derekwyatt/vim-scala'
+Plug 'meain/vim-package-info', { 'do': 'npm install' }
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-commentary' " gc to comment out sections
 Plug 'plasticboy/vim-markdown' " for markdown
@@ -88,7 +89,7 @@ set incsearch                   " Shows the match while typing
 set hlsearch                    " Highlight found searches
 set mouse=a                     "Enable mouse mode
 set noerrorbells             " No beeps
- set number                   " Show line numbers
+set nonumber                   " line numbers
 set showcmd                  " Show me what I'm typing
 set cmdheight=1              " better command section, needed for coc
 set noswapfile               " Don't use swapfile
@@ -311,6 +312,7 @@ noremap <C-s> :update<CR>
 inoremap <C-s> <C-o>:update<CR>
 noremap <C-q> :wq<CR>
 inoremap <C-q> <C-o>:wq<CR>
+inoremap <C-Q> <C-o>:q!<CR>
 
 
 " Handy keyboard keys while in insert mode.  C-o makes next char run in normal
@@ -353,33 +355,6 @@ map <C-h> <C-W>h map <C-l> <C-W>l
 " Print full path
 map <C-f> :echo expand("%:p")<cr>
 
-" Terminal settings
-" if has('terminal')
-"   " Kill job and close terminal window
-"   tnoremap <Leader>q <C-w><C-C><C-w>c<cr>
-
-"   " switch to normal mode with esc
-"   tnoremap <Esc> <C-W>N
-
-"   " mappings to move out from terminal to other views
-"   tnoremap <C-h> <C-w>h
-"   tnoremap <C-j> <C-w>j
-"   tnoremap <C-k> <C-w>k
-"   tnoremap <C-l> <C-w>l
-
-"   " Open terminal in vertical, horizontal and new tab
-"   nnoremap <leader>tv :vsplit<cr>:term ++curwin<CR>
-"   nnoremap <leader>ts :split<cr>:term ++curwin<CR>
-"   nnoremap <leader>tt :tabnew<cr>:term ++curwin<CR>
-
-"   tnoremap <leader>tv <C-w>:vsplit<cr>:term ++curwin<CR>
-"   tnoremap <leader>ts <C-w>:split<cr>:term ++curwin<CR>
-"   tnoremap <leader>tt <C-w>:tabnew<cr>:term ++curwin<CR>
-
-"   " always start terminal in insert mode when I switch to it
-"   " NOTE(arslan): startinsert doesn't work in Terminal-normal mode.
-"   " autocmd WinEnter * if &buftype == 'terminal' | call feedkeys("i") | endif
-" endif
 " Time out on key codes but not mappings.
 " Basically this makes terminal Vim work sanely.
 if !has('gui_running')
@@ -429,7 +404,7 @@ vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
 " Rust
-let g:rustfmt_autosave = 1
+" let g:rustfmt_autosave = 1
 
 " === vim-go
 " disable vim-go :GoDef short cut (gd). this is handled by Coc
@@ -543,7 +518,6 @@ let g:ale_linters = {
       \ 'javascript': ['eslint'],
       \ 'c': ['clang', 'clangtidy', 'clang-format'],
       \ 'typescript': ['eslint'],
-      \ 'rust': ['clippy'],
       \ 'go': ['golangci-lint'],
       \ 'sh': ['shellcheck']}
 let g:ale_python_flake8_args='--exclude=migrations --ignore=E261 --max-line-length=80'
@@ -597,28 +571,14 @@ let g:coc_global_extensions = [
   \ 'coc-highlight',
   \ 'coc-json',
   \ 'coc-yaml',
+  \ 'coc-yaml',
   \ 'coc-emmet',
   \ 'coc-python',
   \ 'coc-prettier',
   \ 'coc-css',
-  \ 'coc-rls'
+  \ 'coc-rust-analyzer',
+  \ 'coc-tabnine'
   \ ]
-" Improve completion for coc:
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
-" dan comment out these two lines because the code above is newer
-" inoremap <silent><expr> <c-space> coc#refresh()
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
 highlight CocErrorSign ctermfg=red ctermbg=NONE guifg=#ff6D00
 highlight CocWarningSign ctermfg=yellow ctermbg=NONE guifg=#ffbb00
@@ -635,8 +595,6 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" coc-pairs needs this to make it nicely indent on enter
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use K to show documentation in preview window
 " nnoremap <silent> K :call <SID>show_documentation()<CR> " vim-go overwrites
@@ -682,16 +640,19 @@ nmap <silent> ga <Plug>(coc-codeaction)
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
+" use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+  return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr> <C-cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <C-cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_executive_for = {

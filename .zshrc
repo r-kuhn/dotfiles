@@ -57,7 +57,7 @@ case $(uname) in
     if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
       source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
     fi
-    export PATH=${HOME}/bin:${GOROOT}/bin:${GOBIN}:${HOME}/local:${HOME}/brew/bin:${HOME}/.npm/bin:/usr/local/bin:${HOME}/Library/Python/3.7/bin:${PATH}
+    export PATH=${HOME}/bin:${HOME}/.cargo/bin:${GOROOT}/bin:${GOBIN}:${HOME}/local:${HOME}/brew/bin:${HOME}/.npm/bin:/usr/local/bin:${HOME}/Library/Python/3.7/bin:${PATH}
     export PATH=${HOME}/nvim-osx64/bin:${PATH}
 
     source '/Users/dan/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
@@ -124,3 +124,9 @@ fi
 
 source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
 true
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/dan/google-cloud-sdk/path.zsh.inc' ]; then . '/home/dan/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/dan/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/dan/google-cloud-sdk/completion.zsh.inc'; fi
