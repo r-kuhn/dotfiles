@@ -61,4 +61,9 @@
         "key": "shift+cmd+a",
         "command": "workbench.action.toggleActivityBarVisibility"
     },
+    {
+        "key": "enter",
+        "command": "-rust-analyzer.onEnter",
+        "when": "editorTextFocus && !suggestWidgetVisible && editorLangId == 'rust'"
+    },
 ]

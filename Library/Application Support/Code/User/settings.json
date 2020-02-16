@@ -1,10 +1,13 @@
 {
   "vim.easymotion": true,
+  "vim.easymotionMarkerYOffset": 0,
+  "vim.easymotionMarkerFontFamily": "Menlo",
+  "vim.easymotionMarkerFontSize": "12",
   "vim.sneak": true,
   "vim.incsearch": true,
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
-  "vim.hlsearch": true,
+  "vim.hlsearch": false,
   "vim.insertModeKeyBindings": [
     {
       "before": [
@@ -50,7 +53,8 @@
   "vim.handleKeys": {
     "<C-a>": false,
     "<C-f>": false,
-    "<C-e>": false
+    "<C-e>": false,
+    "<C-g>": false
   },
   "go.formatTool": "goimports",
   "go.lintTool": "golangci-lint",
@@ -74,10 +78,9 @@
       "source.organizeImports": false
     }
   },
-  "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
-  "workbench.colorTheme": "Ayu Mirage",
+  "workbench.iconTheme": "Monokai Pro Icons",
   "rust-analyzer.highlightingOn": true,
-  "rust-analyzer.enableEnhancedTyping": false,
+  "rust-analyzer.enableEnhancedTyping": true,
   "rust-analyzer.featureFlags": {
     "notifications.cargo-toml-not-found": false
   },
@@ -98,7 +101,7 @@
   "editor.fontSize": 14,
   "terminal.integrated.fontFamily": "OperatorMonoLig Nerd Font",
   "editor.hover.delay": 3000,
-  "editor.hover.enabled": false,
+  "editor.hover.enabled": true,
   "editor.parameterHints.enabled": false,
   "[html]": {
     "editor.formatOnSave": false
@@ -116,5 +119,16 @@
   "window.zoomLevel": 0,
   "terminal.integrated.fontSize": 14,
   "files.insertFinalNewline": true,
-  "C_Cpp.formatting": "Disabled",
+  "sqltools.connections": [
+    {
+      "connectString": "postgres://postgres:postgres@localhost:5432/reflector_development",
+      "dialect": "PostgreSQL",
+      "name": "reflector_development"
+    }
+  ],
+  "workbench.colorTheme": "Monokai Pro",
+  "gitlens.codeLens.enabled": false,
+  "gitlens.statusBar.enabled": false,
+  "gitlens.advanced.telemetry.enabled": false,
+  "sqltools.telemetry": false,
 }
