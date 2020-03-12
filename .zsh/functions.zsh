@@ -35,3 +35,10 @@ function initop () {
   fi
   eval "$(op signin my)"
 }
+
+function git_prune() {
+	echo "prune remote branches"
+	git remote prune origin
+	echo "prune local branches that have been merged"
+	git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d
+}

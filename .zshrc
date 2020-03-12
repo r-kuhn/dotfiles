@@ -99,11 +99,19 @@ alias e='emacs'
 alias l='ls -lFh'
 alias -g R='| rg'
 alias -g A='| ag'
-alias grep='grep --color'
+#alias grep='grep --color'
 alias tmux='tmux attach -d -t $(whoami)|| tmux new -s $(whoami)'
 alias ee='emacsclient -c '
 alias titan='mosh titan'
 alias lapetus='mosh -p 61002 lapetus'
+alias cat='bat'
+alias less='bat'
+alias find='fd'
+alias grep='rg'
+alias time='hyperfine'
+alias df='dust'
+alias ps='procs'
+
 
 # setup direnv
 eval "$(direnv hook zsh)"
