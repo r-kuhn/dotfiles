@@ -89,21 +89,28 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 
 source ~/.zsh/functions.zsh
 
-#zsh shortcuts
+# Editor overrides
 alias vi='nvim'
 alias nano='nvim'
 alias vim='nvim'
 export EDITOR=nvim
+export VISUAL=nvim
 
-alias e='emacs'
-#alias l='ls -lFh'
+# Global aliases
 alias -g R='| rg'
 alias -g A='| ag'
-#alias grep='grep --color'
+
+# Arch linux helpers
+alias yay_save='yay -Qqe > ~/.arch_installed.txt'
+alias yay_apply='yay -S --needed - < ~/.arch_installed.txt'
+
+# Remote machines
 alias tmux='tmux attach -d -t $(whoami)|| tmux new -s $(whoami)'
-alias ee='emacsclient -c '
 alias titan='mosh titan'
 alias lapetus='mosh -p 61002 lapetus'
+
+#alias l='ls -lFh'
+#alias grep='grep --color'
 alias cat='bat'
 alias less='bat'
 alias find='fd'
@@ -113,7 +120,6 @@ alias df='dust'
 alias ps='procs'
 alias ls='exa'
 alias ll='exa -l'
-
 
 # setup direnv
 eval "$(direnv hook zsh)"
