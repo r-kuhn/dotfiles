@@ -96,7 +96,7 @@ alias vim='nvim'
 export EDITOR=nvim
 
 alias e='emacs'
-alias l='ls -lFh'
+#alias l='ls -lFh'
 alias -g R='| rg'
 alias -g A='| ag'
 #alias grep='grep --color'
@@ -111,6 +111,8 @@ alias grep='rg'
 alias time='hyperfine'
 alias df='dust'
 alias ps='procs'
+alias ls='exa'
+alias ll='exa -l'
 
 
 # setup direnv
