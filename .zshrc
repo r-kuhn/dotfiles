@@ -118,8 +118,8 @@ alias grep='rg'
 alias time='hyperfine'
 alias df='dust'
 alias ps='procs'
-alias ls='exa'
-alias ll='exa -l'
+alias ls='exa --icons'
+alias ll='exa -l --icons'
 
 # setup direnv
 eval "$(direnv hook zsh)"
