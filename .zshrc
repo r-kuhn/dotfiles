@@ -8,24 +8,19 @@ SAVEHIST=10000
 setopt appendhistory autocd nomatch notify
 unsetopt extendedglob
 
-# don't make my say 'y' to each rm file
-setopt rmstarsilent
-# don't nice background tasks
-setopt nobgnice
+setopt rmstarsilent # don't make my say 'y' to each rm file
+setopt nobgnice # don't nice background tasks
 setopt nohup
 setopt nobeep
-# allow functions to have local options
-setopt localoptions
-# allow functions to have local traps
-setopt localtraps
-# share history with other sessions
-setopt sharehistory
+setopt localoptions # allow functions to have local options
+setopt localtraps # allow functions to have local traps
+setopt share_history # read history on every history recall
 setopt extendedhistory
 setopt promptsubst
 setopt correct
 setopt completeinword
 setopt appendhistory
-setopt incappendhistory
+setopt incappendhistory # automatically append to history
 setopt histignorealldups
 setopt histreduceblanks
 setopt histignoredups
@@ -54,7 +49,7 @@ case $(uname) in
     export GOPATH=${HOME}/go
     export GOBIN=${HOME}/go/bin
 
-    export PATH=${HOME}/bin:${HOME}/.cargo/bin:${GOROOT}/bin:${GOBIN}:${HOME}/local:${HOME}/brew/bin:${HOME}/.npm/bin:/usr/local/bin:${HOME}/Library/Python/3.7/bin:${PATH}
+    export PATH=${HOME}/bin:${GOROOT}/bin:${GOBIN}:${HOME}/.cargo/bin:${HOME}/local:${HOME}/brew/bin:${HOME}/.npm/bin:/usr/local/bin:${HOME}/Library/Python/3.7/bin:${PATH}
     export PATH=${HOME}/nvim-osx64/bin:${PATH}
 
     source '/Users/dan/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
@@ -65,8 +60,11 @@ case $(uname) in
 	  export GOBIN=$GOPATH/bin
 
 	  alias ls='ls --color=auto'
-	  export PATH=${HOME}/bin:${HOME}/.npm/bin::${GOPATH}/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin:$PATH
-	  ;;
+	  export PATH=${HOME}/bin:${HOME}/.cargo/bin:${HOME}/.npm/bin:${GOPATH}/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin:$PATH
+	  # The next line updates PATH for the Google Cloud SDK.
+    if [ -f '/home/dan/google-cloud-sdk/path.zsh.inc' ]; then . '/home/dan/google-cloud-sdk/path.zsh.inc'; fi
+    if [ -f '/home/dan/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/dan/google-cloud-sdk/completion.zsh.inc'; fi
+    ;;
 esac
 
 # Pure prompt
@@ -122,8 +120,3 @@ fi
 source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
 true
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/dan/google-cloud-sdk/path.zsh.inc' ]; then . '/home/dan/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/dan/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/dan/google-cloud-sdk/completion.zsh.inc'; fi
