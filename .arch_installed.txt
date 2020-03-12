@@ -56,7 +56,6 @@ iproute2
 iputils
 ispell
 jfsutils
-k9s-bin
 kubectl
 less
 libtool
