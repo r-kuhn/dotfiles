@@ -78,7 +78,7 @@
       "source.organizeImports": false
     }
   },
-  "workbench.iconTheme": "Monokai Pro Icons",
+  "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
   "rust-analyzer.highlightingOn": true,
   "rust-analyzer.enableEnhancedTyping": true,
   "rust-analyzer.featureFlags": {
@@ -114,7 +114,7 @@
     "*.plush.html": "erb"
   },
   "extensions.ignoreRecommendations": false,
-  "workbench.activityBar.visible": false,
+  "workbench.activityBar.visible": true,
   "breadcrumbs.enabled": false,
   "window.zoomLevel": 0,
   "terminal.integrated.fontSize": 14,
@@ -126,9 +126,11 @@
       "name": "reflector_development"
     }
   ],
-  "workbench.colorTheme": "Monokai Pro",
+  "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
   "gitlens.codeLens.enabled": false,
   "gitlens.statusBar.enabled": false,
   "gitlens.advanced.telemetry.enabled": false,
   "sqltools.telemetry": false,
+  "terminal.integrated.scrollback": 10000,
+  "git.autofetch": true,
 }
