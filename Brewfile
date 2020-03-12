@@ -21,8 +21,11 @@ brew "gobuffalo/tap/buffalo"
 brew "golangci/tap/golangci-lint"
 brew "coreutils"
 brew "direnv"
+brew "dust"
 brew "entr"
+brew "exa"
 brew "findutils"
+brew "fd"
 brew "fzf"
 brew "getantibody/tap/antibody"
 brew "git"
@@ -32,6 +35,7 @@ brew "gnupg"
 brew "gpg2"
 brew "htop"
 brew "hugo"
+brew "hyperfine"
 brew "ispell"
 brew "git-recent"
 brew "jq"
@@ -45,6 +49,7 @@ brew "ncurses" # to get latest tic
 brew "neovim"
 brew "nodejs"
 brew "postgres"
+brew "procs"
 brew "python"
 brew "reattach-to-user-namespace"
 brew "ripgrep"
@@ -67,7 +72,6 @@ cask "amethyst"
 cask "java8"
 cask "google-chrome"
 cask "google-cloud-sdk"
-cask "insomnia"
 cask "istat-menus"
 cask "adoptopenjdk8"
 cask "kitty"
@@ -87,7 +91,7 @@ mas "Moom", id: 419330170
 mas "Pages", id: 409201541
 mas "Pixelmator", id: 407963104
 #mas "PDFpen 8", id: 1096330984
-mas "Todoist", id: 585829637
+#mas "Todoist", id: 585829637
 #mas "DaisyDisk", id: 411643860
 mas "Numbers", id: 409203825
 mas "1Password 7", id: 1333542190
