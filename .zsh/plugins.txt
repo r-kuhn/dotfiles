@@ -10,5 +10,5 @@ zsh-users/zsh-completions
 #bhilburn/powerlevel9k
 
 # Pure prompt
-mafredri/zsh-async
-sindresorhus/pure
+#mafredri/zsh-async
+#sindresorhus/pure

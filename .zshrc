@@ -1,7 +1,6 @@
 # Skip all this for non-interactive shells
 [[ -z "$PS1" ]] && return
 
-
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
@@ -45,23 +44,19 @@ export LC_CTYPE=en_US.UTF-8
 export GO111MODULE=on
 case $(uname) in
   Darwin)
-    alias ls='ls -G'
     export GOPATH=${HOME}/go
     export GOBIN=${HOME}/go/bin
 
     export PATH=${HOME}/bin:${GOROOT}/bin:${GOBIN}:${HOME}/.cargo/bin:${HOME}/local:${HOME}/brew/bin:${HOME}/.npm/bin:/usr/local/bin:${HOME}/Library/Python/3.7/bin:${PATH}
-    export PATH=${HOME}/nvim-osx64/bin:${PATH}
 
-    source '/Users/dan/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-    source '/Users/dan/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+    #source '/Users/dan/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+    #source '/Users/dan/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
     ;;
   Linux)
 	  export GOPATH=$HOME/go
 	  export GOBIN=$GOPATH/bin
 
-	  alias ls='ls --color=auto'
 	  export PATH=${HOME}/bin:${HOME}/.cargo/bin:${HOME}/.npm/bin:${GOPATH}/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin:$PATH
-	  # The next line updates PATH for the Google Cloud SDK.
     if [ -f '/home/dan/google-cloud-sdk/path.zsh.inc' ]; then . '/home/dan/google-cloud-sdk/path.zsh.inc'; fi
     if [ -f '/home/dan/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/dan/google-cloud-sdk/completion.zsh.inc'; fi
     ;;
@@ -70,6 +65,9 @@ esac
 # Pure prompt
 PURE_CMD_MAX_EXEC_TIME=5
 PURE_GIT_PULL=0
+
+# Starship prompt
+eval "$(starship init zsh)"
 
 source <(antibody init)
 antibody bundle < ~/.zsh/plugins.txt
@@ -121,18 +119,8 @@ alias ps='procs'
 alias ls='exa --icons'
 alias ll='exa -l --icons'
 
-# setup direnv
-eval "$(direnv hook zsh)"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if [ "${VIM_THEME+set}" != set ]; then
   export VIM_THEME=iceberg-dark
-  #export VIM_THEME=oceanicnext
-  #export VIM_THEME=atomonelight
 fi
-
-
-source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
-true
-

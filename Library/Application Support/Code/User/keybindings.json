@@ -58,8 +58,11 @@
         "when": "terminalFocus"
     },
     {
-        "key": "shift+cmd+a",
-        "command": "workbench.action.toggleActivityBarVisibility"
+        "key": "cmd+b",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "command": "multiCommand.makeRoom"
+        }
     },
     {
         "key": "enter",

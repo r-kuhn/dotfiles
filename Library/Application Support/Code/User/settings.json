@@ -60,23 +60,24 @@
   "go.lintTool": "golangci-lint",
   "go.autocompleteUnimportedPackages": true,
   "go.useLanguageServer": true,
-  "go.languageServerExperimentalFeatures": {
-    "format": false,
-    "rename": true,
-    "diagnostics": true,
-    "documentLink": true,
-    "findReferences": true,
-    "goToDefinition": true,
-    "goToTypeDefinition": true,
-    "hover": true,
-    "signatureHelp": true,
-    "workspaceSymbols": true
-  },
   "[go]": {
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-      "source.organizeImports": false
+      "source.organizeImports": true
     }
+  },
+  "[go.mod]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
+    },
+  },
+  "gopls": {
+    // Add parameter placeholders when completing a function.
+    "usePlaceholders": true,
+    // If true, enable additional analyses with staticcheck.
+    // Warning: This will significantly increase memory usage.
+    "staticcheck": false,
   },
   "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
   "rust-analyzer.highlightingOn": true,
@@ -93,13 +94,11 @@
   "telemetry.enableTelemetry": false,
   "errorLens.fontStyleItalic": true,
   "errorLens.gutterIconsEnabled": true,
-  "errorLens.useColorContributions": true,
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.fontFamily": "OperatorMonoLig Nerd Font",
   "editor.fontLigatures": true,
   "editor.fontSize": 14,
-  "terminal.integrated.fontFamily": "OperatorMonoLig Nerd Font",
   "editor.hover.delay": 3000,
   "editor.hover.enabled": true,
   "editor.parameterHints.enabled": false,
@@ -114,10 +113,9 @@
     "*.plush.html": "erb"
   },
   "extensions.ignoreRecommendations": false,
-  "workbench.activityBar.visible": true,
+  "workbench.activityBar.visible": false,
   "breadcrumbs.enabled": false,
   "window.zoomLevel": 0,
-  "terminal.integrated.fontSize": 14,
   "files.insertFinalNewline": true,
   "sqltools.connections": [
     {
@@ -131,6 +129,17 @@
   "gitlens.statusBar.enabled": false,
   "gitlens.advanced.telemetry.enabled": false,
   "sqltools.telemetry": false,
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontFamily": "OperatorMonoLig Nerd Font",
   "terminal.integrated.scrollback": 10000,
   "git.autofetch": true,
+  "multiCommand.commands": [
+    {
+      "command": "multiCommand.makeRoom",
+      "sequence": [
+        "workbench.action.toggleSidebarVisibility",
+        "workbench.action.toggleActivityBarVisibility"
+      ]
+    }
+  ]
 }
