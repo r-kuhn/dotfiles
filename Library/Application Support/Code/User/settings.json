@@ -1,4 +1,84 @@
 {
+  // ----------
+  // General
+  // ----------
+  "workbench.iconTheme": "Monokai Pro (Filter Ristretto) Icons",
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.colorTheme": "FireFly Pro Midnight",
+  "workbench.activityBar.visible": true,
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+  "editor.minimap.renderCharacters": false,
+  "editor.minimap.enabled": false,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.fontFamily": "OperatorMonoLig Nerd Font",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14,
+  "editor.cursorStyle": "block",
+  "editor.cursorSurroundingLines": 3,
+  "editor.dragAndDrop": false,
+  "editor.hover.enabled": false,
+  "editor.parameterHints.enabled": false,
+  "editor.roundedSelection": false,
+  "extensions.ignoreRecommendations": true,
+  "extensions.showRecommendationsOnlyOnDemand": true,
+  "breadcrumbs.enabled": false,
+  "window.zoomLevel": 0,
+  "files.insertFinalNewline": true,
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontFamily": "OperatorMonoLig Nerd Font",
+  "terminal.integrated.scrollback": 10000,
+  // ----------
+  // File Extensions
+  // ----------
+  "files.associations": {
+    "*.plush.html": "erb"
+  },
+  // Other extensions
+  "errorLens.fontStyleItalic": true,
+  "errorLens.gutterIconsEnabled": true,
+  "multiCommand.commands": [
+    {
+      "command": "multiCommand.makeRoom",
+      "sequence": [
+        "workbench.action.toggleSidebarVisibility",
+        "workbench.action.toggleActivityBarVisibility"
+      ]
+    }
+  ],
+  // ----------
+  // Git
+  // ----------
+  "git.autofetch": true,
+  "gitlens.codeLens.enabled": false,
+  "gitlens.statusBar.enabled": false,
+  "gitlens.advanced.telemetry.enabled": false,
+  // ----------
+  // SQL
+  // ----------
+  "sqltools.telemetry": false,
+  "sqltools.connections": [
+    {
+      "connectString": "postgres://postgres:postgres@localhost:5432/reflector_development",
+      "dialect": "PostgreSQL",
+      "name": "reflector_development"
+    }
+  ],
+  // ----------
+  // HTML
+  // ----------
+  "[html]": {
+    "editor.formatOnSave": false
+  },
+  "emmet.includeLanguages": {
+    "erb": "erb",
+    "html": "html"
+  },
+  // ----------
+  // VIM
+  // ----------
   "vim.easymotion": true,
   "vim.easymotionMarkerYOffset": 0,
   "vim.easymotionMarkerFontFamily": "Menlo",
@@ -56,6 +136,9 @@
     "<C-e>": false,
     "<C-g>": false
   },
+  // ----------
+  // Go
+  // ----------
   "go.formatTool": "goimports",
   "go.lintTool": "golangci-lint",
   "go.autocompleteUnimportedPackages": true,
@@ -79,67 +162,19 @@
     // Warning: This will significantly increase memory usage.
     "staticcheck": false,
   },
-  "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
+  // ----------
+  // Rust
+  // ----------
   "rust-analyzer.highlightingOn": true,
-  "rust-analyzer.enableEnhancedTyping": true,
-  "rust-analyzer.featureFlags": {
-    "notifications.cargo-toml-not-found": false
+  "rust-analyzer": {
+    "highlightingOn": true,
+    "inlayHints": {
+      "typeHints": true,
+      "chainedHints": true,
+      "parameterHints": true,
+    }
   },
   "rust-analyzer.cargo-watch.enable": true,
   "rust-analyzer.cargo-watch.command": "clippy",
-  "editor.minimap.renderCharacters": false,
-  "editor.minimap.enabled": false,
-  "workbench.startupEditor": "newUntitledFile",
-  "telemetry.enableCrashReporter": false,
-  "telemetry.enableTelemetry": false,
-  "errorLens.fontStyleItalic": true,
-  "errorLens.gutterIconsEnabled": true,
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
-  "editor.fontFamily": "OperatorMonoLig Nerd Font",
-  "editor.fontLigatures": true,
-  "editor.fontSize": 14,
-  "editor.hover.delay": 3000,
-  "editor.hover.enabled": true,
-  "editor.parameterHints.enabled": false,
-  "[html]": {
-    "editor.formatOnSave": false
-  },
-  "emmet.includeLanguages": {
-    "erb": "erb",
-    "html": "html"
-  },
-  "files.associations": {
-    "*.plush.html": "erb"
-  },
-  "extensions.ignoreRecommendations": false,
-  "workbench.activityBar.visible": false,
-  "breadcrumbs.enabled": false,
-  "window.zoomLevel": 0,
-  "files.insertFinalNewline": true,
-  "sqltools.connections": [
-    {
-      "connectString": "postgres://postgres:postgres@localhost:5432/reflector_development",
-      "dialect": "PostgreSQL",
-      "name": "reflector_development"
-    }
-  ],
-  "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
-  "gitlens.codeLens.enabled": false,
-  "gitlens.statusBar.enabled": false,
-  "gitlens.advanced.telemetry.enabled": false,
-  "sqltools.telemetry": false,
-  "terminal.integrated.fontSize": 14,
-  "terminal.integrated.fontFamily": "OperatorMonoLig Nerd Font",
-  "terminal.integrated.scrollback": 10000,
-  "git.autofetch": true,
-  "multiCommand.commands": [
-    {
-      "command": "multiCommand.makeRoom",
-      "sequence": [
-        "workbench.action.toggleSidebarVisibility",
-        "workbench.action.toggleActivityBarVisibility"
-      ]
-    }
-  ]
+  "rust-analyzer.rainbowHighlightingOn": true
 }
