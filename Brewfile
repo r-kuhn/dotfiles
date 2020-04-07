@@ -79,6 +79,7 @@ cask "adoptopenjdk/openjdk/adoptopenjdk8"
 cask "kitty"
 cask "notion"
 cask "slack"
+cask "spotify"
 cask "soulver"
 cask "visual-studio-code"
 
