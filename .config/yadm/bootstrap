@@ -11,6 +11,7 @@ if [ "$system_type" = "Darwin" ]; then
 	brew update
 
 	brew bundle
+	brew services start scalacenter/bloop/bloop
 
 	if [ -d "$HOME/.iterm2" ]; then
 		echo "Setting iTerm preference folder"
